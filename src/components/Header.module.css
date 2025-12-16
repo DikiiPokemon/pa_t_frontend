@@ -1,0 +1,315 @@
+.header_wrapper{
+    width: 100%;
+    max-width: 1920px;
+
+    background-color: var(--background-white);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+}
+
+.header_container{
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    padding-inline: 100px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100px;
+}
+
+.header_img{
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.header_img_logo{
+    filter: drop-shadow(0 4px 2px rgba(0,0,0,0.25));
+}
+
+.header_navigation{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.header_callback{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    gap: 10px;
+}
+
+.header_button{
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    transition: 0.5s;
+
+    padding: 10px;
+    background-color: var(--main-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+}
+
+.header_button_active{
+
+    justify-content: flex-start;
+    align-items: center;
+    user-select: none;
+    gap: 10px;
+    overflow: hidden;
+
+    color: var(--background-white);
+
+    transition: 0.5s;
+
+    padding: 10px;
+    background-color: var(--main-color);
+    width: 200px;
+    height: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+}
+
+.header_button img{
+    width: 18px;
+    height: 18px;
+}
+
+.header_button_active img{
+    width: 18px;
+    height: 18px;
+}
+
+.header_button:active{
+    box-shadow: none;
+}
+
+.header_link_active span{
+    transition: 0.5s;
+    width: 57px!important;
+}
+
+.header_navigation a{
+    transition: 0.5s;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header_navigation a span{
+    width: 0;
+    height: 3px;
+
+    transition: 0.5s;
+    border-radius: 1000px;
+    box-shadow: 0 0 0 0 rgba(24, 71, 137, 0.2), 0 3px 6px 0 rgba(24, 71, 137, 0.2), 0 11px 11px 0 rgba(24, 71, 137, 0.17), 0 24px 15px 0 rgba(24, 71, 137, 0.1), 0 43px 17px 0 rgba(24, 71, 137, 0.03), 0 68px 19px 0 rgba(24, 71, 137, 0);
+    background: var(--main-color);
+}
+
+.header_navigation a:hover span{
+    transition: 0.5s;
+    width: 57px;
+}   
+
+.call_active{
+    display: block;
+    position: relative;
+    top: -19px;
+    left: 30px;
+    width: 150px;
+    text-align: center;
+    overflow: hidden;
+    color: var(--background-white);
+}
+
+.call_active_open{
+    display: block;
+    position: relative;
+    top: -20px;
+    left: 15px;
+    width: 150px;
+    text-align: center;
+    overflow: hidden;
+    color: var(--background-white);
+}
+
+.search_input{
+    display: block;
+    position: relative;
+    top: -20px;
+    left: 30px;
+    width: 150px;
+    outline: none;
+    color: var(--background-white);
+    font-weight: 400;
+}
+
+.burger_trigger{
+    display: none;
+}
+
+.burger_wrapper{
+    display: none;
+}
+
+@media (max-width: 1200px){
+   .header_container{
+        padding-inline: 20px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 980px){
+
+    .burger_button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        width: 20px;
+        height: 40px;
+        gap: 5px;
+
+        cursor: pointer;
+        z-index: 2;
+
+        transition: 0.5s;
+        
+    }
+
+    .burger_button::before{
+        position: absolute;
+        content: " ";
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 1000px;
+        background: black;
+        transition: 0.5s;
+    }
+
+    .burger_button span{
+        content: " ";
+        width: 100%;
+        height: 3px;
+        border-radius: 1000px;
+        background: black;
+        transition: 0.1s;
+    }
+
+    .burger_button::after{
+        position: absolute;
+        content: " ";
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 1000px;
+        background: black;
+        transition: 0.5s;
+    }
+
+    .burger_button.Active::before{
+        transform: rotate(45deg);
+        transition: 0.5s;
+        top: 50%;
+
+    }
+
+    .burger_button.Active::after{
+        transform: rotate(-45deg);
+        top: 50%;
+        transition: 0.5s;
+    }
+
+    .burger_button.Active span{
+        opacity: 0;
+        transition: 0.1s;
+    }
+
+   
+    .burger_trigger{
+        display: block;
+    }
+
+    .burger_wrapper{
+        position: absolute;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        width: 100%; 
+        gap: 15px;
+
+        top: -2000px;
+        left: 0;
+        transition: 0.5s;
+        height: calc(100% - 100px);
+        background-color: var(--background-white);
+        z-index: 1;
+    }
+
+    .burger_wrapper.Open{
+        transition: 0.5s;
+
+        top: 100px;
+    }
+
+    .header_navigation{
+        display: none;
+    }
+
+    .header_callback{
+        display: none;
+    }
+
+    .mobile{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .mobile_buttons{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        height: auto;
+        padding: 20px;
+    }
+
+    .header_navigation a{
+        font-size: 26px;
+    }
+
+    .header_link_active span{
+        width: 100px!important;
+    }
+}
+

@@ -1,0 +1,110 @@
+.contacts_wrapper{
+    width: 100%;
+    max-width: 1920px;
+
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding-inline: 80px;
+
+    margin: 20px 0px;
+
+}
+
+.contacts_container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    background-color: var(--background-white);
+
+    gap: 20px;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+
+
+    width: 100%;
+    max-width: 1720px;
+    gap: 20px;
+}
+
+.contacts_header h1{
+    font-size: 36px;
+}
+
+.contacts_content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.contacts_content_header{
+
+}
+
+.contacts_content_header_button{
+    position: relative;
+    background-color: var(--background);
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    width: 150px;
+
+    transition: 0.5s;
+    z-index: 2;
+
+    box-shadow: 2px 0 0 0 rgba(0, 0, 0, 0.1), 0 -1px 3px 0 rgba(0, 0, 0, 0.1), 0 -5px 5px 0 rgba(0, 0, 0, 0.09), 0 -10px 6px 0 rgba(0, 0, 0, 0.05), 0 -18px 7px 0 rgba(0, 0, 0, 0.01), 0 -29px 8px 0 rgba(0, 0, 0, 0);
+}
+
+.Active{
+    box-shadow: none;
+    transition: 0.5s;
+    z-index: 0;
+}
+
+.contacts_content_wrapper{
+    background-color: var(--background);
+    padding: 10px;
+    border-radius: 0 10px 10px 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+
+    height: 450px;
+
+    font-size: 17px;
+
+    transition: 0.5s;
+    overflow-y: auto;
+    z-index: 2;
+
+    box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.contacts_content_wrapper p{
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+}
+
+.contacts_content_wrapper p span{
+    font-weight: 700;
+}
+
+.card p{
+    flex-direction: row;
+    gap: 10px;
+    transition: 0.5s;
+}
