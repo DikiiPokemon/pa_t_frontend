@@ -13,14 +13,14 @@ const cur_prod = observer(() => {
 
     function Model({ url }) {
         const { scene } = useGLTF(url);
-        return <primitive  position={[0, 0, 0]} object={scene} />;
+        return <primitive  position={[0, 0, 0]} object={scene}  rotation={[100, 1.5, 0]} />;
     }
 
     return(
         <div className={styles.product_page_wrapper}>
             <div className={styles.product_page_charachteristic_wrapper}>
                 <div className={styles.product_page_charachteristic_img}>
-                    <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 15}}>
+                    <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 10}}>
                         <ambientLight intensity={0.1} />
                         <directionalLight
                             castShadow
@@ -36,6 +36,7 @@ const cur_prod = observer(() => {
                             shadow-camera-top={5}
                             shadow-camera-bottom={-5}
                             shadow-mapSize={[1024, 1024]} />
+                        <meshStandardMaterial color={0xeaeff0} />
                         <Suspense fallback={null}>
                             <Model url="/assets/3d/10.gltf" />
                         </Suspense>
