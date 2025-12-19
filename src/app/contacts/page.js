@@ -1,6 +1,6 @@
 "use client";
 import styles from "@/app/contacts/page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Contacts() {
 
@@ -16,8 +16,20 @@ export default function Contacts() {
     }
   ]
 
+  const [form, setForm] = useState(
+    {
+      theme: "",
+      name: "",
+      mail: "",
+      text: "",
+    }
+  )
   
   const[active, setActive] = useState(Contacts[0].name)
+
+  useEffect(() => {
+    console.log(form);
+  }, [form])
   
   return (
     <div className={styles.contacts_wrapper}>
@@ -37,12 +49,16 @@ export default function Contacts() {
                 <p><span>Адрес нашего офиса:</span>
                   <a href="https://yandex.ru/maps/-/CLwaJB0F" target="_blank">194044, Санкт-Петербург, Пироговская наб., д.17 корп.5 лит.А</a>
                 </p>
+                <br/>
                 <p><span>Время приема заказов: </span>по телефону — с 9.00 до 18.00 (время московское)</p>
+                <br/>
                 <p><span>Телефоны:</span>
                   <a href="tel: +78126032310">+7 (812) 603-23-10,</a>
                   <a href="tel: +78122235078">+7 (812) 223-50-78</a>
                 </p>
+                <br/>
                 <p><span>Факс:</span> +7 (812) 603-23-16</p>
+                <br/>
                 <p><span>Email:</span>
                   <a href="mailto:tech@pa.ru">tech@pa.ru</a>
                 </p>
@@ -61,7 +77,24 @@ export default function Contacts() {
             }
             {active === "Написать нам" &&
               <div className={styles.contacts_content_wrapper}>
-              
+                <div className={`${ styles.contacts_content_input_wrapper} ${form.theme !== "" ? styles.Active : ""}`}>
+                  <input onChange={e => setForm({...form, theme: e.target.value})} value={form.theme} type="text" placeholder="Тема" className={styles.contacts_content_wrapper_input}/>
+                  <label>Тема</label>
+                </div>
+                <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
+                  <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше имя" className={styles.contacts_content_wrapper_input}/>
+                  <label>Ваше имя</label>
+                </div>
+                <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
+                  <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={styles.contacts_content_wrapper_input}/>
+                  <label>Ваш e-mail</label>
+                </div>
+                <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
+                  <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Ваше сообщение" className={styles.contacts_content_wrapper_textarea}/>
+                  <label>Ваше сообщение</label>
+                </div>
+                
+                
               </div>
             }
         </div>
