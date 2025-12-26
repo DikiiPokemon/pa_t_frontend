@@ -7,20 +7,34 @@ import ToCard from "./To_card"
 
 const LPS_calc = () => {
 
+    const Range = [
+        "0..7", "0..10", "0..15", "0..20", "0..25", "0..30", "0..40", "0..50", "0..60", "0..70", "0..80", "0..90", "0..100", "0..110", "0..140", "0..150", "0..170", "0..220", "0..250", "0..330", "0..440", "0..550", "0..660"
+    ]
+
+    const Execution =[
+        "FS = свободный шток",
+        "DS = направленный шток"
+    ]
+
+    const Type = [  
+        "CA = встроенный кабель",
+        "C1 = разъем-радиальный",
+        "CW = встроенные провода с аксиальным выходом"
+    ]
 
     return(
         <div className={styles.calc_wrapper}>
             <div className={styles.calc_measurments}>
                 <p>Диапазон измерений</p>
-                <Selector/>
+                <Selector key={"LPS1"} arr={Range}/>
             </div>
             <div className={styles.calc_measurments}>
                 <p>Исполнение</p>
-                <Selector/>
+                <Selector key={"LPS2"} arr={Execution}/>
             </div>
             <div className={styles.calc_measurments}>
                 <p>Тип подключения</p>
-                <Selector/>
+                <Selector key={"LPS3"} arr={Type}/>
             </div>
             <div className={styles.calc_measurments}>
                 <p>Длина кабеля</p>
