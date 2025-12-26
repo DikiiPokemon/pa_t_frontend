@@ -1,6 +1,9 @@
 import styles from "@/components/Selector.module.css";
 import { useEffect, useRef, useState } from "react";
+
+
 const Selector = ({arr}) => {
+
     const [active, setActive] = useState(false)
     const [value, setValue] = useState(arr[0])
 
@@ -13,9 +16,9 @@ const Selector = ({arr}) => {
     }, []);
 
     return(
-        <button ref={callMenu} onClick={() => setActive(!active)} className={styles.selector_wrapper}>
+        <div ref={callMenu} onClick={() => setActive(!active)} className={styles.selector_wrapper}>
             <div className={styles.active_element}>{value}</div>
-            <div className={`${styles.menu_wrapper} ${active ? styles.Active : ""}`}>
+            {/* <div className={`${styles.menu_wrapper} ${active ? styles.Active : ""}`}>
                 {
                     arr?.map((i,idx) => {
                         if(i !== value){
@@ -25,9 +28,9 @@ const Selector = ({arr}) => {
                         }
                     })
                 }
-            </div>
+            </div> */}
             
-        </button>
+        </div>
     )
 }
 
