@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 :root {
   --background: #eaeff0;
@@ -23,6 +23,7 @@ body {
   color: var(--foreground);
   font-family: Inter;
   font-weight: 700;
+  gap: 20px;
 }
 
 html{

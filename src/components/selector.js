@@ -18,7 +18,7 @@ const Selector = ({arr}) => {
     return(
         <div ref={callMenu} onClick={() => setActive(!active)} className={styles.selector_wrapper}>
             <div className={styles.active_element}>{value}</div>
-            {/* <div className={`${styles.menu_wrapper} ${active ? styles.Active : ""}`}>
+            <div className={`${styles.menu_wrapper} ${active ? styles.Active : ""}`}>
                 {
                     arr?.map((i,idx) => {
                         if(i !== value){
@@ -28,7 +28,7 @@ const Selector = ({arr}) => {
                         }
                     })
                 }
-            </div> */}
+            </div>
             
         </div>
     )

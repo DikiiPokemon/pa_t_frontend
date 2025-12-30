@@ -9,11 +9,24 @@ import LPS_calc from "@/components/LPS_calc";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, OrbitControls, useGLTF } from "@react-three/drei";
 
+
 const cur_prod = observer(() => {
 
-    function Model({ url }) {
-        const { scene } = useGLTF(url);
-        return <primitive  position={[0, 0, 0]} object={scene}  rotation={[100, 1.5, 0]} />;
+    const [description, setDescription] = useState(1)
+
+    function Model({ color = 'red', url}) {
+        const { scene } = useGLTF(url)
+
+        scene.traverse((child) => {
+            if (child.isMesh) {
+                child.material = child.material.clone()
+                child.material.color.set(color)
+                console.log(child.material);
+                
+            }
+        })
+
+        return <primitive object={scene} position={[0, 0, 0]} rotation={[100, 1.5, 0]}/>
     }
 
     return(
@@ -38,14 +51,14 @@ const cur_prod = observer(() => {
                             shadow-mapSize={[1024, 1024]} />
                         <meshStandardMaterial color={0xeaeff0} />
                         <Suspense fallback={null}>
-                            <Model url="/assets/3d/10.gltf" />
+                            <Model color="gray" url="/assets/3d/11.gltf" />
                         </Suspense>
                         <ContactShadows
-                        position={[0, -0.05, 0]}
-                        opacity={1}
-                        scale={1}
-                        blur={2}
-                        far={1}
+                            position={[0, -0.05, 0]}
+                            opacity={1}
+                            scale={1}
+                            blur={2}
+                            far={1}
                         />
                         <OrbitControls/>
                     </Canvas>
@@ -53,6 +66,30 @@ const cur_prod = observer(() => {
                 <div className={styles.product_page_charachteristic_container}>
                     <LPS_calc/>
                 </div>
+               
+            </div>
+            <div className={styles.product_page_description}>
+                <div className={styles.product_page_description_nav}>
+                    <button onClick={() => setDescription(1)} className={`${styles.product_page_description_nav_button} ${description === 1 ? styles.Active : ""}`}>Описание</button>
+                    <button onClick={() => setDescription(2)} className={`${styles.product_page_description_nav_button} ${description === 2 ? styles.Active : ""}`}>Документация</button>
+                    <button onClick={() => setDescription(3)} className={`${styles.product_page_description_nav_button} ${description === 3 ? styles.Active : ""}`}>Сертификаты и декларации</button>
+                </div>
+                {description === 1 &&
+                    <div className={styles.product_page_description_main}>
+                        
+                    </div>
+                }
+                {description === 2 &&
+                    <div className={styles.product_page_description_main}>
+                        
+                    </div>
+                }
+                {description === 3 &&
+                    <div className={styles.product_page_description_main}>
+                        
+                    </div>
+                }
+                
             </div>
         </div>
     )
