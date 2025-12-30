@@ -76,17 +76,39 @@ const cur_prod = observer(() => {
                 </div>
                 {description === 1 &&
                     <div className={styles.product_page_description_main}>
-                        
+                        <h1 className={styles.product_page_description_main_header}>Описание</h1>
+                        <h2 className={styles.product_page_description_main_header}>Основные технические характеристики</h2>
+                        <ul>
+                            <li>Диапазоны измерений от 7 до 660 мм</li>
+                            <li>Встроенный кабель или разъемный соединитель</li>
+                            <li>Срок службы до 100 млн. движений</li>
+                            <li>Двусторонний гибкий или односторонний направленный выдвижной шток</li>
+                            <li>Линейность до ±0,1 % диапазона</li>
+                            <li>Температура до 125 градусов Цельсия</li>
+                            <li>Степень защиты IP 67</li>
+                            <li>Дублированный выходной аналоговый ±10 В или 4-20 мА</li>
+                            <li>Возможно исполнение на заказ</li>
+                        </ul>
                     </div>
                 }
                 {description === 2 &&
                     <div className={styles.product_page_description_main}>
-                        
+                        <h1 className={styles.product_page_description_main_header}>Документация</h1>
+                        <ul>
+                            <li><a href="" target="_blank">Техническая спецификация</a></li>
+                            <li><a href="" target="_blank">Руководство по эксплуатации</a></li>
+                            <li><a href="" target="_blank">Технические условия</a></li>
+                            <li><a href="" target="_blank">Модели_STL</a></li>
+                        </ul>
                     </div>
                 }
                 {description === 3 &&
                     <div className={styles.product_page_description_main}>
-                        
+                        <h1 className={styles.product_page_description_main_header}>Сертификаты и декларации</h1>
+                        <h2 className={styles.product_page_description_main_header}>Федеральное агенство по техническому регулированию и метрологии</h2>
+                        <ul>
+                            <li><a href="" target="_blank">Сертификат об утверждении типа средств измерений</a></li>
+                        </ul>
                     </div>
                 }
                 

@@ -106,6 +106,10 @@
     box-shadow: none;
 }
 
+.header_link{
+    text-decoration: none;
+}
+
 .header_link_active span{
     transition: 0.5s;
     width: 57px!important;

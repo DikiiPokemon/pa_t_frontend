@@ -51,11 +51,11 @@ const Header = () => {
                     <Image src={Logo_descr} alt={""}/>
                 </div>
                 <div className={styles.header_navigation}>
-                    <Link className={pathname === "/" ? styles.header_link_active : ""} href="/">Главная<span></span></Link>
-                    <Link className={pathname === "/catalog" ? styles.header_link_active : ""} href="/catalog">Каталог<span></span></Link>
-                    <Link className={pathname === "/articles" ? styles.header_link_active : ""} href="/articles">Статьи<span></span></Link>
-                    <Link className={pathname === "/reviews" ? styles.header_link_active : ""} href="/reviews">Отзывы<span></span></Link>
-                    <Link className={pathname === "/contacts" ? styles.header_link_active : ""} href="/contacts">Контакты<span></span></Link>
+                    <Link className={`${styles.header_link} ${pathname === "/" ? styles.header_link_active : ""}`} href="/">Главная<span></span></Link>
+                    <Link className={`${styles.header_link} ${pathname === "/catalog" ? styles.header_link_active : ""}`} href="/catalog">Каталог<span></span></Link>
+                    <Link className={`${styles.header_link} ${pathname === "/articles" ? styles.header_link_active : ""}`} href="/articles">Статьи<span></span></Link>
+                    <Link className={`${styles.header_link} ${pathname === "/reviews" ? styles.header_link_active : ""}`} href="/reviews">Отзывы<span></span></Link>
+                    <Link className={`${styles.header_link} ${pathname === "/contacts" ? styles.header_link_active : ""}`} href="/contacts">Контакты<span></span></Link>
                 </div>
                 <div ref={callMenu} className={styles.header_callback}>
                     <button className={styles.header_button}><Image src={Cart} alt={""}/></button>
