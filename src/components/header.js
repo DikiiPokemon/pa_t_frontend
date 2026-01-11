@@ -38,9 +38,9 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-        console.log(call);
+        console.log(pathname);
         
-    }, [call])
+    }, [pathname])
 
 
     return(
@@ -52,7 +52,7 @@ const Header = () => {
                 </div>
                 <div className={styles.header_navigation}>
                     <Link className={`${styles.header_link} ${pathname === "/" ? styles.header_link_active : ""}`} href="/">Главная<span></span></Link>
-                    <Link className={`${styles.header_link} ${pathname === "/catalog" ? styles.header_link_active : ""}`} href="/catalog">Каталог<span></span></Link>
+                    <Link className={`${styles.header_link} ${pathname.split("/")[1] === "catalog" ? styles.header_link_active : ""}`} href="/catalog">Каталог<span></span></Link>
                     <Link className={`${styles.header_link} ${pathname === "/articles" ? styles.header_link_active : ""}`} href="/articles">Статьи<span></span></Link>
                     <Link className={`${styles.header_link} ${pathname === "/reviews" ? styles.header_link_active : ""}`} href="/reviews">Отзывы<span></span></Link>
                     <Link className={`${styles.header_link} ${pathname === "/contacts" ? styles.header_link_active : ""}`} href="/contacts">Контакты<span></span></Link>

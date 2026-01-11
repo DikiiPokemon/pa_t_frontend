@@ -1,4 +1,5 @@
 "use client";
+import styles from "@/app/catalog/page.module.css";
 import ProductCard from "@/components/product_card";
 import { useContext, useEffect, useState } from "react"
 import { Context } from "../layout"
@@ -13,9 +14,11 @@ const catalog = observer(() => {
       name: "Датчики",
       products: [
         {
+          href: "/catalog/current_prod_lps",
           name: "LPS датчики",
         },
         {
+          href: "/catalog/current_prod_fs",
           name: "FS датчики",
         }
       ]
@@ -24,21 +27,23 @@ const catalog = observer(() => {
       name: "Электронные блоки",
       products: [
         {
+          href: "/catalog/current_prod_bdt",
           name: "Блок преобразования LVDT (BDT)",
         },
         {
+          href: "/catalog/current_prod_bfs",
           name: "Блок преобразования FS (BFS)",
         }
       ]
     },
-    {
-      name: "Аксессуары",
-      products: [
-        {
-          name: "",
-        },
-      ]
-    }
+    // {
+    //   name: "Аксессуары",
+    //   products: [
+    //     {
+    //       name: "",
+    //     },
+    //   ]
+    // }
   ]
 
 
@@ -47,9 +52,9 @@ const catalog = observer(() => {
           {
             product_cards.map(i => {
               return(
-                <div key={"product_cards " + i.name} className="catalog_wrapper">
-                  <div className="catalog_section"><h1>{i.name}</h1></div>
-                  <div className="catalog_container">
+                <div key={"product_cards " + i.name} className={styles.catalog_wrapper}>
+                  <div className={styles.catalog_section}><h1>{i.name}</h1></div>
+                  <div className={styles.catalog_container}>
                     {
                       i.products.map(el => {
 

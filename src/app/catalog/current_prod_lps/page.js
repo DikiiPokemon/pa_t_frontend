@@ -1,5 +1,5 @@
 "use client";
-import styles from "@/app/catalog/current_prod/page.module.css";
+import styles from "@/app/catalog/page.module.css";
 import ProductCard from "@/components/product_card";
 import { Suspense, useContext, useEffect, useState } from "react"
 import { Context } from "../../layout"
@@ -21,7 +21,6 @@ const cur_prod = observer(() => {
             if (child.isMesh) {
                 child.material = child.material.clone()
                 child.material.color.set(color)
-                console.log(child.material);
                 
             }
         })

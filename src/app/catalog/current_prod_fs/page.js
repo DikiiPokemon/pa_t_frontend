@@ -1,0 +1,273 @@
+"use client";
+import styles from "@/app/catalog/page.module.css";
+import ProductCard from "@/components/product_card";
+import { Suspense, useContext, useEffect, useState } from "react"
+import { Context } from "../../layout"
+import { fetchProducts } from "@/http/product_controll"
+import { observer } from "mobx-react-lite";
+import LPS_calc from "@/components/LPS_calc";
+import { Canvas } from "@react-three/fiber";
+import { ContactShadows, OrbitControls, useGLTF } from "@react-three/drei";
+import FS_calc from "@/components/FS_calc";
+
+
+const cur_prod = observer(() => {
+
+    const [description, setDescription] = useState(1)
+
+    function Model({ color = 'red', url}) {
+        const { scene } = useGLTF(url)
+
+        scene.traverse((child) => {
+            if (child.isMesh) {
+                child.material = child.material.clone()
+                child.material.color.set(color)
+                
+            }
+        })
+
+        return <primitive object={scene} position={[0, 0, 0]} rotation={[100, 1.5, 0]}/>
+    }
+
+    return(
+        <div className={styles.product_page_wrapper}>
+            <div className={styles.product_page_charachteristic_wrapper}>
+                <div className={styles.product_page_charachteristic_img}>
+                    <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 10}}>
+                        <ambientLight intensity={0.1} />
+                        <directionalLight
+                            castShadow
+                            position={[0, -3, 0]} // свет под объектом
+                            intensity={1.5}
+                            color="gray"
+                            shadow-mapSize-width={1024}
+                            shadow-mapSize-height={1024}
+                            shadow-camera-far={10}
+                            shadow-camera-near={0.5}
+                            shadow-camera-left={-5}
+                            shadow-camera-right={5}
+                            shadow-camera-top={5}
+                            shadow-camera-bottom={-5}
+                            shadow-mapSize={[1024, 1024]} />
+                        <meshStandardMaterial color={0xeaeff0} />
+                        <Suspense fallback={null}>
+                            <Model color="gray" url="/assets/3d/11.gltf" />
+                        </Suspense>
+                        <ContactShadows
+                            position={[0, -0.05, 0]}
+                            opacity={1}
+                            scale={1}
+                            blur={2}
+                            far={1}
+                        />
+                        <OrbitControls/>
+                    </Canvas>
+                </div>
+                <div className={styles.product_page_charachteristic_container}>
+                    <FS_calc/>
+                </div>
+               
+            </div>
+            <div className={styles.product_page_description}>
+                <div className={styles.product_page_description_nav}>
+                    <button onClick={() => setDescription(1)} className={`${styles.product_page_description_nav_button} ${description === 1 ? styles.Active : ""}`}>Описание</button>
+                    <button onClick={() => setDescription(2)} className={`${styles.product_page_description_nav_button} ${description === 2 ? styles.Active : ""}`}>Документация</button>
+                    <button onClick={() => setDescription(3)} className={`${styles.product_page_description_nav_button} ${description === 3 ? styles.Active : ""}`}>Сертификаты и декларации</button>
+                </div>
+                {description === 1 &&
+                    <div className={styles.product_page_description_main}>
+                        <h1 className={styles.product_page_description_main_header}>Описание</h1>
+                        <h2 className={styles.product_page_description_main_header}>Основные технические характеристики</h2>
+                        <ul>
+                            <li>Диапазон измерений частоты вращения, от 2 до 16000 Гц</li>
+                            <li>Встроенный кабель или разъемный соединитель</li>
+                            <li>Наработка на отказ, часы, не менее 100 тыс. часов</li>
+                            <li>Пределы допускаемой относительной погрешности измерений частоты вращения, ±0,1 %</li>
+                            <li>Выходной сигнал Аналоговый или PushPull</li>
+                            <li>Температура до 125 градусов Цельсия</li>
+                            <li>Степень защиты IP 67</li>
+                            <li>Возможно исполнение на заказ</li>
+                        </ul>
+                        <table className={styles.table} style={{height: "1384px", width: "100%"}}>
+                            <tbody>
+                                <tr>
+                                    <td width="303">Наименование характеристики</td>
+                                    <td width="123">Значение характеристики для модификации FS-A-12, FS-A-22</td>
+                                    <td width="123">Значение характеристики для модификации FS-PP-12</td>
+                                    <td width="123">Значение характеристики для модификации FS-PP-22</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Метрологические характеристики</strong></td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Диапазон измерений частоты вращения, Гц</td>
+                                    <td width="123">от 2 до 16000</td>
+                                    <td width="123">от 2 до 16000</td>
+                                    <td width="123">от 2 до 16000</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Пределы допускаемой относительной погрешности измерений частоты вращения, %</td>
+                                    <td width="123">± 0,1</td>
+                                    <td width="123">± 0,1</td>
+                                    <td width="123">± 0,1</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Технические характеристики</strong></td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Диапазон выходного сигнала</td>
+                                    <td width="123">от 0.2 до 30 В</td>
+                                    <td width="123">24 В</td>
+                                    <td width="123">24 В</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Номинальное напряжение питания, В</td>
+                                    <td width="123">–</td>
+                                    <td width="123">24</td>
+                                    <td width="123">24</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Ток потребления, мА, не более</td>
+                                    <td width="123">6</td>
+                                    <td width="123">40</td>
+                                    <td width="123">40</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Время установления рабочего режима, с, не более</td>
+                                    <td width="123">1</td>
+                                    <td width="123">1</td>
+                                    <td width="123">1</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Режим работы</td>
+                                    <td width="123">Непрерывный</td>
+                                    <td width="123">Непрерывный</td>
+                                    <td width="123">Непрерывный</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Электрическая прочность изоляции между жилами кабеля и корпусом датчика, Вэфф, не менее:</td>
+                                    <td width="123">500</td>
+                                    <td width="123">300</td>
+                                    <td width="123">300</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">
+                                        Сопротивление изоляции между жилами кабеля и корпусом, МОм, не менее:<p></p>
+                                        <p> в нормальных условиях эксплуатации</p> 
+                                        <p>при повышенной влажности</p>  
+                                        <p>при повышенной температуре</p>
+                                    </td>
+                                    <td width="123"><br></br>
+                                        <p>20</p>
+                                        <p>1</p>
+                                        <p>5</p>
+                                    </td>
+                                    <td width="123"><br></br>
+                                        <p>20</p>
+                                        <p>1</p>
+                                        <p>5</p> 
+                                    </td>
+                                    <td width="123"><br></br>
+                                        <p>20</p>
+                                        <p>1</p>
+                                        <p>5</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Порог срабатывания при защите от переполюсовки и импульсного<p></p>
+                                    <p>перенапряжения, В</p></td>
+                                    <td width="123">30</td>
+                                    <td width="123">30</td>
+                                    <td width="123">30</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Характеристики устойчивости к внешним воздействиям</strong></td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Температура окружающего воздуха</td>
+                                    <td width="123">От -40 до 125<sup> 0</sup>С</td>
+                                    <td width="123">От -20 до 85<sup> 0</sup>С</td>
+                                    <td width="123">От -20до 85<sup> 0</sup>С</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Барометрическое давление</td>
+                                    <td width="123">от 84,0 до 106,7 кПа</td>
+                                    <td width="123">от 84,0 до 106,7 кПа</td>
+                                    <td width="123">от 84,0 до 106,7 кПа</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Уровень взрывозащиты</td>
+                                    <td width="123">Zone 2 IIB</td>
+                                    <td width="123">Zone 2 IIB</td>
+                                    <td width="123">Zone 2 IIB</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Относительная влажность воздуха</td>
+                                    <td width="123">до 90 % при температуре 30 ºС;</td>
+                                    <td width="123">до 90 % при температуре 30 ºС;</td>
+                                    <td width="123">до 90 % при температуре 30 ºС;</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Степень защиты</td>
+                                    <td width="123">IP 67</td>
+                                    <td width="123">IP 67</td>
+                                    <td width="123">IP 67</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Характеристики надежности</strong></td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Наработка на отказ, часы, не менее</td>
+                                    <td width="123">250000</td>
+                                    <td width="123">100000</td>
+                                    <td width="123">100000</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Средний срок службы, лет, не менее</td>
+                                    <td width="123">25</td>
+                                    <td width="123">10</td>
+                                    <td width="123">10</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Средний срок хранения, лет, не менее</td>
+                                    <td width="123">2</td>
+                                    <td width="123">2</td>
+                                    <td width="123">2</td>
+                                </tr>
+                                <tr>
+                                    <td width="303">Вероятность безотказной работы, не менее</td>
+                                    <td width="123">0,98</td>
+                                    <td width="123">0,95</td>
+                                    <td width="123">0,95</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                }
+                {description === 2 &&
+                    <div className={styles.product_page_description_main}>
+                        <h1 className={styles.product_page_description_main_header}>Документация</h1>
+                        <ul>
+                            <li><a href="" target="_blank">Техническая спецификация</a></li>
+                            <li><a href="" target="_blank">Руководство по эксплуатации</a></li>
+                            <li><a href="" target="_blank">Технические условия</a></li>
+                            <li><a href="" target="_blank">Модели_STL</a></li>
+                        </ul>
+                    </div>
+                }
+                {description === 3 &&
+                    <div className={styles.product_page_description_main}>
+                        <h1 className={styles.product_page_description_main_header}>Сертификаты и декларации</h1>
+                        <h2 className={styles.product_page_description_main_header}>Федеральное агенство по техническому регулированию и метрологии</h2>
+                        <ul>
+                            <li><a href="" target="_blank">Сертификат об утверждении типа средств измерений</a></li>
+                        </ul>
+                    </div>
+                }
+                
+            </div>
+        </div>
+    )
+})
+
+export default cur_prod;
