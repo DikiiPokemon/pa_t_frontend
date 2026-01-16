@@ -9,13 +9,14 @@ class ProductStore {
     FS = [];
     sensors = [];
     other = [];
+   
 
     current_product = null;
 
     constructor() {
+      this.cart = [];
       makeAutoObservable(this)
     }
-
 
     async init() {
     if (this.loaded) return; // не перезапрашивать при каждом рендере
@@ -24,10 +25,16 @@ class ProductStore {
     this.LPS = data.LPS
     this.FS = data.FS
     this.sensors = data.sensors
-    this.other = data.other    
-    console.log(data);
-    
+    this.other = data.other
     this.loaded = true;
+  }
+
+  setCart(products){
+    this.cart = products
+  }
+
+  get Cart(){
+    return this.cart
   }
 }
 

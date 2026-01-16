@@ -8,10 +8,16 @@ import Search from "@/components/assets/Search.svg"
 import Call from "@/components/assets/Call.svg"
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { useStore } from "@/store/StoreContext";
+import CartModal from "./Cart";
 
 
-const Header = () => {
+
+const Header = observer (() => {
     const pathname = usePathname()
+    const { productsStore } = useStore()
+    
 
 
     const [call, setCall] = useState(false)
@@ -21,8 +27,13 @@ const Header = () => {
     const [burger, setBurger] = useState(false)
     const callMenu = useRef(null)
     const callMenuBurger = useRef(null)
+    const [cartOpen, setCartOpen] = useState(false)
 
-    console.log(call);
+
+
+    useEffect(() => {
+
+    }, [productsStore.Cart])
     
         
     useEffect(() => {
@@ -36,11 +47,6 @@ const Header = () => {
         document.addEventListener('click', onClick);
         return () => document.removeEventListener('click', onClick);
     }, []);
-
-    useEffect(() => {
-        console.log(pathname);
-        
-    }, [pathname])
 
 
     return(
@@ -58,7 +64,11 @@ const Header = () => {
                     <Link className={`${styles.header_link} ${pathname === "/contacts" ? styles.header_link_active : ""}`} href="/contacts">Контакты<span></span></Link>
                 </div>
                 <div ref={callMenu} className={styles.header_callback}>
-                    <button className={styles.header_button}><Image src={Cart} alt={""}/></button>
+                    <button onClick={() => setCartOpen(true)} className={styles.header_button_cart}><Image src={Cart} alt={""}/>
+                        
+                        <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
+                        
+                    </button>
                     <button onClick={() => {setSearch(true); setCall(false)}} className={search ? styles.header_button_active : styles.header_button}>
                         <Image src={Search} alt={""}/>
                         {search&&
@@ -109,8 +119,39 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+
+            <CartModal mounted={cartOpen}>
+                <div className={styles.cart_wrapper}>
+                    <div className={styles.cart_container}>
+                        <div className={styles.cart_header}>
+                            <div className={styles.cart_header_close}></div>
+                            <div className={styles.cart_header_table}>
+                                <div className={styles.cart_header_table_element}>Картинка</div>
+                                <div className={styles.cart_header_table_element}>Модификация</div>
+                                <div className={styles.cart_header_table_element}>Количество</div>
+                                <div className={styles.cart_header_table_element}>Цена</div>
+                            </div>
+                        </div>
+                        <div className={styles.product_preview}>
+                            {
+                                productsStore.Cart.map((i, idx) => {
+                                    return(
+                                        <div key={i.id + idx} className={styles.cart_element_wrapper}>
+                                            <div className={styles.cart_element}></div>
+                                            <div className={styles.cart_element}>{i.id}</div>
+                                            <div className={styles.cart_element}>{i.number}</div>
+                                            <div className={styles.cart_element}></div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        
+                    </div>
+                </div>
+            </CartModal>
         </div>
     )
-}
+})
 
 export default Header

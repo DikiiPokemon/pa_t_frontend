@@ -27,7 +27,16 @@ export const Context = createContext(null)
 
 export default function RootLayout({ children }) {
     useEffect(() => {
-      productsStore.init();
+      const products = JSON.parse(localStorage.getItem("cart"))
+      console.log(products);
+      
+      if(localStorage.getItem("cart")){
+        productsStore.init();
+        productsStore.setCart(products)
+      }else{
+        productsStore.init();
+      }
+      
     }, []);
 
   return (
@@ -38,6 +47,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer></Footer>
         </StoreProvider>
+        <div id="cart"></div>
       </body>
     </html>
   );

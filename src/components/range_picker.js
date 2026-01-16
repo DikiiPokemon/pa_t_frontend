@@ -1,8 +1,12 @@
 import styles from "@/components/Range.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const RangePicker = () => {
-    const [value, setValue] = useState(0)
+const RangePicker = (props) => {
+    const [value, setValue] = useState(props.getter)
+
+    useEffect(() => {
+        props.setter(value)
+    }, [value])
 
     return(
         <div className={styles.range_picker_wrapper}>

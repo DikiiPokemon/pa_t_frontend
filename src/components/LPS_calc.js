@@ -1,3 +1,4 @@
+"use client"
 import styles from "@/components/Calc.module.css";
 import Link from "next/link"
 import RangePicker from "./range_picker"
@@ -22,23 +23,45 @@ const LPS_calc = () => {
         "CW = встроенные провода с аксиальным выходом"
     ]
 
+    const [num, setNum] = useState(1)
+
+    function increment (){
+        setNum(num + 1)
+    }
+
+    function decrement (){
+        if(num > 1){
+            setNum(num - 1)
+        }
+    }
+
+    const [range, setRange] = useState(Range[0])
+    const [execution, setExecution] = useState(Execution[0])
+    const [type, setType] = useState(Type[0])
+    const [cabele, setCable] = useState(0)
+
+    function toCart(){
+        console.log("cart");
+        
+    }
+
     return(
         <div className={styles.calc_wrapper}>
             <div className={styles.calc_measurments}>
                 <p>Диапазон измерений</p>
-                <Selector key={"LPS1"} arr={Range}/>
+                <Selector key={"LPS1"} arr={Range} select={range} setSelect={setRange}/>
             </div>
             <div className={styles.calc_measurments}>
                 <p>Исполнение</p>
-                <Selector key={"LPS2"} arr={Execution}/>
+                <Selector key={"LPS2"} arr={Execution} select={execution} setSelect={setExecution}/>
             </div>
             <div className={styles.calc_measurments}>
                 <p>Тип подключения</p>
-                <Selector key={"LPS3"} arr={Type}/>
+                <Selector key={"LPS3"} arr={Type} select={type} setSelect={setType}/>
             </div>
             <div className={styles.calc_measurments}>
                 <p>Длина кабеля</p>
-                <RangePicker/>
+                <RangePicker setter={setCable} getter={cabele}/>
             </div>
 
             <div className={styles.calc_description}>
@@ -53,7 +76,7 @@ const LPS_calc = () => {
             </div>
             <div className={styles.calc_stock}>{} в наличии</div>
 
-           <ToCard/>
+           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement}/>
         </div>
     )
 }

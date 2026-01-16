@@ -77,6 +77,7 @@ const cur_prod = observer(() => {
                 {description === 1 &&
                     <div className={styles.product_page_description_main}>
                         <h1 className={styles.product_page_description_main_header}>Описание</h1>
+                            <p>Высокочастотные датчики частоты вращения подходят для использования с зубчатым колесом из феромагнитного материала для генерации сигналов пропорциональной частоты вращения.</p>
                         <h2 className={styles.product_page_description_main_header}>Основные технические характеристики</h2>
                         <ul>
                             <li>Диапазон измерений частоты вращения, от 2 до 16000 Гц</li>
