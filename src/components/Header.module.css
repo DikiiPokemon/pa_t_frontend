@@ -243,8 +243,8 @@
 
 .cart_container{
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 
     padding: 20px;
@@ -262,6 +262,8 @@
     align-items: flex-start;
 
     gap: 10px;
+
+    width: 100%;
 }
 
 .cart_header_table{
@@ -298,6 +300,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cart_header_close{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    width: 100%;
+}
+
+.Close{
+    cursor: pointer;
 }
 
 

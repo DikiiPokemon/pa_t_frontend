@@ -25,7 +25,7 @@ const Footer = () => {
                             <Image src={YouTube} alt=""/>
                         </Link>
                     </div>
-                    <div className={styles.footer_copyright}>2014-2025 © ПромАвтоматика-Т</div>
+                    <div className={styles.footer_copyright}>2014-2026 © ПромАвтоматика-Т</div>
 
                 </div>
                 <div className={styles.footer_block}>

@@ -12,7 +12,7 @@ const CartModal = (props) => {
     if (!props.mounted) return null
 
     const portalRoot = document.getElementById('cart')
-    portalRoot ? portalRoot.classList.add("Open") : null
+    portalRoot ? portalRoot.classList.add("Open") : portalRoot.classList.remove("Open")
     return portalRoot ? createPortal(props.children, portalRoot) : null
         
 }

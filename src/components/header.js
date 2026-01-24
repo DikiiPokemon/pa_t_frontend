@@ -11,6 +11,8 @@ import { useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store/StoreContext";
 import CartModal from "./Cart";
+import Close from "@/components/assets/Close.svg"
+import Cart_empty from "@/components/assets/Cart_empty.svg"
 
 
 
@@ -121,10 +123,21 @@ const Header = observer (() => {
             </div>
 
             <CartModal mounted={cartOpen}>
+            {    productsStore.Cart.length === 0 ?
                 <div className={styles.cart_wrapper}>
                     <div className={styles.cart_container}>
                         <div className={styles.cart_header}>
-                            <div className={styles.cart_header_close}></div>
+                            <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
+                        </div>
+                        <h1>ВАША КОРЗИНА ПУСТА</h1>
+                        <Image src={Cart_empty} alt=""></Image>
+                    </div>
+                </div>
+                :
+                <div className={styles.cart_wrapper}>
+                    <div className={styles.cart_container}>
+                        <div className={styles.cart_header}>
+                            <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
                             <div className={styles.cart_header_table}>
                                 <div className={styles.cart_header_table_element}>Картинка</div>
                                 <div className={styles.cart_header_table_element}>Модификация</div>
@@ -148,7 +161,8 @@ const Header = observer (() => {
                         </div>
                         
                     </div>
-                </div>
+                    </div>
+                }
             </CartModal>
         </div>
     )
