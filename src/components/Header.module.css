@@ -1,20 +1,54 @@
 .header_wrapper{
-    width: 100%;
-    max-width: 1920px;
-
+    position: fixed;
+    width: calc(100% - 40px);
+    max-width: 1880px;
     background-color: var(--background-white);
+    margin-top: 20px;
+    border-radius: 100px;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    transition: 0.5s;
 
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    
+    animation: hide linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+
+    animation: anime 0.5s ease forwards;
+    z-index: 999;
+}
+
+@keyframes anime {
+    from{
+        opacity: 0;
+        transform: translate(0, 40px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes anime {
+    from{
+        opacity: 1;
+        transform: translate(0, 40px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
 }
 
 .header_container{
     width: 100%;
-    max-width: 1920px;
+    max-width: 1880px;
     display: flex;
     padding-inline: 100px;
 
@@ -22,7 +56,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    height: 100px;
+    height: 60px;
 }
 
 .header_img{
@@ -317,7 +351,7 @@
 
 @media (max-width: 1200px){
    .header_container{
-        padding-inline: 20px;
+        padding-inline: 40px;
         gap: 10px;
     }
 }

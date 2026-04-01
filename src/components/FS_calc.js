@@ -7,6 +7,7 @@ import ToCard from "./To_card"
 import { productsStore } from "@/store/product_store";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store/StoreContext";
+import { fetchModification } from "@/http/product_controll";
 
 
 const FS_calc = observer (() => {
@@ -21,9 +22,8 @@ const FS_calc = observer (() => {
     ]
 
     const Long =[
-        "73",
-        "101",
-        "132"
+        "50",
+        "120",
     ]
 
     const Type = [  
@@ -60,6 +60,37 @@ const FS_calc = observer (() => {
     const [type, setType] = useState(Type[0])
     const [cabele, setCable] = useState(0)
 
+    const [stock, setStock] = useState(0)
+
+    const [fs_mods, setFs_mods] = useState([])
+
+    async function  find_mods (){
+        let el = productsStore.FS.find(i => i.name === `FS ${diametr}`)
+
+        const mods = await fetchModification(el.id)
+        setFs_mods(mods)
+
+    }
+
+
+    useEffect(() => {
+        const realId = "FS " + diametr + " (" + long + ", " + signalType.split(" –")[0] + ", " + type.split(" =")[0] + ")"
+
+        console.log(fs_mods);
+        
+
+        const fs_stock = fs_mods.find(i => i.name === realId)
+
+        if(!fs_stock) return setStock(0)
+
+        const quantity = productsStore.stock.find(i => i.assortmentId === fs_stock.id)
+
+        if(!quantity) return setStock(0)
+
+        setStock(quantity.stock)
+    }, [signalType, diametr, long, type, fs_mods])
+
+
     useEffect(() => {
         setCartElem({
             prod_type: "FS",
@@ -69,14 +100,18 @@ const FS_calc = observer (() => {
             type: type,
             cabele: cabele,
         })
+
     }, [signalType, diametr, long, type, cabele])
+
+    useEffect(() => {
+        if(productsStore.loaded){
+            find_mods()
+        }
+    }, [diametr, productsStore.loaded])
 
 
     function toCart(){
         const prods = productsStore.Cart
-        
-        
-        
         
         const product = {
             id: Object.values(cartElem).join("-"),
@@ -148,7 +183,7 @@ const FS_calc = observer (() => {
                 <p>Категория:</p>
                 <Link href="">{"Датчики частоты вращения"}</Link>
             </div>
-            <div className={styles.calc_stock}>{} в наличии</div>
+            <div className={styles.calc_stock}>{stock} в наличии</div>
 
            <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement}/>
         </div>

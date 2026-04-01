@@ -7,7 +7,7 @@ import Cart from "@/components/assets/Cart.svg"
 import Search from "@/components/assets/Search.svg"
 import Call from "@/components/assets/Call.svg"
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store/StoreContext";
 import CartModal from "./Cart";
@@ -29,13 +29,20 @@ const Header = observer (() => {
     const [burger, setBurger] = useState(false)
     const callMenu = useRef(null)
     const callMenuBurger = useRef(null)
+    const [cartMount, setCartMount] = useState(false)
     const [cartOpen, setCartOpen] = useState(false)
 
+    const [isVisible, setVisible] = useState(true)
+    const [prevState, setPrevState] = useState(0)
 
-
-    useEffect(() => {
-
-    }, [productsStore.Cart])
+    const handleScroll = useCallback(() => {
+        const scroll = window.scrollY;
+        
+        const shouldBeVisible = scroll <= 40 || prevState > scroll;
+        setPrevState(scroll)
+        if (shouldBeVisible === isVisible) return;
+        setVisible(shouldBeVisible);
+    }, [isVisible, prevState]);
     
         
     useEffect(() => {
@@ -50,9 +57,14 @@ const Header = observer (() => {
         return () => document.removeEventListener('click', onClick);
     }, []);
 
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [isVisible, handleScroll, prevState]);
+
 
     return(
-        <div className={styles.header_wrapper}>
+        <div className={styles.header_wrapper} style={isVisible ? {top: 0} : {top: "-80px"}}>
             <div className={styles.header_container}>
                 <div className={styles.header_img}>
                     <Image className={styles.header_img_logo} src={Logo} alt={""}/>
@@ -66,7 +78,7 @@ const Header = observer (() => {
                     <Link className={`${styles.header_link} ${pathname === "/contacts" ? styles.header_link_active : ""}`} href="/contacts">Контакты<span></span></Link>
                 </div>
                 <div ref={callMenu} className={styles.header_callback}>
-                    <button onClick={() => setCartOpen(true)} className={styles.header_button_cart}><Image src={Cart} alt={""}/>
+                    <button onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart}><Image src={Cart} alt={""}/>
                         
                         <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
                         
@@ -122,7 +134,7 @@ const Header = observer (() => {
                 </div>
             </div>
 
-            <CartModal mounted={cartOpen}>
+            <CartModal mounted={cartMount} show={cartOpen}>
             {    productsStore.Cart.length === 0 ?
                 <div className={styles.cart_wrapper}>
                     <div className={styles.cart_container}>
