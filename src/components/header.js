@@ -136,8 +136,8 @@ const Header = observer (() => {
 
             <CartModal mounted={cartMount} show={cartOpen}>
             {    productsStore.Cart.length === 0 ?
-                <div className={styles.cart_wrapper}>
-                    <div className={styles.cart_container}>
+                <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
+                    <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`}>
                         <div className={styles.cart_header}>
                             <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
                         </div>
@@ -146,8 +146,8 @@ const Header = observer (() => {
                     </div>
                 </div>
                 :
-                <div className={styles.cart_wrapper}>
-                    <div className={styles.cart_container}>
+                <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
+                    <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`}>
                         <div className={styles.cart_header}>
                             <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
                             <div className={styles.cart_header_table}>

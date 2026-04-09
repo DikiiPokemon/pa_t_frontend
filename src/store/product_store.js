@@ -75,6 +75,34 @@ class ProductStore {
     },
   ]
 
+  reviews = [
+      {
+        name: "ПАО \"Юнипро\"",
+        url: "/assets/reviews/Uni_pro.jpg",
+      }, 
+      {
+        name: "ООО \"Турбосистема\"",
+        url: "/assets/reviews/turbo_system.jpg",
+      },
+       {
+        name: "ООО \"ТСА-Сервис\"",
+        url: "/assets/reviews/TSA_service.jpg",
+      },
+       {
+        name: "АО \"Жамбыльская ГРЭС\"",
+        url: "/assets/reviews/GRES_Jambilskaia.jpg",
+      },
+       {
+        name: "ООО НПФ \"Цифровые Системы Регулирования\"",
+        url: "/assets/reviews/Digit_system..jpg",
+      },
+       {
+        name: "АО \"АЛМАТИНСКИЕ ЭЛЕКТРИЧЕСКИЕ СТАНЦИИ\"",
+        url: "/assets/reviews/Almata.jpg",
+      },
+    ]
+  
+
     current_product = null;
 
     constructor() {

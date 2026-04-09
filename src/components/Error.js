@@ -7,20 +7,14 @@ import { createPortal } from "react-dom";
 
 
 
-const CartModal = (props) => {
+const Error = (props) => {
 
     if (!props.mounted) return null
 
-    const portalRoot = document.getElementById('cart')
-    if(portalRoot && props.show){
-        portalRoot.classList.add("Open")
-        portalRoot.classList.remove("Close")
-    }else{
-        portalRoot.classList.remove("Open")
-        portalRoot.classList.add("Close")
-    }
+    const portalRoot = document.getElementById('error')
+    portalRoot && props.show ? portalRoot.classList.add("Open") : portalRoot.classList.remove("Open")
     return portalRoot && props.show ? createPortal(props.children, portalRoot) : null
         
 }
 
-export default CartModal
+export default Error
