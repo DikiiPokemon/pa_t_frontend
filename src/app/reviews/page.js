@@ -21,7 +21,7 @@ export default function Reviews() {
             {productsStore.reviews.map((i, idx) => {
 
               return(
-                <button onClick={() => setActive(idx === active ? null : idx)} key={idx + i.name} className={`${styles.reviews_content_button_wrapper} ${active === idx ? styles.Active : ""}`}>
+                <button onClick={() => setActive(idx === active ? null : idx)} key={idx + i.name} className={`${styles.reviews_content_button_wrapper} ${active === idx ? styles.Active : styles.non_active}`}>
                   <div className={`${styles.reviews_content_image_wrapper} ${active === idx ? styles.Active_img : ""}`}>
                     <img src={i.url}/>
                   </div>

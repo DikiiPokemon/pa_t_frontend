@@ -30,6 +30,7 @@ const cur_prod = observer(() => {
 
     return(
         <div className={styles.product_page_wrapper}>
+            <div className={styles.product_page_header}>Датчики LPS</div>
             <div className={styles.product_page_charachteristic_wrapper}>
                 <div className={styles.product_page_charachteristic_img}>
                     <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 10}}>

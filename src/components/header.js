@@ -135,7 +135,7 @@ const Header = observer (() => {
             </div>
 
             <CartModal mounted={cartMount} show={cartOpen}>
-            {    productsStore.Cart.length === 0 ?
+            {productsStore.Cart.length === 0 ?
                 <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
                     <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`}>
                         <div className={styles.cart_header}>
@@ -160,10 +160,19 @@ const Header = observer (() => {
                         <div className={styles.product_preview}>
                             {
                                 productsStore.Cart.map((i, idx) => {
+                                    const arr = i.id.split("-")
+
                                     return(
                                         <div key={i.id + idx} className={styles.cart_element_wrapper}>
-                                            <div className={styles.cart_element}></div>
-                                            <div className={styles.cart_element}>{i.id}</div>
+                                            <div className={styles.cart_element}>
+                                                <img src={i.url}/>
+                                            </div>
+                                            <div className={styles.cart_element}>{arr.map((el, index) => {
+
+                                                return(
+                                                    <p key={el + index}>{el}</p>
+                                                )
+                                            })}</div>
                                             <div className={styles.cart_element}>{i.number}</div>
                                             <div className={styles.cart_element}></div>
                                         </div>
@@ -171,7 +180,7 @@ const Header = observer (() => {
                                 })
                             }
                         </div>
-                        
+                        <button>Оформить заказ</button>
                     </div>
                     </div>
                 }

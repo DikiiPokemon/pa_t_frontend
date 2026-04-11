@@ -115,10 +115,10 @@ const FS_calc = observer (() => {
         
         const product = {
             id: Object.values(cartElem).join("-"),
-            number: num
+            number: num,
+            price: 0,
+            url: "/assets/images/FS/FS.jpg",
         }
-
-        console.log(product.id);
         
         
         if(prods.length === 0){
@@ -128,13 +128,15 @@ const FS_calc = observer (() => {
         }else{
             
             const existing = prods.find(item => item.id === product.id)
-            console.log(existing);
             
 
             if(existing) {
-                prods.map(item => item.id === product.id ? {...item, number: item.number++} : item)
+                console.log(num);
                 
-                localStorage.setItem("cart", JSON.stringify(prods))
+                const result = prods.map(item => item.id === product.id ? {...item, number: num} : item)
+                productsStore.setCart(result)
+                
+                localStorage.setItem("cart", JSON.stringify(result))
                 return
             }
 
