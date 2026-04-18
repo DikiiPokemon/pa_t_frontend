@@ -38,7 +38,7 @@ class ProductStore {
           name: "FS датчики",
           description: "Lorem ipsum loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
           short_description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          img: "",
+          img: "/assets/images/BDT/BDT.jpg",
           characteristic: [
             "Диапазон измерений частоты вращения, от 2 до 16000 Гц",
             "Встроенный кабель или разъемный соединитель",
@@ -60,7 +60,7 @@ class ProductStore {
           name: "Блок преобразования LVDT (BDT)",
           description: "Lorem ipsum loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
           short_description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          img: "",
+          img: "/assets/images/BDT/BDT.jpg",
           characteristic: [],
         },
         {
@@ -68,7 +68,7 @@ class ProductStore {
           name: "Блок преобразования FS (BFS)",
           description: "Lorem ipsum loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
           short_description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          img: "",
+          img: "/assets/images/BDT/BDT.jpg",
           characteristic: [],
         }
       ]
@@ -99,6 +99,39 @@ class ProductStore {
        {
         name: "АО \"АЛМАТИНСКИЕ ЭЛЕКТРИЧЕСКИЕ СТАНЦИИ\"",
         url: "/assets/reviews/Almata.jpg",
+      },
+    ]
+
+    merquee = [
+      {
+        url: "/assets/images/customers/Gasprom.png",
+      },
+      {
+        url: "/assets/images/customers/Jam.png",
+      },
+      {
+        url: "/assets/images/customers/RusGidro.png",
+      },
+      {
+        url: "/assets/images/customers/TSA.svg",
+      },
+      {
+        url: "/assets/images/customers/Turbosystem.svg",
+      },
+      {
+        url: "/assets/images/customers/Unipro.svg",
+      },
+      {
+        url: "/assets/images/customers/Jam.png",
+      },
+      {
+        url: "/assets/images/customers/Jam.png",
+      },
+      {
+        url: "/assets/images/customers/Jam.png",
+      },
+      {
+        url: "/assets/images/customers/Jam.png",
       },
     ]
   

@@ -20,7 +20,14 @@ const Header = observer (() => {
     const pathname = usePathname()
     const { productsStore } = useStore()
     
-
+    const [form, setForm] = useState(
+        {
+        name: "",
+        mail: "",
+        phone: "",
+        text: "",
+        }
+    )
 
     const [call, setCall] = useState(false)
     const [search, setSearch] = useState(false)
@@ -34,6 +41,17 @@ const Header = observer (() => {
 
     const [isVisible, setVisible] = useState(true)
     const [prevState, setPrevState] = useState(0)
+
+    const[activeBlock, setActiveBlock] = useState(0)
+    const[Xtarns, setXtrans] = useState(0)
+
+    const dynamicStyle = {
+        translate: Xtarns, // Dynamic value from state
+    };
+
+    useEffect(() => {
+        setXtrans(activeBlock === 0 ? "0" : "-50%")
+    }, [activeBlock])
 
     const handleScroll = useCallback(() => {
         const scroll = window.scrollY;
@@ -148,41 +166,66 @@ const Header = observer (() => {
                 :
                 <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
                     <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`}>
-                        <div className={styles.cart_header}>
-                            <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
-                            <div className={styles.cart_header_table}>
-                                <div className={styles.cart_header_table_element}>Картинка</div>
-                                <div className={styles.cart_header_table_element}>Модификация</div>
-                                <div className={styles.cart_header_table_element}>Количество</div>
-                                <div className={styles.cart_header_table_element}>Цена</div>
-                            </div>
-                        </div>
-                        <div className={styles.product_preview}>
-                            {
-                                productsStore.Cart.map((i, idx) => {
-                                    const arr = i.id.split("-")
-
-                                    return(
-                                        <div key={i.id + idx} className={styles.cart_element_wrapper}>
-                                            <div className={styles.cart_element}>
-                                                <img src={i.url}/>
-                                            </div>
-                                            <div className={styles.cart_element}>{arr.map((el, index) => {
+                        <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
+                        <div className={styles.slider_container}>
+                            <div className={styles.cart_slider} style={dynamicStyle}>
+                                <div className={styles.cart_part_container}>
+                                    <div className={styles.cart_header}>
+                                        <div className={styles.cart_header_table}>
+                                            <div className={styles.cart_header_table_element}>Картинка</div>
+                                            <div className={styles.cart_header_table_element}>Модификация</div>
+                                            <div className={styles.cart_header_table_element}>Количество</div>
+                                            <div className={styles.cart_header_table_element}>Цена</div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.product_preview}>
+                                        {
+                                            productsStore.Cart.map((i, idx) => {
+                                                const arr = i.id.split("-")
 
                                                 return(
-                                                    <p key={el + index}>{el}</p>
+                                                    <div key={i.id + idx} className={styles.cart_element_wrapper}>
+                                                        <div className={styles.cart_element}>
+                                                            <img src={i.url}/>
+                                                        </div>
+                                                        <div className={styles.cart_element}>{arr.map((el, index) => {
+
+                                                            return(
+                                                                <p key={el + index}>{el}</p>
+                                                            )
+                                                        })}</div>
+                                                        <div className={styles.cart_element}>{i.number}</div>
+                                                        <div className={styles.cart_element}></div>
+                                                    </div>
                                                 )
-                                            })}</div>
-                                            <div className={styles.cart_element}>{i.number}</div>
-                                            <div className={styles.cart_element}></div>
-                                        </div>
-                                    )
-                                })
-                            }
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                                <div className={styles.cart_part_container}>
+                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
+                                        <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше ФИО" className={styles.contacts_content_wrapper_input}/>
+                                        <label>Ваше ФИО</label>
+                                    </div>
+                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
+                                        <input onChange={e => setForm({...form, phone: e.target.value})} value={form.phone} type="text" placeholder="Ваш телефон" className={styles.contacts_content_wrapper_input}/>
+                                        <label>Ваш телефон</label>
+                                    </div>
+                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
+                                        <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={styles.contacts_content_wrapper_input}/>
+                                        <label>Ваш e-mail</label>
+                                    </div>
+                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
+                                        <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Примечание к заказу" className={styles.contacts_content_wrapper_textarea}/>
+                                        <label>Ваше сообщение</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button>Оформить заказ</button>
+                        <button className={styles.cart_button} onClick={() => setActiveBlock(activeBlock === 0 ? 1 : 0)}>{ activeBlock === 0 ? "Оформить заказ" : "Назад"}</button>
+                        <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible}`}>Отправить заявку</button>
                     </div>
-                    </div>
+                </div>
                 }
             </CartModal>
         </div>

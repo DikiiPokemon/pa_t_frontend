@@ -27,6 +27,29 @@ export default function Home() {
           )
           }) 
       }
+      <div className={styles.main_rail_string}>
+        <div className={styles.catalog_section}><h1>С нами работают</h1></div>
+        <div className={styles.items_wrap}>
+          <div className={`${styles.items} ${styles.marquee}`}>
+            {
+              productsStore.merquee.map((i, idx) => {
+                return(
+                  <img key={i.url + idx} className={styles.item} src={i.url}></img>
+                )
+              })
+            }
+          </div>
+          <div aria-hidden="true" className={`${styles.items} ${styles.marquee}`}>
+            {
+              productsStore.merquee.map((i, idx) => {
+                return(
+                  <img key={i.url + idx} className={styles.item} src={i.url}></img>
+                )
+              })
+            }
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
