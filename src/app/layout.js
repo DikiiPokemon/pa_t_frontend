@@ -28,7 +28,6 @@ export const Context = createContext(null)
 export default function RootLayout({ children }) {
     useEffect(() => {
       const products = JSON.parse(localStorage.getItem("cart"))
-      console.log(products);
       
       if(localStorage.getItem("cart")){
         productsStore.init();

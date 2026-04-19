@@ -6,6 +6,8 @@ import { Context } from "../../layout"
 import { fetchProducts } from "@/http/product_controll"
 import { observer } from "mobx-react-lite";
 import BDT_calc from "@/components/BDT_clac";
+import Arrow from "@/components/assets/Arrow_down.svg"
+import Image from "next/image";
 
 
 const bdt_prod = observer(() => {
@@ -46,7 +48,7 @@ const bdt_prod = observer(() => {
 
     return(
         <div className={styles.product_page_wrapper}>
-            <div className={styles.product_page_header}>Блок BDT</div>
+            <div className={styles.product_page_header}>Блок преобразования LVDT (BDT)</div>
             <div className={styles.product_page_charachteristic_wrapper}>
                 <div className={styles.product_page_charachteristic_img}>
                     <div className={styles.product_page_slider_wrapper}>
@@ -60,8 +62,8 @@ const bdt_prod = observer(() => {
                             }
                         </div>
                     </div>
-                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}>Tuda</button>
-                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}>Suda</button>
+                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image src={Arrow}></Image></button>
+                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image src={Arrow}></Image></button>
                 </div>
                 <div className={styles.product_page_charachteristic_container}>
                     <BDT_calc/>
@@ -79,7 +81,7 @@ const bdt_prod = observer(() => {
                         <h1 className={styles.product_page_description_main_header}>Описание</h1>
                         <h2 className={styles.product_page_description_main_header}>Блок BDT предназначен для обработки сигнала с преобразователя линейных перемещений LVDT одновременно в токовый сигнал 4 – 20 мА и в сигнал напряжения ±10 В.</h2>
                         <h1 className={styles.product_page_description_main_header}>ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ БЛОКОВ ПРЕОБРАЗОВАНИЯ</h1>
-                        <table className={styles.table} style={{height: "1384px", width: "100%"}}>
+                        <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
                                     <td width="196">Выходной сигнал №1<p></p>

@@ -39,6 +39,16 @@
     border-radius: 10px;
     box-shadow: 0 0 0 0 rgba(27, 37, 39, 0.05), 0 5px 12px 0 rgba(27, 37, 39, 0.05), 0 22px 22px 0 rgba(27, 37, 39, 0.04), 0 49px 30px 0 rgba(27, 37, 39, 0.03), 0 88px 35px 0 rgba(27, 37, 39, 0.01), 0 137px 38px 0 rgba(27, 37, 39, 0);
     background: var(--background-white);
+    transition: 0.3s;
+}
+
+.calc_button:hover{
+    transform: scale(1.1);
+}
+
+.calc_button:active{
+    transform: scale(1.0);
+    box-shadow: none;
 }
 
 .calc_button_disable{
@@ -73,6 +83,28 @@
 
     box-shadow: 0 0 0 0 rgba(43, 70, 135, 0.2), 0 3px 6px 0 rgba(43, 70, 135, 0.2), 0 11px 11px 0 rgba(43, 70, 135, 0.17), 0 24px 15px 0 rgba(43, 70, 135, 0.1), 0 43px 17px 0 rgba(43, 70, 135, 0.03), 0 68px 19px 0 rgba(43, 70, 135, 0);
     background: var(--main-color);
+    transition: 0.5s;
+}
+
+.to_card_price{
+    width: 200px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: var(--background-white);
+
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    color: var(--foreground);
+    transition: 0.5s;
+}
+
+.to_card:hover{
+    opacity: 0.8;
 }
 
 .to_card:active{
@@ -103,4 +135,8 @@
     
     flex-shrink: 1;
     flex-basis: 50%;
+}
+
+.calc_stock span{
+    color: #FF2F55;
 }

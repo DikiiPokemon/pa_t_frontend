@@ -1,4 +1,4 @@
-import styles from "@/components/BDT.module.css";
+import styles from "@/components/Calc.module.css";
 import Link from "next/link"
 import RangePicker from "./range_picker"
 import Selector from "./selector"
@@ -27,6 +27,7 @@ const BDT_calc = observer (() => {
     ]
 
     const [num, setNum] = useState(1)
+    const [price, setPrice] = useState(0)
 
     function increment (){
         setNum(num + 1)
@@ -51,38 +52,40 @@ const BDT_calc = observer (() => {
 
     const [stock, setStock] = useState(0)
 
-    const [fs_mods, setFs_mods] = useState([])
+    const [bdt_mods, setBDT_mods] = useState([])
 
     async function  find_mods (){
-        let el = productsStore.BDT.find(i => i.name === `FS ${diametr}`)
-
+        let el = productsStore.sensors.find(i => i.name === `Блок BDT`)
+        console.log(el);
+        
         const mods = await fetchModification(el.id)
-        setFs_mods(mods)
+        setBDT_mods(mods)
 
     }
 
 
     useEffect(() => {
-        // const realId = "FS " + diametr + " (" + long + ", " + signalType.split(" –")[0] + ", " + type.split(" =")[0] + ")"
+        const realId = "Блок BDT (07, " + signalType.split(" = ")[0].split('')[0] + ", " + signalType.split(" = ")[0].split('')[1] + ")"
 
-        // console.log(fs_mods);
+        
         
 
-        // const fs_stock = fs_mods.find(i => i.name === realId)
+        const bdt_stock = bdt_mods.find(i => i.name === realId)
+        console.log(bdt_mods);
 
-        // if(!fs_stock) return setStock(0)
+        if(!bdt_stock) return setStock(0)
 
-        // const quantity = productsStore.stock.find(i => i.assortmentId === fs_stock.id)
+        const quantity = productsStore.stock.find(i => i.assortmentId === bdt_stock.id)
 
-        // if(!quantity) return setStock(0)
+        if(!quantity) return setStock(0)
 
-        // setStock(quantity.stock)
-    }, [signalType, type, fs_mods])
+        setStock(quantity.stock)
+    }, [signalType, type, bdt_mods])
 
 
     useEffect(() => {
         setCartElem({
-            prod_type: "FS",
+            prod_type: "BDT",
             signalType: signalType,
             type: type,
         })
@@ -102,7 +105,7 @@ const BDT_calc = observer (() => {
         const product = {
             id: Object.values(cartElem).join("-"),
             number: num,
-            price: 0,
+            price: Number(productsStore.sensors_prices[0].replace(/,/g, ".").replace(/\s/g, '').replace('₽', '')),
             url: "/assets/images/BDT/BDT.jpg",
         }
         
@@ -160,7 +163,7 @@ const BDT_calc = observer (() => {
             </div>
             <div className={styles.calc_stock}>{stock} в наличии</div>
 
-           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement}/>
+           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement} price={productsStore.sensors_prices[0]}/>
         </div>
     )
 })

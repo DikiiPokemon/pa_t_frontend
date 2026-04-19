@@ -10,7 +10,7 @@ import { useStore } from "@/store/StoreContext";
 import { fetchModification } from "@/http/product_controll";
 
 
-const FS_calc = observer (() => {
+const FS_calc = observer ((props) => {
 
     const { productsStore } = useStore()
     const SignalType = [
@@ -75,11 +75,11 @@ const FS_calc = observer (() => {
 
     useEffect(() => {
         const realId = "FS " + diametr + " (" + long + ", " + signalType.split(" –")[0] + ", " + type.split(" =")[0] + ")"
-
-        console.log(fs_mods);
         
 
         const fs_stock = fs_mods.find(i => i.name === realId)
+
+        props.setter("FS-" + diametr + "-" + long + "-" + signalType.split(" –")[0] + "-" + type.split(" =")[0])
 
         if(!fs_stock) return setStock(0)
 

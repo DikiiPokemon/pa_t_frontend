@@ -1,7 +1,8 @@
 "use client"
 import styles from "@/components/Selector.module.css";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
+import Arrow from "@/components/assets/Arrow_down.svg"
 
 const Selector = (props) => {
 
@@ -25,6 +26,7 @@ const Selector = (props) => {
     return(
         <div ref={callMenu} onClick={() => setActive(!active)} className={styles.selector_wrapper}>
             <div className={styles.active_element}>{props.select}</div>
+            <Image className={`${active ? styles.Act_img : ""}`} src={Arrow} alt=""></Image>
             <div className={`${styles.menu_wrapper} ${active ? styles.Active : ""}`}>
                 {
                     props.arr?.map((i,idx) => {

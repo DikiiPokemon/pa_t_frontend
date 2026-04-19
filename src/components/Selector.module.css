@@ -12,6 +12,18 @@
     position: relative;
 }
 
+.selector_wrapper img{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.Act_img{
+    transform: rotate(180deg);
+}
+
 .active_element{
     position: absolute;
     top: 10px;
@@ -20,6 +32,8 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    user-select: none;
+    cursor: pointer;
 }
 
 .menu_wrapper{
@@ -75,4 +89,6 @@
     cursor: pointer;
 
     user-select: none;
+
+    text-align: left;
 }

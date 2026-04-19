@@ -1,4 +1,4 @@
-import { fetchProducts, fetchStock } from "@/http/product_controll";
+import { fetchLPSPrices, fetchProducts, fetchSensorsPrices, fetchStock } from "@/http/product_controll";
 import {makeAutoObservable} from "mobx";
 
 class ProductStore {
@@ -10,6 +10,8 @@ class ProductStore {
     sensors = [];
     other = [];
     stock = [];
+    lps_prices = [];
+    sensors_prices = [];
 
     product_cards = [
     {
@@ -147,6 +149,8 @@ class ProductStore {
     if (this.loaded) return; // не перезапрашивать при каждом рендере
     const data = await fetchProducts();
     const st = await fetchStock();
+    const l_price = await fetchLPSPrices();
+    const s_price = await fetchSensorsPrices();
     this.product = data
     this.LPS = data.LPS
     this.FS = data.FS
@@ -154,6 +158,8 @@ class ProductStore {
     this.other = data.other
     this.loaded = true;
     this.stock = st;
+    this.lps_prices = l_price;
+    this.sensors_prices = s_price;
   }
 
   setCart(products){

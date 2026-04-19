@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/app/catalog/page.module.css";
 import ProductCard from "@/components/product_card";
-import { Suspense, useContext, useEffect, useState } from "react"
+import { Suspense, useContext, useEffect, useMemo, useState } from "react"
 import { Context } from "../../layout"
 import { fetchProducts } from "@/http/product_controll"
 import { observer } from "mobx-react-lite";
@@ -9,38 +9,103 @@ import LPS_calc from "@/components/LPS_calc";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, OrbitControls, useGLTF } from "@react-three/drei";
 import FS_calc from "@/components/FS_calc";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import * as THREE from 'three';
 
 
 const cur_prod = observer(() => {
 
     const [description, setDescription] = useState(1)
+    const [mod, setMod] = useState("")
 
-    function Model({ color = 'red', url}) {
-        const { scene } = useGLTF(url)
+    function Model({ color = '#eaeff0', url }) {
+        const [model, setModel] = useState(null);
 
-        scene.traverse((child) => {
-            if (child.isMesh) {
-                child.material = child.material.clone()
-                child.material.color.set(color)
-                
+        useEffect(() => {
+            if (!url) return;
+
+            const loader = new GLTFLoader();
+            let isMounted = true;
+
+            loader.load(
+            url,
+
+            // ✅ успех
+            (gltf) => {
+                if (!isMounted) return;
+
+                const scene = gltf.scene.clone();
+
+                scene.traverse((child) => {
+                if (child.isMesh) {
+                    if (Array.isArray(child.material)) {
+                        child.material = child.material.map((mat) => {
+                            const m = mat.clone();
+                            m.map = null;
+                            m.color.set(color);
+                            return m;
+                        });
+                    }
+                }
+                });
+
+                setModel(scene);
+            },
+
+            // ⏳ прогресс (можно убрать)
+            undefined,
+
+            // ❌ ошибка
+            (error) => {
+                console.error('Ошибка загрузки модели:', error);
+
+                if (!isMounted) return;
+
+                // fallback — красный куб
+                const geometry = new THREE.BoxGeometry();
+                const material = new THREE.MeshStandardMaterial({ color: 'red' });
+                const cube = new THREE.Mesh(geometry, material);
+
+                setModel(cube);
             }
-        })
+            );
 
-        return <primitive object={scene} position={[0, 0, 0]} rotation={[100, 1.5, 0]}/>
-    }
+            // 🧹 cleanup (ВАЖНО)
+            return () => {
+            isMounted = false;
+            setModel(null);
+            };
+        }, [url, color]);
+
+    if (!model) return null;
+
+    return (
+        <primitive
+        object={model}
+        position={[0, 0, 0]}
+        rotation={[100, 1.5, 0]}
+        />
+    );
+}
+
+
+    useEffect(() => {
+        console.log(mod);
+        
+    }, [mod])
 
     return(
         <div className={styles.product_page_wrapper}>
             <div className={styles.product_page_header}>Датчики FS</div>
             <div className={styles.product_page_charachteristic_wrapper}>
-                <div className={styles.product_page_charachteristic_img}>
+                <div className={styles.product_page_charachteristic_3d}>
                     <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 10}}>
                         <ambientLight intensity={0.1} />
                         <directionalLight
                             castShadow
-                            position={[0, -3, 0]} // свет под объектом
+                            position={[0, 3, 0]} // свет под объектом
                             intensity={1.5}
-                            color="gray"
+                            color="#eaeff0"
                             shadow-mapSize-width={1024}
                             shadow-mapSize-height={1024}
                             shadow-camera-far={10}
@@ -51,9 +116,9 @@ const cur_prod = observer(() => {
                             shadow-camera-bottom={-5}
                             shadow-mapSize={[1024, 1024]} />
                         <meshStandardMaterial color={0xeaeff0} />
-                        <Suspense fallback={null}>
-                            <Model color="gray" url="/assets/3d/11.gltf" />
-                        </Suspense>
+                        
+                        <Model color="#eaeff0" url={`/assets/3d/FS/${mod}.gltf`} />
+                        
                         <ContactShadows
                             position={[0, -0.05, 0]}
                             opacity={1}
@@ -64,8 +129,8 @@ const cur_prod = observer(() => {
                         <OrbitControls/>
                     </Canvas>
                 </div>
-                <div className={styles.product_page_charachteristic_container}>
-                    <FS_calc/>
+                <div className={styles.product_page_charachteristic_container_3d}>
+                    <FS_calc setter={setMod}/>
                 </div>
                
             </div>

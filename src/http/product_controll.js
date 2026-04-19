@@ -14,3 +14,13 @@ export const fetchStock = async () => {
     const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/products/get_stock')
     return data
 }
+
+export const fetchLPSPrices = async () => {
+    const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/price/')
+    return data
+}
+
+export const fetchSensorsPrices = async () => {
+    const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/price/bdt_bfs')
+    return data
+}

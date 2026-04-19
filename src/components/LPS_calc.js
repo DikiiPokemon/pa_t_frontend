@@ -3,13 +3,17 @@ import styles from "@/components/Calc.module.css";
 import Link from "next/link"
 import RangePicker from "./range_picker"
 import Selector from "./selector"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ToCard from "./To_card"
+import { useStore } from "@/store/StoreContext";
+import { observer } from "mobx-react-lite";
 
-const LPS_calc = () => {
+const LPS_calc = observer((props) => {
+
+    const { productsStore } = useStore()
 
     const Range = [
-        "0..7", "0..10", "0..15", "0..20", "0..25", "0..30", "0..40", "0..50", "0..60", "0..70", "0..80", "0..90", "0..100", "0..110", "0..140", "0..150", "0..170", "0..220", "0..250", "0..330", "0..440", "0..550", "0..660"
+        "0..7", "0..10", "0..15", "0..20", "0..25", "0..30", "0..50", "0..60", "0..70", "0..80", "0..90", "0..100", "0..110", "0..140", "0..150", "0..170", "0..220", "0..250", "0..330", "0..440 ", "0..550", "0..660"
     ]
 
     const Execution =[
@@ -24,6 +28,7 @@ const LPS_calc = () => {
     ]
 
     const [num, setNum] = useState(1)
+    const [price, setPrice] = useState(0)
 
     function increment (){
         setNum(num + 1)
@@ -40,9 +45,129 @@ const LPS_calc = () => {
     const [type, setType] = useState(Type[0])
     const [cabele, setCable] = useState(0)
 
-    function toCart(){
-        console.log("cart");
+    const [cartElem, setCartElem] = useState({
+        prod_type: "LPS",
+        range: Range[0],
+        execution: Execution[0],
+        type: Type[0],
+        cabele: 0,
+    })
+
+    const [stock, setStock] = useState(0)
+
+    const [lps_mods, setLPS_mods] = useState([])
+
+    async function  find_mods (){
+        //Поиск id модификации
+        let el = productsStore.LPS.find(i => i.name === `LPS (${range.split("..")[1]})`)
         
+        const mods = await fetchModification(el.id)
+        setLPS_mods(mods)
+    }
+
+    function find_price(){
+        //Поиск цены модификации
+        let index_price = 0;
+        console.log(Range.length);
+        Range.map((i, idx) => i === range ? index_price = index_price + 162 * idx : index_price)
+        console.log(index_price);
+        Execution.map(((i, idx) => i === execution ? index_price = index_price + 81 * idx : index_price))
+        console.log(index_price);
+        Type.map(((i, idx) => {
+            if(i === type){
+                if(idx === 1){
+                    index_price = index_price + 40
+                }else if(idx === 2){
+                    index_price = index_price + 41
+                }
+            }
+        }))
+        console.log(index_price);
+
+        if(cabele < 3){
+            index_price = Number(index_price) + Number(cabele)
+        }else{
+            index_price = Number(index_price) + Number(cabele) - 1 
+        }
+
+        setPrice(productsStore.lps_prices[index_price])
+        index_price = 0
+    }
+
+    useEffect(() => {
+        const realId = "LPS (" + range.split("..")[1] + ") (" + type.split(" = ")[0] + ", " + execution.split(" = ")[0] + ")"
+        
+
+        const lps_stock = lps_mods.find(i => i.name === realId)
+
+        props.setter("LPS-" + range.split("..")[1] + "-" + type.split(" = ")[0] + "-" + execution.split(" = ")[0])
+
+        if(!lps_stock) return setStock(0)
+
+        const quantity = productsStore.stock.find(i => i.assortmentId === lps_stock.id)
+
+        if(!quantity) return setStock(0)
+
+        setStock(quantity.stock)
+    }, [range, execution, type, lps_mods])
+
+    useEffect(() => {
+        setCartElem({
+            prod_type: "LPS",
+            range: range,
+            execution: execution,
+            type: type,
+            cabele: cabele,
+        })
+        
+        find_price()
+    }, [range, execution, type, cabele])
+
+    useEffect(() => {
+        if(productsStore.loaded){
+            find_mods()
+            find_price()
+        }
+    }, [range, productsStore.loaded])
+
+    function toCart(){
+        const prods = productsStore.Cart
+        
+        const product = {
+            id: Object.values(cartElem).join("-"),
+            number: num,
+            price: Number(price.replace(/,/g, ".")),
+            url: "/assets/images/LPS/LPS.jpg",
+        }
+
+        
+        if(prods.length === 0){
+            productsStore.setCart([product])
+            localStorage.setItem("cart", JSON.stringify([product]))
+
+        }else{
+            
+            const existing = prods.find(item => item.id === product.id)
+
+            if(existing) {
+                
+                const result = prods.map(item => item.id === product.id ? {...item, number: num} : item)
+                productsStore.setCart(result)
+                
+                localStorage.setItem("cart", JSON.stringify(result))
+                return
+            }
+
+
+            prods.push(product)
+            productsStore.setCart(prods)
+            
+            
+            localStorage.setItem("cart", JSON.stringify(prods))
+            return
+        }
+
+
     }
 
     return(
@@ -74,11 +199,11 @@ const LPS_calc = () => {
                 <p>Категория:</p>
                 <Link href="">{"Датчики линейного перемещения"}</Link>
             </div>
-            <div className={styles.calc_stock}>{} в наличии</div>
+            <div className={styles.calc_stock}>{stock} в наличии</div>
 
-           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement}/>
+           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement} price={price}/>
         </div>
     )
-}
+})
 
 export default LPS_calc

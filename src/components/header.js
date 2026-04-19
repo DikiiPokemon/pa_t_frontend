@@ -195,7 +195,7 @@ const Header = observer (() => {
                                                             )
                                                         })}</div>
                                                         <div className={styles.cart_element}>{i.number}</div>
-                                                        <div className={styles.cart_element}></div>
+                                                        <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
                                                     </div>
                                                 )
                                             })

@@ -8,31 +8,89 @@ import { observer } from "mobx-react-lite";
 import LPS_calc from "@/components/LPS_calc";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, OrbitControls, useGLTF } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import * as THREE from 'three';
 
 
 const cur_prod = observer(() => {
 
     const [description, setDescription] = useState(1)
+    const [mod, setMod] = useState("")
 
-    function Model({ color = 'red', url}) {
-        const { scene } = useGLTF(url)
-
-        scene.traverse((child) => {
-            if (child.isMesh) {
-                child.material = child.material.clone()
-                child.material.color.set(color)
-                
-            }
-        })
-
-        return <primitive object={scene} position={[0, 0, 0]} rotation={[100, 1.5, 0]}/>
+    function Model({ color = '#eaeff0', url }) {
+        const [model, setModel] = useState(null);
+    
+            useEffect(() => {
+                if (!url) return;
+    
+                const loader = new GLTFLoader();
+                let isMounted = true;
+    
+                loader.load(
+                url,
+    
+                // ✅ успех
+                (gltf) => {
+                    if (!isMounted) return;
+    
+                    const scene = gltf.scene.clone();
+    
+                    scene.traverse((child) => {
+                    if (child.isMesh) {
+                        child.material = child.material.clone();
+                        child.material.color.set(color);
+                    }
+                    });
+    
+                    setModel(scene);
+                },
+    
+                // ⏳ прогресс (можно убрать)
+                undefined,
+    
+                // ❌ ошибка
+                (error) => {
+                    console.error('Ошибка загрузки модели:', error);
+    
+                    if (!isMounted) return;
+    
+                    // fallback — красный куб
+                    const geometry = new THREE.BoxGeometry();
+                    const material = new THREE.MeshStandardMaterial({ color: 'red' });
+                    const cube = new THREE.Mesh(geometry, material);
+    
+                    setModel(cube);
+                }
+                );
+    
+                // 🧹 cleanup (ВАЖНО)
+                return () => {
+                isMounted = false;
+                setModel(null);
+                };
+            }, [url, color]);
+    
+        if (!model) return null;
+    
+        return (
+            <primitive
+            object={model}
+            position={[0, 0, 0]}
+            rotation={[100, 1.5, 0]}
+            />
+        );
     }
 
+    useEffect(() => {
+        console.log(mod);
+        
+    }, [mod])
+    
     return(
         <div className={styles.product_page_wrapper}>
             <div className={styles.product_page_header}>Датчики LPS</div>
             <div className={styles.product_page_charachteristic_wrapper}>
-                <div className={styles.product_page_charachteristic_img}>
+                <div className={styles.product_page_charachteristic_3d}>
                     <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 10}}>
                         <ambientLight intensity={0.1} />
                         <directionalLight
@@ -50,9 +108,7 @@ const cur_prod = observer(() => {
                             shadow-camera-bottom={-5}
                             shadow-mapSize={[1024, 1024]} />
                         <meshStandardMaterial color={0xeaeff0} />
-                        <Suspense fallback={null}>
-                            <Model color="gray" url="/assets/3d/11.gltf" />
-                        </Suspense>
+                            <Model color="gray" url={`/assets/3d/LPS/${mod}.gltf`} />
                         <ContactShadows
                             position={[0, -0.05, 0]}
                             opacity={1}
@@ -63,8 +119,8 @@ const cur_prod = observer(() => {
                         <OrbitControls/>
                     </Canvas>
                 </div>
-                <div className={styles.product_page_charachteristic_container}>
-                    <LPS_calc/>
+                <div className={styles.product_page_charachteristic_container_3d}>
+                    <LPS_calc setter={setMod}/>
                 </div>
                
             </div>
