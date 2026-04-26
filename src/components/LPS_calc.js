@@ -83,13 +83,14 @@ const LPS_calc = observer((props) => {
             }
         }))
         console.log(index_price);
-
-        if(cabele < 3){
-            index_price = Number(index_price) + Number(cabele)
-        }else{
-            index_price = Number(index_price) + Number(cabele) - 1 
+        if(Type[1] !== type){
+            if(cabele < 3){
+                index_price = Number(index_price) + Number(cabele)
+            }else{
+                index_price = Number(index_price) + Number(cabele) - 1 
+            }
         }
-
+        
         setPrice(productsStore.lps_prices[index_price])
         index_price = 0
     }
@@ -199,7 +200,15 @@ const LPS_calc = observer((props) => {
                 <p>Категория:</p>
                 <Link href="">{"Датчики линейного перемещения"}</Link>
             </div>
-            <div className={styles.calc_stock}>{stock} в наличии</div>
+            { stock === 0 ? 
+            <div className={styles.calc_stock}>
+                <span>Нет в наличии</span> (Можем реализовать под заказ)
+            </div>
+            :
+            <div className={styles.calc_stock}>
+                {stock} шт. в наличии
+            </div>
+            }
 
            <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement} price={price}/>
         </div>

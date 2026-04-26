@@ -100,7 +100,7 @@ const cur_prod = observer(() => {
                             color="gray"
                             shadow-mapSize-width={1024}
                             shadow-mapSize-height={1024}
-                            shadow-camera-far={10}
+                            shadow-camera-far={1}
                             shadow-camera-near={0.5}
                             shadow-camera-left={-5}
                             shadow-camera-right={5}
@@ -110,7 +110,7 @@ const cur_prod = observer(() => {
                         <meshStandardMaterial color={0xeaeff0} />
                             <Model color="gray" url={`/assets/3d/LPS/${mod}.gltf`} />
                         <ContactShadows
-                            position={[0, -0.05, 0]}
+                            position={[0, -0.7, 0]}
                             opacity={1}
                             scale={1}
                             blur={2}

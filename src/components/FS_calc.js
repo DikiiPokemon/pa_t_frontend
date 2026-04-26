@@ -185,8 +185,15 @@ const FS_calc = observer ((props) => {
                 <p>Категория:</p>
                 <Link href="">{"Датчики частоты вращения"}</Link>
             </div>
-            <div className={styles.calc_stock}>{stock} в наличии</div>
-
+            { stock === 0 ? 
+            <div className={styles.calc_stock}>
+                <span>Нет в наличии</span> (Можем реализовать под заказ)
+            </div>
+            :
+            <div className={styles.calc_stock}>
+                {stock} шт. в наличии
+            </div>
+            }
            <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement}/>
         </div>
     )

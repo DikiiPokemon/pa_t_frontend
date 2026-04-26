@@ -24,3 +24,13 @@ export const fetchSensorsPrices = async () => {
     const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/price/bdt_bfs')
     return data
 }
+
+export const sendContacts = async (form) => {
+    const {data} = await axios.post(process.env.NEXT_PUBLIC_API_URL + '/api/send/', form)
+    return data
+}
+
+export const sendCart = async (form) => {
+    const {data} = await axios.post(process.env.NEXT_PUBLIC_API_URL + '/api/send/cart', form)
+    return data
+}

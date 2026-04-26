@@ -1,8 +1,37 @@
 "use client";
 import styles from "@/app/contacts/page.module.css";
-import { useEffect, useState } from "react";
+import CheckButton from "@/components/CheckButton";
+import Error from "@/components/Error";
+import { sendContacts } from "@/http/product_controll";
+import { useCallback, useEffect, useState } from "react";
+
 
 export default function Contacts() {
+   
+  const[err, setErr] = useState(false)
+  const[errorMount, setErrorMount] = useState(false)
+  const[errMesages, setErrMesages] = useState([])
+  const[check, setCheck] = useState(false)
+
+  const [isVisible, setVisible] = useState(true)
+  const [prevState, setPrevState] = useState(0)
+  const [mail_sent, setMail_sent] = useState(false)
+
+
+  const handleScroll = useCallback(() => {
+    const scroll = window.scrollY;
+    
+    const shouldBeVisible = scroll <= 40 || prevState > scroll;
+    setPrevState(scroll)
+    if (shouldBeVisible === isVisible) return;
+    setVisible(shouldBeVisible);
+  }, [isVisible, prevState]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isVisible, handleScroll, prevState]);
+      
 
   const Contacts = [
     {
@@ -22,14 +51,97 @@ export default function Contacts() {
       name: "",
       mail: "",
       text: "",
+      check: check,
     }
   )
-  
-  const[active, setActive] = useState(Contacts[0].name)
+  const [formErr, setFormErr] = useState(
+    {
+      theme: false,
+      name: false,
+      mail: false,
+      text: false,
+    }
+  )
 
   useEffect(() => {
-    console.log(form);
-  }, [form])
+    setForm({...form, check: check})
+  }, [check])
+  
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const[active, setActive] = useState(Contacts[0].name)
+
+  async function sendForm(e){
+    e.preventDefault()
+    let err = {
+      theme: false,
+      name: false,
+      mail: false,
+      text: false,
+    }
+ 
+    let errMess = []
+    
+    if(form.theme === ""){
+      err.theme = true
+      errMess.push("Тему надо обязательно заполнить")
+    } 
+
+    if(form.name === ""){
+      err.name = true
+      errMess.push("Поле имя нужно заполнить")
+    }
+
+    if(form.text === ""){
+      err.text = true
+      errMess.push("Заполните поле Ваше сообщение")
+    }
+
+    if(!validateEmail(form.mail)){
+      err.mail = true
+      errMess.push("Ошибка в поле E-mail, пример: example@example.example")
+    }
+
+    console.log(errMess);
+    
+    
+
+    if(errMess.length !== 0){
+    setFormErr(err)
+    setErrMesages(errMess)
+    setErr(true)
+    setErrorMount(true)
+
+    // setTimeout(() => {
+    //   setErr(false)
+    // }, 5000)
+    
+    }else{
+      sendContacts(form).then(data => {
+        setFormErr({
+          theme: false,
+          name: false,
+          mail: false,
+          text: false,
+        })
+        setMail_sent(true)
+        setErrMesages([])
+        setErr(false)
+        setErrorMount(false)
+      }).catch(error => {
+        setErrMesages([error.response.data.message])
+        setErr(true)
+        setErrorMount(true)
+      })
+    }
+
+
+
+
+
+  }
   
   return (
     <div className={styles.contacts_wrapper}>
@@ -75,30 +187,55 @@ export default function Contacts() {
                 <p><span>БИК</span>044030704</p>
               </div>
             }
-            {active === "Написать нам" &&
-              <div className={styles.contacts_content_wrapper}>
+            {(active === "Написать нам" && !mail_sent) &&
+              <form className={styles.contacts_content_wrapper}>
                 <div className={`${ styles.contacts_content_input_wrapper} ${form.theme !== "" ? styles.Active : ""}`}>
-                  <input onChange={e => setForm({...form, theme: e.target.value})} value={form.theme} type="text" placeholder="Тема" className={styles.contacts_content_wrapper_input}/>
+                  <input onChange={e => setForm({...form, theme: e.target.value})} value={form.theme} type="text" placeholder="Тема" className={`${styles.contacts_content_wrapper_input} ${formErr.theme && styles.input_error}`}/>
                   <label>Тема</label>
                 </div>
                 <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
-                  <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше имя" className={styles.contacts_content_wrapper_input}/>
+                  <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше имя" className={`${styles.contacts_content_wrapper_input} ${formErr.name && styles.input_error}`}/>
                   <label>Ваше имя</label>
                 </div>
                 <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
-                  <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={styles.contacts_content_wrapper_input}/>
+                  <input type="email" onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} placeholder="Ваш e-mail" className={`${styles.contacts_content_wrapper_input} ${formErr.mail && styles.input_error}`}/>
                   <label>Ваш e-mail</label>
                 </div>
                 <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
-                  <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Ваше сообщение" className={styles.contacts_content_wrapper_textarea}/>
+                  <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Ваше сообщение" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
                   <label>Ваше сообщение</label>
                 </div>
+                <CheckButton label={"Согласие на обработку личной информации"} name={"check"} controller={setCheck}/>
+                <button className={`${styles.to_card} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Отправить</button>
                 
-                
-              </div>
-            }
+              </form>
+              }
+              {(active === "Написать нам" && mail_sent) &&
+                <div className={styles.contacts_content_wrapper_success}>
+                  <div className={styles.contacts_content_container_success}>
+                    <h1>Письмо успешно отправлено!</h1>
+                    <div className={styles.contacts_content_success}>
+                      <img alt="" src="./Check.svg"></img>
+                    </div>
+                  </div>
+                </div>
+              }
         </div>
       </div>
+
+      <Error mounted={errorMount} show={err}>
+        <div className={styles.error_wrapper} style={isVisible ? {top: "100px"} : {top: "20px"}}>
+          <div className={styles.error_container}>
+            {
+              errMesages.map((i, idx) => {
+                return(
+                  <div key={"error" + i + idx} className={styles.error_message}>{i}</div>
+                )
+              })
+            }
+          </div>
+        </div>
+      </Error>
     </div>
   );
 }

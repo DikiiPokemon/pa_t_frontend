@@ -12,6 +12,7 @@
   --foreground: #303030;
   --background-white: #fff;
   --main-color: #2B4687;
+  --error-color: #FF2F55;
 }
 body {
   display: flex;
@@ -38,7 +39,7 @@ h2{
 }
 
 a{
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 
@@ -49,6 +50,13 @@ a{
   right: 0;
   width: 100%;
   height: 100%;
+}
+
+
+#error{
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 
 .Open{

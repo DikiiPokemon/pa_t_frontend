@@ -540,6 +540,8 @@
     flex-direction: column;
     width: 100%;
     transition: 0.5s;
+
+    gap: 10px;
 }
 
 .Active{
@@ -595,7 +597,7 @@
 
     padding: 5px 10px;
 
-    margin-top: 20px;
+    margin-top: 10px;
 
     color: var(--foreground);
 }
@@ -611,7 +613,7 @@
 
 .contacts_content_input_wrapper label{
     position: absolute;
-    top: 10px;
+    top: 0px;
     left: 15px;
     font-size: 14px;
     opacity: 0;
@@ -665,7 +667,10 @@
 
 .cart_button{
     display: flex;
+    justify-content: center;
+    align-items: center;
     transition: 0.3s;
+    max-width: 200px;
 
     padding: 10px;
     background-color: var(--main-color);
@@ -677,7 +682,7 @@
 }
 
 .cart_button:hover{
-    transform: scale(1.1);
+    opacity: 0.7;
 }
 
 .cart_button:active{
@@ -686,5 +691,60 @@
 
 .visible{
     opacity: 0;
+    transition: 0.5s;
+}
+
+.input_error{
+    border: 2px solid var(--error-color);
+}
+
+.disable{
+    transition: 0.3s;
+    opacity: 0.5;
+}
+
+.error_wrapper{
+    position: fixed;
+    right: 10px;
+    transition: 0.5s;
+
+    animation: hide linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+
+    animation: anime 0.5s ease forwards;
+}
+
+@keyframes anime {
+    from{
+        opacity: 0;
+        transform: translate(0, 40px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.error_container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 10px;
+    transition: 0.5s;
+}
+
+.error_message{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: var(--error-color);
+    color: var(--background-white);
+
+    border-radius: 1000px;
+    padding: 10px;
     transition: 0.5s;
 }

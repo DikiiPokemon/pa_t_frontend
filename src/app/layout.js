@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
           <Footer></Footer>
         </StoreProvider>
         <div id="cart" className="Close"></div>
+        <div id="error" className="Close"></div>
       </body>
     </html>
   );

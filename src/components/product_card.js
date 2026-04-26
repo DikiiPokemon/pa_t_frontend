@@ -13,7 +13,7 @@ const ProductCard = ({product}) => {
                         <Image width={"300"} height={"300"}  src={product.img}/>
                     </div>
                     <div className={styles.product_short_card_info}> 
-                        <div className={styles.product_card_name}>{product.name}</div>
+                        <h2 className={styles.product_card_name}>{product.name}</h2>
                         <div className={styles.product_short_card_description}>{product.short_description}</div>
                     </div>
                 </div>

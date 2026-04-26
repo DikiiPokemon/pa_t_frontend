@@ -13,12 +13,21 @@ import { useStore } from "@/store/StoreContext";
 import CartModal from "./Cart";
 import Close from "@/components/assets/Close.svg"
 import Cart_empty from "@/components/assets/Cart_empty.svg"
+import CheckButton from "./CheckButton";
+import Error from "./Error";
+import { IMaskInput } from "react-imask";
+import { sendCart } from "@/http/product_controll";
 
 
 
 const Header = observer (() => {
     const pathname = usePathname()
     const { productsStore } = useStore()
+    const[check, setCheck] = useState(false)
+
+    const[err, setErr] = useState(false)
+    const[errorMount, setErrorMount] = useState(false)
+    const[errMesages, setErrMesages] = useState([])
     
     const [form, setForm] = useState(
         {
@@ -26,6 +35,17 @@ const Header = observer (() => {
         mail: "",
         phone: "",
         text: "",
+        cart: "",
+        check: check,
+        }
+    )
+
+    const [formErr, setFormErr] = useState(
+        {
+        name: false,
+        mail: false,
+        phone: false,
+        text: false,
         }
     )
 
@@ -50,8 +70,12 @@ const Header = observer (() => {
     };
 
     useEffect(() => {
-        setXtrans(activeBlock === 0 ? "0" : "-50%")
+        setXtrans(activeBlock === 0 ? "0" : "Calc(-50% + 1px)")
     }, [activeBlock])
+    
+    useEffect(() => {
+        setForm({...form, check: check})
+    }, [check])
 
     const handleScroll = useCallback(() => {
         const scroll = window.scrollY;
@@ -79,6 +103,81 @@ const Header = observer (() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isVisible, handleScroll, prevState]);
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    async function sendForm(e){
+        e.preventDefault()
+        let err = {
+            name: false,
+            mail: false,
+            phone: false,
+        }
+     
+        let errMess = []
+
+        const formData = {
+            name: form.name,
+            mail: form.mail,
+            phone: form.phone,
+            text: form.text,
+            cart: localStorage.getItem("cart"),
+            check: check,
+        }
+
+        console.log(form.phone.length);
+
+        if(form.phone.length < 18){
+            err.phone = true
+            errMess.push("Телефон указан неверно")
+        }
+        
+        
+        if(form.name === ""){
+          err.name = true
+          errMess.push("Поле ФИО обязательно для заполнения")
+        }
+    
+        if(!validateEmail(form.mail)){
+          err.mail = true
+          errMess.push("Ошибка в поле E-mail, пример: example@example.example")
+        }
+    
+        console.log(errMess);
+        
+        
+    
+        if(errMess.length !== 0){
+            setFormErr(err)
+            setErrMesages(errMess)
+            setErr(true)
+            setErrorMount(true)
+        
+            // setTimeout(() => {
+            // setErr(false)
+            // }, 5000)
+        
+        }else{
+          sendCart(formData).then(data => {
+            setFormErr({
+                name: false,
+                mail: false,
+                phone: false,
+            })
+            setMail_sent(true)
+            setErrMesages([])
+            setErr(false)
+            setErrorMount(false)
+          }).catch(error => {
+            setErrMesages([error.response.data.message])
+            setErr(true)
+            setErrorMount(true)
+          })
+        }
+    
+      }
 
 
     return(
@@ -202,32 +301,48 @@ const Header = observer (() => {
                                         }
                                     </div>
                                 </div>
-                                <div className={styles.cart_part_container}>
+                                <form className={styles.cart_part_container}>
                                     <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
-                                        <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше ФИО" className={styles.contacts_content_wrapper_input}/>
+                                        <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше ФИО" className={`${styles.contacts_content_wrapper_input} ${formErr.name && styles.input_error}`}/>
                                         <label>Ваше ФИО</label>
                                     </div>
                                     <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
-                                        <input onChange={e => setForm({...form, phone: e.target.value})} value={form.phone} type="text" placeholder="Ваш телефон" className={styles.contacts_content_wrapper_input}/>
+                                        <IMaskInput mask="+7 (000) 000-00-00" onChange={e => setForm({...form, phone: e.target.value})} value={form.phone} placeholder="Ваш телефон" className={`${styles.contacts_content_wrapper_input} ${formErr.phone && styles.input_error}`}/>
                                         <label>Ваш телефон</label>
                                     </div>
                                     <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
-                                        <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={styles.contacts_content_wrapper_input}/>
+                                        <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={`${styles.contacts_content_wrapper_input} ${formErr.mail && styles.input_error}`}/>
                                         <label>Ваш e-mail</label>
                                     </div>
                                     <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
-                                        <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Примечание к заказу" className={styles.contacts_content_wrapper_textarea}/>
-                                        <label>Ваше сообщение</label>
+                                        <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Примечание к заказу" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
+                                        <label>Примечание к заказу</label>
                                     </div>
-                                </div>
+                                    <CheckButton label={"Согласие на обработку личной информации"} name={"check"} controller={setCheck}/>
+                                    <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Заказать</button>
+                                </form>
                             </div>
                         </div>
-                        <button className={styles.cart_button} onClick={() => setActiveBlock(activeBlock === 0 ? 1 : 0)}>{ activeBlock === 0 ? "Оформить заказ" : "Назад"}</button>
-                        <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible}`}>Отправить заявку</button>
+                        <button className={`${styles.cart_button}`} onClick={() => setActiveBlock(activeBlock === 0 ? 1 : 0)}>{ activeBlock === 0 ? "Оформить заказ" : "Назад"}</button>
+                       
                     </div>
                 </div>
                 }
             </CartModal>
+
+            <Error mounted={errorMount} show={err}>
+                <div className={styles.error_wrapper} style={isVisible ? {top: "100px"} : {top: "20px"}}>
+                <div className={styles.error_container}>
+                    {
+                    errMesages.map((i, idx) => {
+                        return(
+                        <div key={"error" + i + idx} className={styles.error_message}>{i}</div>
+                        )
+                    })
+                    }
+                </div>
+                </div>
+            </Error>
         </div>
     )
 })

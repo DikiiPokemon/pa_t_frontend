@@ -20,9 +20,9 @@ class ProductStore {
         {
           href: "/catalog/current_prod_lps",
           name: "LPS датчики",
-          description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          short_description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          img: "/assets/images/BDT/BDT.jpg",
+          description: "Преобразователь ЛП предназначен для измерения линейного перемещения промышленных объектов. Состоит из трансформаторного преобразователя ЛП LPS и БПС BDT-07. Преобразователи ЛП имеют линейную выходную характеристику.",
+          short_description: "Преобразователь ЛП предназначен для измерения линейного перемещения промышленных объектов.",
+          img: "/assets/images/LPS/LPS.jpg",
           characteristic: [
             "Диапазоны измерений от 7 до 660 мм",
             "Встроенный кабель или разъемный соединитель",
@@ -38,9 +38,9 @@ class ProductStore {
         {
           href: "/catalog/current_prod_fs",
           name: "FS датчики",
-          description: "Lorem ipsum loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          short_description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          img: "/assets/images/BDT/BDT.jpg",
+          description: "Высокочастотные датчики частоты вращения подходят для использования с зубчатым колесом из ферромагнитного материала для генерации сигналов пропорциональной частоты вращения. Для измерения частоты вращения паровых, газовых и гидротурбин.",
+          short_description: "Высокочастотные датчики частоты вращения, для измерения частоты вращения паровых, газовых и гидротурбин.",
+          img: "/assets/images/FS/FS.jpg",
           characteristic: [
             "Диапазон измерений частоты вращения, от 2 до 16000 Гц",
             "Встроенный кабель или разъемный соединитель",

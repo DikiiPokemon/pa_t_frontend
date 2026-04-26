@@ -138,5 +138,5 @@
 }
 
 .calc_stock span{
-    color: #FF2F55;
+    color: var(--error-color);
 }
