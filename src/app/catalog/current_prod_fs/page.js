@@ -350,6 +350,7 @@ const cur_prod = observer(() => {
                 }
                 
             </div>
+            
         </div>
     )
 })
