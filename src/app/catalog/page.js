@@ -18,7 +18,7 @@ const catalog = observer(() => {
           {
             productsStore.product_cards.map(i => {
               return(
-                <div key={"product_cards " + i.name} className={styles.catalog_wrapper} style={{gap: "30px"}}>
+                <div id={i.anchor} key={"product_cards " + i.name} className={styles.catalog_wrapper} style={{gap: "30px"}}>
                   <div className={styles.catalog_section}><h1>{i.name}</h1></div>
                   <div className={styles.catalog_container}>
                     {

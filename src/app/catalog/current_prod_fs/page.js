@@ -103,8 +103,8 @@ const cur_prod = observer(() => {
                         <ambientLight intensity={0.1} />
                         <directionalLight
                             castShadow
-                            position={[0, 3, 0]} // свет под объектом
-                            intensity={1.5}
+                            position={[-2, 3, 0]} // свет под объектом
+                            intensity={0.5}
                             color="#eaeff0"
                             shadow-mapSize-width={1024}
                             shadow-mapSize-height={1024}
@@ -134,7 +134,7 @@ const cur_prod = observer(() => {
                 </div>
                
             </div>
-            <div className={styles.product_page_description}>
+            <div id="full_descript" className={styles.product_page_description}>
                 <div className={styles.product_page_description_nav}>
                     <button onClick={() => setDescription(1)} className={`${styles.product_page_description_nav_button} ${description === 1 ? styles.Active : ""}`}>Описание</button>
                     <button onClick={() => setDescription(2)} className={`${styles.product_page_description_nav_button} ${description === 2 ? styles.Active : ""}`}>Документация</button>
@@ -309,25 +309,42 @@ const cur_prod = observer(() => {
                                 </tr>
                             </tbody>
                         </table>
+                    <p>Марка ферромагнитного материала измерительного колеса не регламентируется. Модуль колеса должен быть не менее 2 мм (толщина зуба не менее 3 мм, высота зуба не менее 3 мм, ширина впадины не менее 3 мм). Толщина колеса не менее 3 мм.</p>
+                    <p>Для исполнений СЕРИИ FS-PP уровень логического «0» менее 0.5 В, уровень логической «1» более 10 В.</p>
+                    <p>Для исполнений СЕРИИ FS-A уровень логического «0» менее 0.1 В, уровень логической «1» более 0.4 В.</p>
+                    <p>Для этой модификации рекомендуется использовать блок BFM-04F, предназначенный для формирования нормированного прямоугольного сигнала скважностью 50% из входного синусоидального сигнала.</p>
+                    <p>Блок имеет 1 гальванически изолированный канал преобразования, на вход которого подается синусоидальный сигнал с амплитудой от 0,2 до 50В.</p>
+                    <p>На выходе формируются прямоугольные импульсы амплитудой 24В.</p>
+                    <h2>Код заказа датчика</h2>
+                    <img style={{maxWidth: "637px"}} src="/assets/images/FS/code_fs.png" alt=""></img>
+                    <p>Пример для аналогового датчика с кабелем 10 метров: FS-A-12-120-CA-10</p>
+                    <p>Есть решения по аналогам датчиков скорости производства General electric, Braun, Jaquet и TE connectivity</p>
+                    <h2>Габаритные и присоединительные размеры</h2>
+                    <p>Исполнение М12</p>
+                    <img src="/assets/images/FS/gab_fs.png" alt="" style={{maxWidth: "368px"}}/>
                 </div>
                 }
                 {description === 2 &&
                     <div className={styles.product_page_description_main}>
                         <h1 className={styles.product_page_description_main_header}>Документация</h1>
                         <ul>
-                            <li><a href="" target="_blank">Техническая спецификация</a></li>
-                            <li><a href="" target="_blank">Руководство по эксплуатации</a></li>
-                            <li><a href="" target="_blank">Технические условия</a></li>
-                            <li><a href="" target="_blank">Модели_STL</a></li>
+                            <li><a href="/assets/docs/fs/tehnicheskaya-speczifikacziya.pdf" download>Техническая спецификация</a></li>
+                            <li><a href="/assets/docs/fs/rukovodstvo-po-ekspluataczii.pdf" download>Руководство по эксплуатации</a></li>
+                            <li><a href="/assets/docs/fs/tehnicheskie-usloviya.pdf" download>Технические условия</a></li>
+                            <li><a href="/assets/docs/fs/pasport.pdf" download>Паспорт</a></li>
                         </ul>
                     </div>
                 }
                 {description === 3 &&
                     <div className={styles.product_page_description_main}>
-                        <h1 className={styles.product_page_description_main_header}>Сертификаты и декларации</h1>
-                        <h2 className={styles.product_page_description_main_header}>Федеральное агенство по техническому регулированию и метрологии</h2>
+                        <h1 className={styles.product_page_description_main_header}>Сертификаты</h1>
+                        <h2 className={styles.product_page_description_main_header}>ЕАЭС, электромагн.совм.020/2011</h2>
                         <ul>
-                            <li><a href="" target="_blank">Сертификат об утверждении типа средств измерений</a></li>
+                            <li><a href="/assets/docs/fs/№8-vypiska-po-deklaraczii-o-sootvetstvii-№-eaes-n-ru-d-ru.ra06.v.29253_23-ot-2023-11-16.pdf" download>Декларация</a></li>
+                            <li><a href="/assets/docs/fs/№6-protokol-ispytanij-eaes-pa-t-fs-nsk.pdf" download>Протокол</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="/assets/docs/fs/fs-sertifikat-si.pdf" download>Сертификат об утверждении типа средств измерений</a></li>
                         </ul>
                     </div>
                 }

@@ -19,6 +19,7 @@ const MainCard = ({product}) => {
 
     return(
         <div className={styles.product_card_wrapper}>
+            <Link href={product.href} style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%"}}></Link>
             <div className={styles.product_card_container}>
                 <div className={styles.product_card_img}>
                     <Image width={"300"} height={"300"}  src={product.img}/>

@@ -15,10 +15,10 @@ const BDT_calc = observer (() => {
     const { productsStore } = useStore()
 
     const signal =[
-        "II = два выходных сигнала 4-20мА",
+        "II = два выходных сигнала 4..20мА",
         "UU = два выходных сигнала ±10 В",
-        "UI = один выходной сигнал ±10 В, второй 4-20мА",
-        "NI = один выходной сигнал 4-20 мА",
+        "UI = один выходной сигнал ±10 В, второй 4..20мА",
+        "NI = один выходной сигнал 4..20 мА",
         "NU = один выходной сигнал ±10 В",
     ]
 
@@ -105,7 +105,7 @@ const BDT_calc = observer (() => {
         const product = {
             id: Object.values(cartElem).join("-"),
             number: num,
-            price: Number(productsStore.sensors_prices[0].replace(/,/g, ".").replace(/\s/g, '').replace('₽', '')),
+            price: productsStore.sensors_prices,
             url: "/assets/images/BDT/BDT.jpg",
         }
         
@@ -154,12 +154,12 @@ const BDT_calc = observer (() => {
             <div className={styles.calc_description}>
                 <p>Описание</p>
                 <p>Блок BDT-07 предназначен для обработки сигнала с преобразователя линейных перемещений LVDT одновременно в токовый сигнал 4 – 20 мА и в сигнал напряжения ±10 В.</p>
-                <a>Полное описание</a>
+                <a href="#full_descript">Полное описание</a>
             </div>
 
             <div className={styles.calc_category}>
                 <p>Категория:</p>
-                <Link href="">{"Электронные блоки"}</Link>
+                <Link href="/catalog#blocks">{"Электронные блоки"}</Link>
             </div>
             { stock === 0 ? 
             <div className={styles.calc_stock}>
@@ -171,7 +171,7 @@ const BDT_calc = observer (() => {
             </div>
             }
 
-           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement} price={productsStore.sensors_prices[0]}/>
+           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement} price={productsStore.sensors_prices}/>
         </div>
     )
 })

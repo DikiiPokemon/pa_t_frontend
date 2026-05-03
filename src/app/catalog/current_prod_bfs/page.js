@@ -70,11 +70,11 @@ const bfs_prod = observer(() => {
                 </div>
                
             </div>
-            <div className={styles.product_page_description}>
+            <div id="full_descript" className={styles.product_page_description}>
                 <div className={styles.product_page_description_nav}>
                     <button onClick={() => setDescription(1)} className={`${styles.product_page_description_nav_button} ${description === 1 ? styles.Active : ""}`}>Описание</button>
                     <button onClick={() => setDescription(2)} className={`${styles.product_page_description_nav_button} ${description === 2 ? styles.Active : ""}`}>Документация</button>
-                    <button onClick={() => setDescription(3)} className={`${styles.product_page_description_nav_button} ${description === 3 ? styles.Active : ""}`}>Сертификаты и декларации</button>
+                    {/* <button onClick={() => setDescription(3)} className={`${styles.product_page_description_nav_button} ${description === 3 ? styles.Active : ""}`}>Сертификаты и декларации</button> */}
                 </div>
                 {description === 1 &&
                     <div className={styles.product_page_description_main}>
@@ -162,19 +162,25 @@ const bfs_prod = observer(() => {
                                 </tr>
                             </tbody>
                         </table>
+
+                        <p>Блок имеет 1 гальванически изолированный канал преобразования, на вход которого подается синусоидальный сигнал с амплитудой от 1 до 100В. На выходе формируются прямоугольные импульсы амплитудой 24В</p>
+                        <p>Основная область применения – промышленные системы.</p>
+                        <p>Блок имеет 8 активных контактов для подключения и детектирования сигнала, на рисунке 2 приведена общая схема подключения с описанием каждого контакта.</p>
+                        <img style={{maxWidth: "616px"}} src="/assets/images/BFS/Схема подключения BFS.png" alt=""/>
+                        <p>Рис 1. – Схема подключения блока</p>
                     </div>
                 }
                 {description === 2 &&
                     <div className={styles.product_page_description_main}>
                         <h1 className={styles.product_page_description_main_header}>Документация</h1>
                         <ul>
-                            <li><a href="" target="_blank">Техническое описание</a></li>
-                            {/* <li><a href="" target="_blank">Модель корпуса в формате STL</a></li>
-                            <li><a href="" target="_blank">Модель корпуса в формате STEP</a></li> */}
+                            <li><a href="/assets/docs/bfs/bfs-01-tehnicheskoe-opisanie_v1.pdf" download>Техническое описание</a></li>
+                            {/* <li><a href="" target="_blank">Модель корпуса в формате STL</a></li> */}
+                            <li><a href="/assets/docs/bfs/BFS.zip" download>Модель корпуса в формате STEP</a></li>
                         </ul>
                     </div>
                 }
-                {description === 3 &&
+                {/* {description === 3 &&
                     <div className={styles.product_page_description_main}>
                         <h1 className={styles.product_page_description_main_header}>Сертификаты и декларации</h1>
                         <h2 className={styles.product_page_description_main_header}>Федеральное агенство по техническому регулированию и метрологии</h2>
@@ -182,7 +188,7 @@ const bfs_prod = observer(() => {
                             <li><a href="" target="_blank">Сертификат об утверждении типа средств измерений</a></li>
                         </ul>
                     </div>
-                }
+                } */}
                 
             </div>
         </div>

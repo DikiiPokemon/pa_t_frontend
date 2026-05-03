@@ -137,7 +137,7 @@ const LPS_calc = observer((props) => {
         const product = {
             id: Object.values(cartElem).join("-"),
             number: num,
-            price: Number(price.replace(/,/g, ".")),
+            price: price,
             url: "/assets/images/LPS/LPS.jpg",
         }
 
@@ -193,12 +193,12 @@ const LPS_calc = observer((props) => {
             <div className={styles.calc_description}>
                 <p>Описание</p>
                 <p>LVDT (линейный переменный дифференциальный трансформатор) представляет вид индуктивных преобразователей, предназначенных для применения в жестких, промышленных условиях, при высокой температуре и/или давлении, при больших ускорениях и большом числе циклов перемещений.</p>
-                <a>Полное описание</a>
+                <a href="#full_descript">Полное описание</a>
             </div>
 
             <div className={styles.calc_category}>
                 <p>Категория:</p>
-                <Link href="">{"Датчики линейного перемещения"}</Link>
+                <Link href="/catalog#sens">{"Датчики"}</Link>
             </div>
             { stock === 0 ? 
             <div className={styles.calc_stock}>

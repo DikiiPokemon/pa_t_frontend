@@ -12,6 +12,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "@/store/StoreContext";
 import CartModal from "./Cart";
 import Close from "@/components/assets/Close.svg"
+import Delete from "@/components/assets/Simp_Cross.svg"
 import Cart_empty from "@/components/assets/Cart_empty.svg"
 import CheckButton from "./CheckButton";
 import Error from "./Error";
@@ -24,6 +25,8 @@ const Header = observer (() => {
     const pathname = usePathname()
     const { productsStore } = useStore()
     const[check, setCheck] = useState(false)
+    const[query, setQuery] = useState([])
+    const[searchProd, setSearchProd] = useState([])
 
     const[err, setErr] = useState(false)
     const[errorMount, setErrorMount] = useState(false)
@@ -81,9 +84,11 @@ const Header = observer (() => {
         const scroll = window.scrollY;
         
         const shouldBeVisible = scroll <= 40 || prevState > scroll;
+        
         setPrevState(scroll)
         if (shouldBeVisible === isVisible) return;
         setVisible(shouldBeVisible);
+        !shouldBeVisible && setSearch(false)
     }, [isVisible, prevState]);
     
         
@@ -179,6 +184,24 @@ const Header = observer (() => {
     
       }
 
+    function Search_prod(e){
+        if(e.target.value !== ""){
+            const filtered = productsStore.searcher.filter((p) =>
+                p.name.toLowerCase().includes(e.target.value.toLowerCase())
+            );
+
+            setSearchProd(filtered)
+        }else{
+            setSearchProd([])
+        }
+
+    }
+
+    function Del_product(index){
+        productsStore.Cart.splice(index, 1)
+        localStorage.setItem('cart', JSON.stringify(productsStore.Cart))
+    }
+
 
     return(
         <div className={styles.header_wrapper} style={isVisible ? {top: 0} : {top: "-80px"}}>
@@ -203,7 +226,25 @@ const Header = observer (() => {
                     <button onClick={() => {setSearch(true); setCall(false)}} className={search ? styles.header_button_active : styles.header_button}>
                         <Image src={Search} alt={""}/>
                         {search&&
-                            <input type="text" className={styles.search_input} placeholder="Поиск"></input>
+                            <>
+                                <input type="text" onChange={e => Search_prod(e)} className={styles.search_input} placeholder="Поиск" />
+                                {
+                                    searchProd.length !== 0 &&
+                                    <div className={styles.serach_prod_wrapper}>
+                                    {
+                                        searchProd.map((i, idx) => {
+                                            return(
+                                                <Link key={i.name + idx} href={i.href} className={styles.serach_prod_container}>
+                                                    <img src={i.img}></img>
+                                                    <div>{i.name}</div>
+                                                </Link>
+                                            )
+                                        })
+                                    }
+                                    </div>
+                                }
+                                
+                            </>
                         }
                     </button>
                     <button onClick={() => {setSearch(false); setCall(true)}} className={call ? styles.header_button_active : styles.header_button}>
@@ -254,7 +295,7 @@ const Header = observer (() => {
             <CartModal mounted={cartMount} show={cartOpen}>
             {productsStore.Cart.length === 0 ?
                 <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
-                    <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`}>
+                    <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`} style={{alignItems: "center"}}>
                         <div className={styles.cart_header}>
                             <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
                         </div>
@@ -281,22 +322,128 @@ const Header = observer (() => {
                                         {
                                             productsStore.Cart.map((i, idx) => {
                                                 const arr = i.id.split("-")
-
-                                                return(
-                                                    <div key={i.id + idx} className={styles.cart_element_wrapper}>
-                                                        <div className={styles.cart_element}>
-                                                            <img src={i.url}/>
+                                                if(arr[0] === "BDT"){
+                                                    return(
+                                                        <div key={i.id + idx} className={styles.cart_element_wrapper}>
+                                                            <div className={styles.cart_element}>
+                                                                <img src={i.url}/>
+                                                            </div>
+                                                            <div className={styles.cart_element}>{arr.map((el, index) => {
+                                                                if(index === 0){
+                                                                    return(
+                                                                        <p key={el + index}>Модель: {el}</p>
+                                                                    )
+                                                                }else if(index === 1){
+                                                                    return(
+                                                                        <p key={el + index}>Тип присоединения: {el}</p>
+                                                                    )
+                                                                }else if(index === 2){
+                                                                    return(
+                                                                        <p key={el + index}>Исполнение: {el}</p>
+                                                                    )
+                                                                }else{
+                                                                    return(
+                                                                        <p key={el + index}>{el}</p>
+                                                                    )
+                                                                }
+                                                                    
+                                                            })}</div>
+                                                            <div className={styles.cart_element}>{i.number}</div>
+                                                            <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
+                                                            <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
                                                         </div>
-                                                        <div className={styles.cart_element}>{arr.map((el, index) => {
+                                                    )
+                                                }else if(arr[0] === "LPS"){
+                                                    return(
+                                                        <div key={i.id + idx} className={styles.cart_element_wrapper}>
+                                                            <div className={styles.cart_element}>
+                                                                <img src={i.url}/>
+                                                            </div>
+                                                            <div className={styles.cart_element}>{arr.map((el, index) => {
+                                                                if(index === 0){
+                                                                    return(
+                                                                        <p key={el + index}>Модель: {el}</p>
+                                                                    )
+                                                                }else if(index === 1){
+                                                                    return(
+                                                                        <p key={el + index}>Диапазон измерений: {el}</p>
+                                                                    )
+                                                                }else if(index === 2){
+                                                                    return(
+                                                                        <p key={el + index}>Исполнение: {el}</p>
+                                                                    )
+                                                                }else if(index === 3){
+                                                                    return(
+                                                                        <p key={el + index}>Тип подключения: {el}</p>
+                                                                    )
+                                                                }else if(index === 4){
+                                                                    return(
+                                                                        <p key={el + index}>Кабель: {el}м</p>
+                                                                    )
+                                                                }
+                                                            })}</div>
+                                                            <div className={styles.cart_element}>{i.number}</div>
+                                                            <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
+                                                            <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                        </div>
+                                                    )
+                                                }else if(arr[0] === "FS"){
+                                                    return(
+                                                        <div key={i.id + idx} className={styles.cart_element_wrapper}>
+                                                            <div className={styles.cart_element}>
+                                                                <img src={i.url}/>
+                                                            </div>
+                                                            <div className={styles.cart_element}>{arr.map((el, index) => {
+                                                                if(index === 0){
+                                                                    return(
+                                                                        <p key={el + index}>Модель: {el}</p>
+                                                                    )
+                                                                }else if(index === 1){
+                                                                    return(
+                                                                        <p key={el + index}>Тип выходного сигнала: {el}</p>
+                                                                    )
+                                                                }else if(index === 2){
+                                                                    return(
+                                                                        <p key={el + index}>Диаметр: {el}мм</p>
+                                                                    )
+                                                                }else if(index === 3){
+                                                                    return(
+                                                                        <p key={el + index}>Длина: {el}мм</p>
+                                                                    )
+                                                                }else if(index === 4){
+                                                                    return(
+                                                                        <p key={el + index}>Тип присоединения: {el}</p>
+                                                                    )
+                                                                }else if(index === 5){
+                                                                    return(
+                                                                        <p key={el + index}>Длина кабеля: {el}м</p>
+                                                                    )
+                                                                }
+                                                            })}</div>
+                                                            <div className={styles.cart_element}>{i.number}</div>
+                                                            <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
+                                                            <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                        </div>
+                                                    )
+                                                }else if(arr[0] === "BFS"){
+                                                    return(
+                                                        <div key={i.id + idx} className={styles.cart_element_wrapper}>
+                                                            <div className={styles.cart_element}>
+                                                                <img src={i.url}/>
+                                                            </div>
+                                                            <div className={styles.cart_element}>{arr.map((el, index) => {
 
-                                                            return(
-                                                                <p key={el + index}>{el}</p>
-                                                            )
-                                                        })}</div>
-                                                        <div className={styles.cart_element}>{i.number}</div>
-                                                        <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
-                                                    </div>
-                                                )
+                                                                return(
+                                                                    <p key={el + index}>{el}</p>
+                                                                )
+                                                            })}</div>
+                                                            <div className={styles.cart_element}>{i.number}</div>
+                                                            <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
+                                                            <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                        </div>
+                                                    )
+                                                }
+                                                
                                             })
                                         }
                                     </div>
@@ -323,8 +470,8 @@ const Header = observer (() => {
                                 </form>
                             </div>
                         </div>
+                        <div className={styles.total_cart}>Итого: {productsStore.Cart.reduce((sum, p) => sum + p.price * p.number, 0)} руб.</div>
                         <button className={`${styles.cart_button}`} onClick={() => setActiveBlock(activeBlock === 0 ? 1 : 0)}>{ activeBlock === 0 ? "Оформить заказ" : "Назад"}</button>
-                       
                     </div>
                 </div>
                 }

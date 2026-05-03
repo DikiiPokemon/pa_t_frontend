@@ -95,12 +95,11 @@
 }
 
 .header_button_active{
-
+    position: relative;
     justify-content: flex-start;
     align-items: center;
     user-select: none;
     gap: 10px;
-    overflow: hidden;
 
     color: var(--background-white);
 
@@ -193,6 +192,31 @@
     outline: none;
     color: var(--background-white);
     font-weight: 400;
+}
+
+.serach_prod_wrapper{
+    position: absolute;
+    top: 45px;
+    z-index: 1;
+    left: 0;
+    padding: 10px;
+
+    border-radius: 10px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    transition: 0.5s;
+
+    background-color: var(--background-white);
+    color: var(--foreground);
+    width: max-content;
+}
+
+.serach_prod_container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    transition: 0.5s;
+    gap: 5px;
 }
 
 .burger_trigger{
@@ -475,14 +499,19 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .cart_element_wrapper{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    max-height: 155px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid var(--foreground);
 
     gap: 10px;
 }
@@ -495,12 +524,27 @@
     height: -webkit-fill-available;
     border-radius: 10px;
     overflow: hidden;
+    height: 100%;
+    width: 100%;
 }
 
 .cart_element img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+.cart_element_del{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cart_element_del img:hover{
+    transition: 0.5s;
+    transform: rotate(360deg);
 }
 
 .cart_element:nth-child(2){
@@ -521,6 +565,12 @@
 
 .Close{
     cursor: pointer;
+    transition: 0.5s;
+}
+
+.Close img:hover{
+    transition: 0.5s;
+    transform: rotate(360deg);
 }
 
 .slider_container{
@@ -542,6 +592,23 @@
     transition: 0.5s;
 
     gap: 10px;
+}
+
+.total_cart{
+    width: 200px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: var(--main-color);
+    color: var(--background-white);
+
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    transition: 0.5s;
 }
 
 .Active{
@@ -675,7 +742,7 @@
     padding: 10px;
     background-color: var(--main-color);
     height: 40px;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     color: var(--background-white);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);

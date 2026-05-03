@@ -14,7 +14,7 @@ const FS_calc = observer ((props) => {
 
     const { productsStore } = useStore()
     const SignalType = [
-       "A – аналоговый", "PP – push pull"
+       "A = аналоговый", "PP = push pull"
     ]
 
     const Diametr = [
@@ -32,6 +32,7 @@ const FS_calc = observer ((props) => {
     ]
 
     const [num, setNum] = useState(1)
+    const [price, setPrice] = useState(0)
 
     function increment (){
         setNum(num + 1)
@@ -72,14 +73,43 @@ const FS_calc = observer ((props) => {
 
     }
 
+    function find_price(){
+        //Поиск цены модификации
+        let index_price = 0;
+        SignalType.map((i, idx) => i === signalType ? index_price = index_price + 328 * idx : index_price)
+        Diametr.map(((i, idx) => i === diametr ? index_price = index_price + 82 * idx : index_price))
+        Long.map(((i, idx) => i === long ? index_price = index_price + 41 * idx : index_price))
+        Type.map(((i, idx) => {
+            if(i === type){
+                if(idx === 1){
+                    index_price = index_price + 40
+                }else if(idx === 2){
+                    index_price = index_price + 41
+                }
+            }
+        }))
+        if(Type[1] !== type){
+            if(cabele < 3){
+                index_price = Number(index_price) + Number(cabele)
+            }else{
+                index_price = Number(index_price) + Number(cabele) - 1 
+            }
+        }
+        
+        setPrice(productsStore.fs_prices[index_price])
+        index_price = 0
+    }
+
+
 
     useEffect(() => {
         const realId = "FS " + diametr + " (" + long + ", " + signalType.split(" –")[0] + ", " + type.split(" =")[0] + ")"
         
 
         const fs_stock = fs_mods.find(i => i.name === realId)
-
-        props.setter("FS-" + diametr + "-" + long + "-" + signalType.split(" –")[0] + "-" + type.split(" =")[0])
+        
+        //props.setter("FS-" + diametr + "-" + long + "-" + signalType.split(" =")[0] + "-" + type.split(" =")[0])
+        props.setter("FS-" + diametr + "-" + long + "-" + type.split(" =")[0])
 
         if(!fs_stock) return setStock(0)
 
@@ -101,11 +131,15 @@ const FS_calc = observer ((props) => {
             cabele: cabele,
         })
 
+
+        find_price()
+
     }, [signalType, diametr, long, type, cabele])
 
     useEffect(() => {
         if(productsStore.loaded){
             find_mods()
+            find_price()
         }
     }, [diametr, productsStore.loaded])
 
@@ -116,7 +150,7 @@ const FS_calc = observer ((props) => {
         const product = {
             id: Object.values(cartElem).join("-"),
             number: num,
-            price: 0,
+            price: price,
             url: "/assets/images/FS/FS.jpg",
         }
         
@@ -159,7 +193,7 @@ const FS_calc = observer ((props) => {
                 <Selector key={"FS1"} arr={SignalType} select={signalType} setSelect={setSignalType}/>
             </div>
             <div className={styles.calc_measurments}>
-                <p>Диаметр, мм:</p>
+                <p>Диаметр резьбы, мм:</p>
                 <Selector key={"FS2"} arr={Diametr} select={diametr} setSelect={setDiametr}/>
             </div>
             <div className={styles.calc_measurments}>
@@ -178,12 +212,12 @@ const FS_calc = observer ((props) => {
             <div className={styles.calc_description}>
                 <p>Описание</p>
                 <p>Высокочастотные датчики частоты вращения подходят для использования с зубчатым колесом из ферромагнитного материала для генерации сигналов пропорциональной частоты вращения.</p>
-                <a>Полное описание</a>
+                <a href="#full_descript">Полное описание</a>
             </div>
 
             <div className={styles.calc_category}>
                 <p>Категория:</p>
-                <Link href="">{"Датчики частоты вращения"}</Link>
+                <Link href="/catalog#sens">{"Датчики"}</Link>
             </div>
             { stock === 0 ? 
             <div className={styles.calc_stock}>
@@ -194,7 +228,7 @@ const FS_calc = observer ((props) => {
                 {stock} шт. в наличии
             </div>
             }
-           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement}/>
+           <ToCard func={() => toCart()} num={num} increment={increment} decrement={decrement} price={price}/>
         </div>
     )
 })

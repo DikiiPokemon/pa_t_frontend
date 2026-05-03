@@ -67,7 +67,7 @@ const BFS_calc = observer (() => {
     useEffect(() => {
         if(productsStore.loaded){
             find_mods()
-            setPrice(productsStore.sensors_prices[0].replace(/,/g, ".").replace(/\s/g, '').replace('₽', ''))
+            setPrice(productsStore.sensors_prices)
         }
     }, [productsStore.loaded])
 
@@ -119,12 +119,12 @@ const BFS_calc = observer (() => {
             <div className={styles.calc_description}>
                 <p>Описание</p>
                 <p>Преобразователь сигналов измеряемых частот BFS-01 предназначен для формирования прямоугольного сигнала из входного синусоидального сигнала.</p>
-                <a>Полное описание</a>
+                <a href="#full_descript">Полное описание</a>
             </div>
 
             <div className={styles.calc_category}>
                 <p>Категория:</p>
-                <Link href="">{"Электронные блоки"}</Link>
+                <Link href="/catalog#blocks">{"Электронные блоки"}</Link>
             </div>
             
             { stock === 0 ? 

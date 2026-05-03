@@ -20,6 +20,11 @@ export const fetchLPSPrices = async () => {
     return data
 }
 
+export const fetchFSPrices = async () => {
+    const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/price/fs')
+    return data
+}
+
 export const fetchSensorsPrices = async () => {
     const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/price/bdt_bfs')
     return data
