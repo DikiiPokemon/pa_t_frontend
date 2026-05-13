@@ -201,34 +201,34 @@ class ProductStore {
 
     merquee = [
       {
-        url: "/assets/images/customers/Gasprom.png",
+        url: "/assets/images/Customers/Gasprom.png",
       },
       {
-        url: "/assets/images/customers/Jam.png",
+        url: "/assets/images/Customers/Jam.png",
       },
       {
-        url: "/assets/images/customers/RusGidro.png",
+        url: "/assets/images/Customers/RusGidro.png",
       },
       {
-        url: "/assets/images/customers/TSA.svg",
+        url: "/assets/images/Customers/TSA.svg",
       },
       {
-        url: "/assets/images/customers/Turbosystem.svg",
+        url: "/assets/images/Customers/Turbosystem.svg",
       },
       {
-        url: "/assets/images/customers/Unipro.svg",
+        url: "/assets/images/Customers/Unipro.svg",
       },
       {
-        url: "/assets/images/customers/Jam.png",
+        url: "/assets/images/Customers/Jam.png",
       },
       {
-        url: "/assets/images/customers/Jam.png",
+        url: "/assets/images/Customers/Jam.png",
       },
       {
-        url: "/assets/images/customers/Jam.png",
+        url: "/assets/images/Customers/Jam.png",
       },
       {
-        url: "/assets/images/customers/Jam.png",
+        url: "/assets/images/Customers/Jam.png",
       },
     ]
   
