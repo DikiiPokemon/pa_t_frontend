@@ -96,3 +96,33 @@
 .footer_block_subcontent span{
     font-weight: 700;
 }
+
+@media (max-width: 1320px){
+    .footer_wrapper{
+        padding: 20px 20px 20px 20px;
+    }
+}
+
+@media (max-width: 980px){
+    .footer_container{
+
+        flex-direction: column;
+        gap: 10px;
+
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .footer_block{
+        width: 100%;
+        align-items: center;
+
+    }
+
+    .footer_logo{
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}

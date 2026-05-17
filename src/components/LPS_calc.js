@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import ToCard from "./To_card"
 import { useStore } from "@/store/StoreContext";
 import { observer } from "mobx-react-lite";
+import { fetchModification } from "@/http/product_controll";
 
 const LPS_calc = observer((props) => {
 

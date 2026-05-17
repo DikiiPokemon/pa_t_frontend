@@ -399,3 +399,24 @@
 .product_card_to_prod:nth-child(3){
   right: 0;
 }
+
+/* error */
+
+.error{
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  background-color: var(--error-color);
+  color: var(--background-white);
+
+  border-radius: 1000px;
+  padding: 10px;
+  transition: 0.5s;
+  bottom: 20px;
+  padding: 20px;
+  width: 80%;
+
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+}

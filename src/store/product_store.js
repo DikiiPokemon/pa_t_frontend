@@ -219,10 +219,10 @@ class ProductStore {
         url: "/assets/images/Customers/Unipro.svg",
       },
       {
-        url: "/assets/images/Customers/Jam.png",
+        url: "/assets/images/Customers/InterRao.svg",
       },
       {
-        url: "/assets/images/Customers/Jam.png",
+        url: "/assets/images/Customers/BashCom.svg",
       },
       {
         url: "/assets/images/Customers/Jam.png",

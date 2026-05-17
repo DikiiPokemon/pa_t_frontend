@@ -31,6 +31,8 @@ const Header = observer (() => {
     const[err, setErr] = useState(false)
     const[errorMount, setErrorMount] = useState(false)
     const[errMesages, setErrMesages] = useState([])
+
+    const[productsSend, setProductSend] = useState(false)
     
     const [form, setForm] = useState(
         {
@@ -88,6 +90,7 @@ const Header = observer (() => {
         setPrevState(scroll)
         if (shouldBeVisible === isVisible) return;
         setVisible(shouldBeVisible);
+        !shouldBeVisible && setBurger(false)
         !shouldBeVisible && setSearch(false)
     }, [isVisible, prevState]);
     
@@ -171,10 +174,13 @@ const Header = observer (() => {
                 mail: false,
                 phone: false,
             })
-            setMail_sent(true)
+            setProductSend(true)
             setErrMesages([])
             setErr(false)
             setErrorMount(false)
+
+            localStorage.clear()
+            productsStore.setCart([])
           }).catch(error => {
             setErrMesages([error.response.data.message])
             setErr(true)
@@ -295,13 +301,31 @@ const Header = observer (() => {
             <CartModal mounted={cartMount} show={cartOpen}>
             {productsStore.Cart.length === 0 ?
                 <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
-                    <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`} style={{alignItems: "center"}}>
-                        <div className={styles.cart_header}>
-                            <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
+                    {
+                        productsSend ? 
+                        <form className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`} style={{alignItems: "center"}}>
+                            <div className={styles.cart_header}>
+                                <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => {setCartOpen(false); setProductSend(false)}}><Image src={Close} alt=""></Image></button></div>
+                            </div>
+                            <div className={styles.contacts_content_wrapper_success}>
+                            <div className={styles.contacts_content_container_success}>
+                                <h1>Письмо успешно отправлено!</h1>
+                                <div className={styles.contacts_content_success}>
+                                <img alt="" src="/Check.svg"></img>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                        :
+                        <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`} style={{alignItems: "center"}}>
+                            <div className={styles.cart_header}>
+                                <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
+                            </div>
+                            <h1>ВАША КОРЗИНА ПУСТА</h1>
+                            <Image src={Cart_empty} alt=""></Image>
                         </div>
-                        <h1>ВАША КОРЗИНА ПУСТА</h1>
-                        <Image src={Cart_empty} alt=""></Image>
-                    </div>
+                    }
+                    
                 </div>
                 :
                 <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
@@ -448,26 +472,30 @@ const Header = observer (() => {
                                         }
                                     </div>
                                 </div>
-                                <form className={styles.cart_part_container}>
-                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
-                                        <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше ФИО" className={`${styles.contacts_content_wrapper_input} ${formErr.name && styles.input_error}`}/>
-                                        <label>Ваше ФИО</label>
-                                    </div>
-                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
-                                        <IMaskInput mask="+7 (000) 000-00-00" onChange={e => setForm({...form, phone: e.target.value})} value={form.phone} placeholder="Ваш телефон" className={`${styles.contacts_content_wrapper_input} ${formErr.phone && styles.input_error}`}/>
-                                        <label>Ваш телефон</label>
-                                    </div>
-                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
-                                        <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={`${styles.contacts_content_wrapper_input} ${formErr.mail && styles.input_error}`}/>
-                                        <label>Ваш e-mail</label>
-                                    </div>
-                                    <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
-                                        <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Примечание к заказу" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
-                                        <label>Примечание к заказу</label>
-                                    </div>
-                                    <CheckButton label={"Согласие на обработку личной информации"} name={"check"} controller={setCheck}/>
-                                    <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Заказать</button>
-                                </form>
+                                    
+                                    
+                                    <form className={styles.cart_part_container}>
+
+                                        <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
+                                            <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше ФИО" className={`${styles.contacts_content_wrapper_input} ${formErr.name && styles.input_error}`}/>
+                                            <label>Ваше ФИО</label>
+                                        </div>
+                                        <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
+                                            <IMaskInput mask="+7 (000) 000-00-00" onChange={e => setForm({...form, phone: e.target.value})} value={form.phone} placeholder="Ваш телефон" className={`${styles.contacts_content_wrapper_input} ${formErr.phone && styles.input_error}`}/>
+                                            <label>Ваш телефон</label>
+                                        </div>
+                                        <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
+                                            <input onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} type="text" placeholder="Ваш e-mail" className={`${styles.contacts_content_wrapper_input} ${formErr.mail && styles.input_error}`}/>
+                                            <label>Ваш e-mail</label>
+                                        </div>
+                                        <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
+                                            <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Примечание к заказу" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
+                                            <label>Примечание к заказу</label>
+                                        </div>
+                                        <CheckButton label={"Согласие на обработку личной информации"} name={"check"} controller={setCheck}/>
+                                        <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Заказать</button>
+                                    </form>
+                                    
                             </div>
                         </div>
                         <div className={styles.total_cart}>Итого: {productsStore.Cart.reduce((sum, p) => sum + p.price * p.number, 0)} руб.</div>

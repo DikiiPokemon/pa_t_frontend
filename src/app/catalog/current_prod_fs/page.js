@@ -18,6 +18,8 @@ const cur_prod = observer(() => {
     const [description, setDescription] = useState(1)
     const [mod, setMod] = useState("")
 
+    const [error, setError] = useState(false)
+
     function Model({ color = '#eaeff0', url }) {
         const [model, setModel] = useState(null);
 
@@ -49,6 +51,8 @@ const cur_prod = observer(() => {
                 }
                 });
 
+                setError(false)
+
                 setModel(scene);
             },
 
@@ -58,16 +62,66 @@ const cur_prod = observer(() => {
             // ❌ ошибка
             (error) => {
                 console.error('Ошибка загрузки модели:', error);
+                setError(true)
+                loader.load(
+                "/assets/3d/FS/FS-12-50-C1.gltf",
+    
+                // ✅ успех
+                (gltf) => {
+                    if (!isMounted) return;
 
-                if (!isMounted) return;
+                    const scene = gltf.scene.clone();
 
-                // fallback — красный куб
-                const geometry = new THREE.BoxGeometry();
-                const material = new THREE.MeshStandardMaterial({ color: 'red' });
-                const cube = new THREE.Mesh(geometry, material);
+                    const box = new THREE.Box3().setFromObject(scene);
+                    const center = box.getCenter(new THREE.Vector3());
+                    const size = box.getSize(new THREE.Vector3());
 
-                setModel(cube);
-            }
+                    // 👉 двигаем саму модель ВНУТРИ
+                    scene.position.sub(center);
+
+                    const axesHelper = new THREE.AxesHelper(1); // длина осей
+                    scene.add(axesHelper);
+                    
+
+
+                    scene.traverse((child) => {
+                        if (child.isMesh) {
+                            child.geometry.computeBoundingBox();
+                            if (Array.isArray(child.material)) {
+                                child.material = child.material.map((mat) => {
+                                    const m = mat.clone();
+                                    m.map = null;
+                                    m.color.set(color);
+                                    console.log(color);
+                                    
+                                    return m;
+                                });
+                            }
+                        }
+                    });
+
+                    setModel(scene);
+                },
+    
+                // ⏳ прогресс (можно убрать)
+                undefined,
+    
+                // ❌ ошибка
+                (error) => {
+                    console.error('Ошибка загрузки модели:', error);
+    
+                    if (!isMounted) return;
+    
+                    // fallback — красный куб
+                    // const geometry = new THREE.BoxGeometry();
+                    // const material = new THREE.MeshStandardMaterial({ color: 'red' });
+                    // const cube = new THREE.Mesh(geometry, material);
+
+                    const fallback = createImageFallback();
+                    setModel(fallback);
+                }
+                );
+                }
             );
 
             // 🧹 cleanup (ВАЖНО)
@@ -128,6 +182,10 @@ const cur_prod = observer(() => {
                         />
                         <OrbitControls/>
                     </Canvas>
+                    {
+                       error && 
+                        <div className={styles.error}>Не найдена модель данной конфигурации, была загружена конфигурация FS-12-50-C1</div>
+                    }
                 </div>
                 <div className={styles.product_page_charachteristic_container_3d}>
                     <FS_calc setter={setMod}/>

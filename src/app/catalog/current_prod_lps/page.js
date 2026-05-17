@@ -17,6 +17,8 @@ const cur_prod = observer(() => {
     const [description, setDescription] = useState(1)
     const [mod, setMod] = useState("")
 
+    const [error, setError] = useState(false)
+
     function createImageFallback() {
         const texture = new THREE.TextureLoader().load('/assets/images/LPS/LPS.jpg');
 
@@ -31,7 +33,7 @@ const cur_prod = observer(() => {
         return mesh;
     }
 
-    function Model({ color = 'red', url }) {
+    function Model({ color, url }) {
         const [model, setModel] = useState(null);
     
             useEffect(() => {
@@ -81,6 +83,8 @@ const cur_prod = observer(() => {
                         }
                     });
 
+                    setError(false)
+
                     setModel(scene);
                 },
     
@@ -92,15 +96,72 @@ const cur_prod = observer(() => {
                     console.error('Ошибка загрузки модели:', error);
     
                     if (!isMounted) return;
-    
-                    // fallback — красный куб
-                    // const geometry = new THREE.BoxGeometry();
-                    // const material = new THREE.MeshStandardMaterial({ color: 'red' });
-                    // const cube = new THREE.Mesh(geometry, material);
+                    setError(true)
 
-                    const fallback = createImageFallback();
-                    setModel(fallback);
-                }
+    
+                    loader.load(
+                    "/assets/3d/LPS/LPS-10-C1-FS.gltf",
+        
+                    // ✅ успех
+                    (gltf) => {
+                        if (!isMounted) return;
+
+                        const scene = gltf.scene.clone();
+
+                        const box = new THREE.Box3().setFromObject(scene);
+                        const center = box.getCenter(new THREE.Vector3());
+                        const size = box.getSize(new THREE.Vector3());
+
+                        // 👉 двигаем саму модель ВНУТРИ
+                        scene.position.sub(center);
+
+                        // масштаб
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        scene.scale.setScalar(1 / maxDim);
+
+                        const axesHelper = new THREE.AxesHelper(1); // длина осей
+                        scene.add(axesHelper);
+                        
+
+
+                        scene.traverse((child) => {
+                            if (child.isMesh) {
+                                child.geometry.computeBoundingBox();
+                                if (Array.isArray(child.material)) {
+                                    child.material = child.material.map((mat) => {
+                                        const m = mat.clone();
+                                        m.map = null;
+                                        m.color.set(color);
+                                        console.log(color);
+                                        
+                                        return m;
+                                    });
+                                }
+                            }
+                        });
+
+                        setModel(scene);
+                    },
+        
+                    // ⏳ прогресс (можно убрать)
+                    undefined,
+        
+                    // ❌ ошибка
+                    (error) => {
+                        console.error('Ошибка загрузки модели:', error);
+        
+                        if (!isMounted) return;
+        
+                        // fallback — красный куб
+                        // const geometry = new THREE.BoxGeometry();
+                        // const material = new THREE.MeshStandardMaterial({ color: 'red' });
+                        // const cube = new THREE.Mesh(geometry, material);
+
+                        const fallback = createImageFallback();
+                        setModel(fallback);
+                    }
+                    );
+                    }
                 );
     
                 // 🧹 cleanup (ВАЖНО)
@@ -116,7 +177,7 @@ const cur_prod = observer(() => {
             <group rotation={[- Math.PI / 3, 1.5, 0]}>
                 <primitive
                     object={model}
-                    position={[0, 0.5, 0]}
+                    position={[0, -0.2, 0]}
                 />
             </group>
             
@@ -145,7 +206,7 @@ const cur_prod = observer(() => {
                             shadow-camera-bottom={-5}
                             shadow-mapSize={[1024, 1024]} />
                         <meshStandardMaterial color={"#eaeff0"} />
-                            <Model color="#FF2F55" url={`/assets/3d/LPS/${mod}.gltf`} />
+                            <Model color="#eaeff0" url={`/assets/3d/LPS/${mod}.gltf`} />
                         <ContactShadows
                             position={[0, -0.1, 0]}
                             opacity={1}
@@ -155,6 +216,11 @@ const cur_prod = observer(() => {
                         />
                         <OrbitControls/>
                     </Canvas>
+                    {
+                       error && 
+                        <div className={styles.error}>Не найдена модель данной конфигурации, была загружена конфигурация LPS-10-C1-FS</div>
+                    }
+                    
                 </div>
                 <div className={styles.product_page_charachteristic_container_3d}>
                     <LPS_calc setter={setMod}/>
@@ -192,11 +258,11 @@ const cur_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <th colspan="10">LVDT ПРЕОБРАЗОВАТЕЛЬ</th>
+                                    <th colSpan="10">LVDT ПРЕОБРАЗОВАТЕЛЬ</th>
                                 </tr>
                                 <tr>
                                     <td>Диапазон измерений (мм)</td>
-                                    <td colspan="6" style={{display: "flex", flexDirection: "column"}}>
+                                    <td colSpan="6" style={{display: "flex", flexDirection: "column"}}>
                                         <p>0…25</p>
                                         <p>0…80</p>
                                         <p>0…110</p>
@@ -207,8 +273,8 @@ const cur_prod = observer(() => {
                                         <p>0…550</p>
                                         <p>0…660</p>
                                     </td>
-                                    <td colspan="6">длинна корпуса L (мм)</td>
-                                    <td colspan="6" style={{display: "flex", flexDirection: "column"}}>
+                                    <td colSpan="6">длинна корпуса L (мм)</td>
+                                    <td colSpan="6" style={{display: "flex", flexDirection: "column"}}>
                                         <p>98</p>
                                         <p>208</p>
                                         <p>268</p>
@@ -222,54 +288,54 @@ const cur_prod = observer(() => {
                                 </tr>
                                 <tr>
                                     <td>Исполнение</td>
-                                    <td colspan="8">Свободный шток, направленный шток, шарнирные наконечники</td>
+                                    <td colSpan="8">Свободный шток, направленный шток, шарнирные наконечники</td>
                                 </tr>
                                  <tr>
                                     <td>Степень защиты </td>
-                                    <td colspan="8">IP67</td>
+                                    <td colSpan="8">IP67</td>
                                 </tr>
                                  <tr>
                                     <td>Вибростойкость</td>
-                                    <td colspan="8">10g</td>
+                                    <td colSpan="8">10g</td>
                                 </tr>
                                  <tr>
                                     <td>Ударостойкость</td>
-                                    <td colspan="8">200g/ 2мс</td>
+                                    <td colSpan="8">200g/ 2мс</td>
                                 </tr>
                                  <tr>
                                     <td>Линейность</td>
-                                    <td colspan="8">±0,3 % диапазона (±0,1% специальное исполнение под заказ)</td>
+                                    <td colSpan="8">±0,3 % диапазона (±0,1% специальное исполнение под заказ)</td>
                                 </tr>
                                 <tr>
                                     <td>Номинальное напряжение / частота питания</td>
-                                    <td colspan="8">10В, 2,5 кГц</td>
+                                    <td colSpan="8">10В, 2,5 кГц</td>
                                 </tr>
                                 <tr>
                                     <td>Рабочая температура </td>
-                                    <td colspan="8">-40…+125 ̊C</td>
+                                    <td colSpan="8">-40…+125 ̊C</td>
                                 </tr>
                                 <tr>
                                     <td>Материал корпуса</td>
-                                    <td colspan="8">Нержавеющая сталь</td>
+                                    <td colSpan="8">Нержавеющая сталь</td>
                                 </tr>
                                 <tr>
                                     <td>Максимальная длина кабеля</td>
-                                    <td colspan="8">100 метров между преобразователем и блоком преобразователя</td>
+                                    <td colSpan="8">100 метров между преобразователем и блоком преобразователя</td>
                                 </tr>
                                 <tr>
                                     <td>Срок службы</td>
-                                    <td colspan="8">до 100 млн. движений</td>
+                                    <td colSpan="8">до 100 млн. движений</td>
                                 </tr>
                                 <tr>
-                                    <th colspan="10">ШТОК ПРЕОБРАЗОВАТЕЛЯ</th>
+                                    <th colSpan="10">ШТОК ПРЕОБРАЗОВАТЕЛЯ</th>
                                 </tr>
                                 <tr>
                                     <td>Исполнение</td>
-                                    <td colspan="8">гибкий шток, направленный шток с шарнирным наконечником</td>
+                                    <td colSpan="8">гибкий шток, направленный шток с шарнирным наконечником</td>
                                 </tr>
                                 <tr>
                                     <td>Срок службы</td>
-                                    <td colspan="8">Не ограничен</td>
+                                    <td colSpan="8">Не ограничен</td>
                                 </tr>
 
                             </tbody>
@@ -284,19 +350,19 @@ const cur_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <th colspan="8">Исполнение со свободным штоком</th>
+                                    <th colSpan="8">Исполнение со свободным штоком</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><img style={{maxWidth: "660px"}} src="/assets/images/LPS/free_shtok.png" alt=""/></td>
+                                    <td colSpan="8"><img style={{maxWidth: "660px"}} src="/assets/images/LPS/free_shtok.png" alt=""/></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="8">Исполнение с направленным штоком и шарнирными проушинами</th>
+                                    <th colSpan="8">Исполнение с направленным штоком и шарнирными проушинами</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="8"><img style={{maxWidth: "662px"}} src="/assets/images/LPS/direct_shtok.png" alt=""/></td>
+                                    <td colSpan="8"><img style={{maxWidth: "662px"}} src="/assets/images/LPS/direct_shtok.png" alt=""/></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="8">Размеры</th>
+                                    <th colSpan="8">Размеры</th>
                                 </tr>
                                 <tr>
                                     <td>Диапазон измерений (мм)</td>
@@ -341,18 +407,18 @@ const cur_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <th colspan="2">Угловой</th>
+                                    <th colSpan="2">Угловой</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="1"><img style={{maxWidth: "218px"}} src="/assets/images/LPS/soed_angle.png" alt=""/></td>
-                                    <td colspan="1"><img style={{maxWidth: "188px"}} src="/assets/images/LPS/soed_angle_real.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "218px"}} src="/assets/images/LPS/soed_angle.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "188px"}} src="/assets/images/LPS/soed_angle_real.png" alt=""/></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2">Прямой</th>
+                                    <th colSpan="2">Прямой</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="1"><img style={{maxWidth: "259px"}} src="/assets/images/LPS/soed_direct.png" alt=""/></td>
-                                    <td colspan="1"><img style={{maxWidth: "189px"}} src="/assets/images/LPS/soed_direct_real.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "259px"}} src="/assets/images/LPS/soed_direct.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "189px"}} src="/assets/images/LPS/soed_direct_real.png" alt=""/></td>
                                 </tr>
                                 <tr>
                                     <td>Максимальный рабочий ток</td>
@@ -386,10 +452,10 @@ const cur_prod = observer(() => {
                         </table>
                         <h2>Назначение контактов со стороны преобразователя</h2>
                         <img style={{maxWidth: "308px"}} src="/assets/images/LPS/soed_contacts.png" alt=""/>
-                        <p>
+                        <ul>
                             <li>1,2- первичная обмотка</li>
                             <li>3,4 – вторичная обмотка</li>
-                        </p>
+                        </ul>
                         <h2>Настройка и подключение блока преобразования (BDT-07)</h2>
                         <p>Настройка и подключение блока преобразования (BDT-07) представлена по <a style={{color: "var(--main-color)"}} href="/catalog/current_prod_bdt#full_descript">ссылке</a></p>
                     </div>
@@ -434,6 +500,7 @@ const cur_prod = observer(() => {
                 }
                 
             </div>
+            
         </div>
     )
 })
