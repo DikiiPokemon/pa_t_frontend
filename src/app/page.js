@@ -35,7 +35,7 @@ export default function Home() {
             {
               productsStore.merquee.map((i, idx) => {
                 return(
-                  <Image key={i.url + idx} className={styles.item} src={i.url}></Image>
+                  <Image height={100} width={i.width} key={i.url + idx} className={styles.item} src={i.url}></Image>
                 )
               })
             }
@@ -44,7 +44,7 @@ export default function Home() {
             {
               productsStore.merquee.map((i, idx) => {
                 return(
-                  <Image key={i.url + idx} className={styles.item} src={i.url}></Image>
+                  <Image height={100} width={i.width} key={i.url + idx} className={styles.item} src={i.url}></Image>
                 )
               })
             }

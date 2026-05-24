@@ -202,51 +202,67 @@ class ProductStore {
     merquee = [
       {
         url: "/assets/images/Customers/Incontrol.svg",
+        width: '300',
       },
       {
         url: "/assets/images/Customers/Jam.png",
+        width: "103",
       },
       {
         url: "/assets/images/Customers/Sibir.svg",
+        width: "316",
       },
       {
         url: "/assets/images/Customers/TSA.svg",
+        width: "298",
       },
       {
         url: "/assets/images/Customers/Turbosystem.svg",
+        width: "400",
       },
       {
         url: "/assets/images/Customers/Unipro.svg",
+        width: "167",
       },
       {
         url: "/assets/images/Customers/InterRao.svg",
+        width: "347",
       },
       {
         url: "/assets/images/Customers/BashCom.svg",
+        width: "320",
       },
       {
         url: "/assets/images/Customers/реостат.png",
+        width: "163",
       },
       {
         url: "/assets/images/Customers/ИНМАТЕК.png",
+        width: "74",
       },
       {
         url: "/assets/images/Customers/Промстрой.png",
+        width: "162",
       },
       {
         url: "/assets/images/Customers/техновар кс.svg",
+        width: "400",
       },
       {
         url: "/assets/images/Customers/ЭМСК.png",
+        width: "96",
       },
       {
         url: "/assets/images/Customers/Промавтоматика.svg",
+        width: "100",
       },
       {
         url: "/assets/images/Customers/ker_auto.svg",
+        width: "400",
       },
       {
         url: "/assets/images/Customers/sil_mash.svg",
+        width: "102",
       },
 
     ]
