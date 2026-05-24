@@ -10,7 +10,7 @@ const CheckButton = ({label, name, controller, setter}) => {
             <label>
                 <input onChange={e => controller(e.target.checked)} checked={setter} className={styles.realCheckBox} name={name} type="checkbox"/>
                 <span className={styles.visibleCheckBox}></span>
-                {label}
+                <p>{label}</p>
             </label>
         </div>
     )

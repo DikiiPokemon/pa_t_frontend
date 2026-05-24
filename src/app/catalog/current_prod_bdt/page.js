@@ -98,7 +98,6 @@ const bdt_prod = observer(() => {
                                         <p>±10 В</p></td>
                                     <td width="61">±10 В<p></p>
                                         <p>4-20 мА</p></td>
-                                    <td width="149"></td>
                                 </tr>
                                 <tr>
                                     <td width="196">Крепление</td>

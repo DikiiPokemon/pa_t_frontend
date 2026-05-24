@@ -213,157 +213,157 @@ const cur_prod = observer(() => {
                             <li>Степень защиты IP 67</li>
                             <li>Возможно исполнение на заказ</li>
                         </ul>
-                        <table className={styles.table} style={{height: "1384px", width: "100%"}}>
+                        <table className={styles.table} style={{height: "fit-content", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <td width="303">Наименование характеристики</td>
-                                    <td width="123">Значение характеристики для модификации FS-A-12, FS-A-22</td>
-                                    <td width="123">Значение характеристики для модификации FS-PP-12</td>
-                                    <td width="123">Значение характеристики для модификации FS-PP-22</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Наименование характеристики</td>
+                                    <td width="100%">Значение характеристики для модификации FS-A-12, FS-A-22</td>
+                                    <td width="100%">Значение характеристики для модификации FS-PP-12</td>
+                                    <td width="100%">Значение характеристики для модификации FS-PP-22</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Метрологические характеристики</strong></td>
+                                    <td colSpan="4" width="100%" style={{textAlign: "center"}}><strong>Метрологические характеристики</strong></td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Диапазон измерений частоты вращения, Гц</td>
-                                    <td width="123">от 2 до 16000</td>
-                                    <td width="123">от 2 до 16000</td>
-                                    <td width="123">от 2 до 16000</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Диапазон измерений частоты вращения, Гц</td>
+                                    <td width="100%">от 2 до 16000</td>
+                                    <td width="100%">от 2 до 16000</td>
+                                    <td width="100%">от 2 до 16000</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Пределы допускаемой относительной погрешности измерений частоты вращения, %</td>
-                                    <td width="123">± 0,1</td>
-                                    <td width="123">± 0,1</td>
-                                    <td width="123">± 0,1</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Пределы допускаемой относительной погрешности измерений частоты вращения, %</td>
+                                    <td width="100%">± 0,1</td>
+                                    <td width="100%">± 0,1</td>
+                                    <td width="100%">± 0,1</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Технические характеристики</strong></td>
+                                    <td colSpan="4" width="100%" style={{textAlign: "center"}}><strong>Технические характеристики</strong></td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Диапазон выходного сигнала</td>
-                                    <td width="123">от 0.2 до 30 В</td>
-                                    <td width="123">24 В</td>
-                                    <td width="123">24 В</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Диапазон выходного сигнала</td>
+                                    <td width="100%">от 0.2 до 30 В</td>
+                                    <td width="100%">24 В</td>
+                                    <td width="100%">24 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Номинальное напряжение питания, В</td>
-                                    <td width="123">–</td>
-                                    <td width="123">24</td>
-                                    <td width="123">24</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Номинальное напряжение питания, В</td>
+                                    <td width="100%">–</td>
+                                    <td width="100%">24</td>
+                                    <td width="100%">24</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Ток потребления, мА, не более</td>
-                                    <td width="123">6</td>
-                                    <td width="123">40</td>
-                                    <td width="123">40</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Ток потребления, мА, не более</td>
+                                    <td width="100%">6</td>
+                                    <td width="100%">40</td>
+                                    <td width="100%">40</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Время установления рабочего режима, с, не более</td>
-                                    <td width="123">1</td>
-                                    <td width="123">1</td>
-                                    <td width="123">1</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Время установления рабочего режима, с, не более</td>
+                                    <td width="100%">1</td>
+                                    <td width="100%">1</td>
+                                    <td width="100%">1</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Режим работы</td>
-                                    <td width="123">Непрерывный</td>
-                                    <td width="123">Непрерывный</td>
-                                    <td width="123">Непрерывный</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Режим работы</td>
+                                    <td width="100%">Непрерывный</td>
+                                    <td width="100%">Непрерывный</td>
+                                    <td width="100%">Непрерывный</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Электрическая прочность изоляции между жилами кабеля и корпусом датчика, Вэфф, не менее:</td>
-                                    <td width="123">500</td>
-                                    <td width="123">300</td>
-                                    <td width="123">300</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Электрическая прочность изоляции между жилами кабеля и корпусом датчика, Вэфф, не менее:</td>
+                                    <td width="100%">500</td>
+                                    <td width="100%">300</td>
+                                    <td width="100%">300</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">
+                                    <td width="100%" style={{maxWidth: "303px"}}>
                                         Сопротивление изоляции между жилами кабеля и корпусом, МОм, не менее:<p></p>
                                         <p> в нормальных условиях эксплуатации</p> 
                                         <p>при повышенной влажности</p>  
                                         <p>при повышенной температуре</p>
                                     </td>
-                                    <td width="123"><br></br>
+                                    <td width="100%"><br></br>
                                         <p>20</p>
                                         <p>1</p>
                                         <p>5</p>
                                     </td>
-                                    <td width="123"><br></br>
+                                    <td width="100%"><br></br>
                                         <p>20</p>
                                         <p>1</p>
                                         <p>5</p> 
                                     </td>
-                                    <td width="123"><br></br>
+                                    <td width="100%"><br></br>
                                         <p>20</p>
                                         <p>1</p>
                                         <p>5</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Порог срабатывания при защите от переполюсовки и импульсного<p></p>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Порог срабатывания при защите от переполюсовки и импульсного<p></p>
                                     <p>перенапряжения, В</p></td>
-                                    <td width="123">30</td>
-                                    <td width="123">30</td>
-                                    <td width="123">30</td>
+                                    <td width="100%">30</td>
+                                    <td width="100%">30</td>
+                                    <td width="100%">30</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Характеристики устойчивости к внешним воздействиям</strong></td>
+                                    <td colSpan="4" width="100%" style={{textAlign: "center"}}><strong>Характеристики устойчивости к внешним воздействиям</strong></td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Температура окружающего воздуха</td>
-                                    <td width="123">От -40 до 125<sup> 0</sup>С</td>
-                                    <td width="123">От -20 до 85<sup> 0</sup>С</td>
-                                    <td width="123">От -20до 85<sup> 0</sup>С</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Температура окружающего воздуха</td>
+                                    <td width="100%">От -40 до 125<sup> 0</sup>С</td>
+                                    <td width="100%">От -20 до 85<sup> 0</sup>С</td>
+                                    <td width="100%">От -20до 85<sup> 0</sup>С</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Барометрическое давление</td>
-                                    <td width="123">от 84,0 до 106,7 кПа</td>
-                                    <td width="123">от 84,0 до 106,7 кПа</td>
-                                    <td width="123">от 84,0 до 106,7 кПа</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Барометрическое давление</td>
+                                    <td width="100%">от 84,0 до 106,7 кПа</td>
+                                    <td width="100%">от 84,0 до 106,7 кПа</td>
+                                    <td width="100%">от 84,0 до 106,7 кПа</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Уровень взрывозащиты</td>
-                                    <td width="123">Zone 2 IIB</td>
-                                    <td width="123">Zone 2 IIB</td>
-                                    <td width="123">Zone 2 IIB</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Уровень взрывозащиты</td>
+                                    <td width="100%">Zone 2 IIB</td>
+                                    <td width="100%">Zone 2 IIB</td>
+                                    <td width="100%">Zone 2 IIB</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Относительная влажность воздуха</td>
-                                    <td width="123">до 90 % при температуре 30 ºС;</td>
-                                    <td width="123">до 90 % при температуре 30 ºС;</td>
-                                    <td width="123">до 90 % при температуре 30 ºС;</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Относительная влажность воздуха</td>
+                                    <td width="100%">до 90 % при температуре 30 ºС;</td>
+                                    <td width="100%">до 90 % при температуре 30 ºС;</td>
+                                    <td width="100%">до 90 % при температуре 30 ºС;</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Степень защиты</td>
-                                    <td width="123">IP 67</td>
-                                    <td width="123">IP 67</td>
-                                    <td width="123">IP 67</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Степень защиты</td>
+                                    <td width="100%">IP 67</td>
+                                    <td width="100%">IP 67</td>
+                                    <td width="100%">IP 67</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="4" width="672" style={{textAlign: "center"}}><strong>Характеристики надежности</strong></td>
+                                    <td colSpan="4" width="100%" style={{textAlign: "center"}}><strong>Характеристики надежности</strong></td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Наработка на отказ, часы, не менее</td>
-                                    <td width="123">250000</td>
-                                    <td width="123">100000</td>
-                                    <td width="123">100000</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Наработка на отказ, часы, не менее</td>
+                                    <td width="100%">250000</td>
+                                    <td width="100%">100000</td>
+                                    <td width="100%">100000</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Средний срок службы, лет, не менее</td>
-                                    <td width="123">25</td>
-                                    <td width="123">10</td>
-                                    <td width="123">10</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Средний срок службы, лет, не менее</td>
+                                    <td width="100%">25</td>
+                                    <td width="100%">10</td>
+                                    <td width="100%">10</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Средний срок хранения, лет, не менее</td>
-                                    <td width="123">2</td>
-                                    <td width="123">2</td>
-                                    <td width="123">2</td>
+                                    <td width="100%" style={{maxWidth: "303px"}}>Средний срок хранения, лет, не менее</td>
+                                    <td width="100%">2</td>
+                                    <td width="100%">2</td>
+                                    <td width="100%">2</td>
                                 </tr>
                                 <tr>
-                                    <td width="303">Вероятность безотказной работы, не менее</td>
-                                    <td width="123">0,98</td>
-                                    <td width="123">0,95</td>
-                                    <td width="123">0,95</td>
+                                    <td width="100%" style={{maxWidth: "303px"}} >Вероятность безотказной работы, не менее</td>
+                                    <td width="100%">0,98</td>
+                                    <td width="100%">0,95</td>
+                                    <td width="100%">0,95</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -374,12 +374,12 @@ const cur_prod = observer(() => {
                     <p>Блок имеет 1 гальванически изолированный канал преобразования, на вход которого подается синусоидальный сигнал с амплитудой от 0,2 до 50В.</p>
                     <p>На выходе формируются прямоугольные импульсы амплитудой 24В.</p>
                     <h2>Код заказа датчика</h2>
-                    <img style={{maxWidth: "637px"}} src="/assets/images/FS/code_fs.png" alt=""></img>
+                    <img style={{maxWidth: "637px", width: "100%"}} src="/assets/images/FS/code_fs.png" alt=""></img>
                     <p>Пример для аналогового датчика с кабелем 10 метров: FS-A-12-120-CA-10</p>
                     <p>Есть решения по аналогам датчиков скорости производства General electric, Braun, Jaquet и TE connectivity</p>
                     <h2>Габаритные и присоединительные размеры</h2>
                     <p>Исполнение М12</p>
-                    <img src="/assets/images/FS/gab_fs.png" alt="" style={{maxWidth: "368px"}}/>
+                    <img src="/assets/images/FS/gab_fs.png" alt="" style={{maxWidth: "368px", width: "100%"}}/>
                 </div>
                 }
                 {description === 2 &&

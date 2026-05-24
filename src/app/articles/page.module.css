@@ -88,3 +88,24 @@
 
     box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
+
+@media (max-width: 830px){
+    .article_wrapper{
+        padding-inline: 25px;
+    }
+}
+
+@media (max-width: 530px){
+    .article_wrapper{
+        padding-inline: 10px;
+    }
+}
+
+@media (max-width: 370px){
+    .article_content_wrapper{
+        background-color: var(--background);
+        padding: 10px;
+        border-radius: 0 0px 10px 10px;
+    }
+}

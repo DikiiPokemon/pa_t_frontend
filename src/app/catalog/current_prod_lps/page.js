@@ -252,7 +252,7 @@ const cur_prod = observer(() => {
                         </ul>
 
                         <p>Первичный преобразователь линейных перемещений конструктивно представляет линейный переменный дифференциальный трансформатор. Конструкция состоит из трех соосных обмоток и подвижного сердечника на оси трансформатора. Сердечник короче, чем трансформатор, поэтому при его осевом перемещении меняется коэффициент магнитной связи обмоток. На центральную обмотку подается напряжение возбуждения, с боковых обмоток снимается наведенный сигнал, пропорциональный положению сердечника.</p>
-                        <img style={{maxWidth: "676px"}} src="/assets/images/LPS/Structure_LPS.png" alt=""/>
+                        <img style={{maxWidth: "676px", width: "100%"}} src="/assets/images/LPS/Structure_LPS.png" alt=""/>
 
                         <h2>Технические характеристики преобразователей</h2>
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
@@ -341,11 +341,11 @@ const cur_prod = observer(() => {
                             </tbody>
                         </table>
                         <h2>Код заказа преобразователя</h2>
-                        <img style={{maxWidth: "683px"}} src="/assets/images/LPS/struct_code.png" alt=""/>
+                        <img style={{maxWidth: "683px", width: "100%"}} src="/assets/images/LPS/struct_code.png" alt=""/>
                         <p>Пример для преобразователя с диапазоном измерения 220мм с направленным штоком и встроенным кабелем 7 метров: LPS-220-DS-CA-07</p>
                         <h3>Есть решения по аналогам LVDT датчиков производства General electric, Kavlico и Solatron Metrology</h3>
                         <p>(GM 5946B, GM 7114C, GM 5686, GM 5686B, GM 5686C, GM 7111D, GM 5777B, GM 5777А, GM 7112D)</p>
-                        <img style={{maxWidth: "693px"}} src="/assets/images/LPS/analog_lps.png" alt=""/>
+                        <img style={{maxWidth: "693px", width: "100%"}} src="/assets/images/LPS/analog_lps.png" alt=""/>
                         <h2>Габаритные и присоединительные размеры</h2>
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
@@ -353,25 +353,25 @@ const cur_prod = observer(() => {
                                     <th colSpan="8">Исполнение со свободным штоком</th>
                                 </tr>
                                 <tr>
-                                    <td colSpan="8"><img style={{maxWidth: "660px"}} src="/assets/images/LPS/free_shtok.png" alt=""/></td>
+                                    <td colSpan="8"><img style={{maxWidth: "660px", width: "100%"}} src="/assets/images/LPS/free_shtok.png" alt=""/></td>
                                 </tr>
                                 <tr>
                                     <th colSpan="8">Исполнение с направленным штоком и шарнирными проушинами</th>
                                 </tr>
                                 <tr>
-                                    <td colSpan="8"><img style={{maxWidth: "662px"}} src="/assets/images/LPS/direct_shtok.png" alt=""/></td>
+                                    <td colSpan="8"><img style={{maxWidth: "662px", width: "100%"}} src="/assets/images/LPS/direct_shtok.png" alt=""/></td>
                                 </tr>
                                 <tr>
                                     <th colSpan="8">Размеры</th>
                                 </tr>
                                 <tr>
                                     <td>Диапазон измерений (мм)</td>
-                                    <td>0…110</td>
-                                    <td>0…220</td>
-                                    <td>0...330</td>
-                                    <td>0...440 </td>
-                                    <td>0...550</td>
-                                    <td>0...660</td>
+                                    <td>0 ... 110</td>
+                                    <td>0 ... 220</td>
+                                    <td>0 ... 330</td>
+                                    <td>0 ... 440 </td>
+                                    <td>0 ... 550</td>
+                                    <td>0 ... 660</td>
                                 </tr>
                                 <tr>
                                     <td>A(мм) </td>
@@ -410,15 +410,15 @@ const cur_prod = observer(() => {
                                     <th colSpan="2">Угловой</th>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1"><img style={{maxWidth: "218px"}} src="/assets/images/LPS/soed_angle.png" alt=""/></td>
-                                    <td colSpan="1"><img style={{maxWidth: "188px"}} src="/assets/images/LPS/soed_angle_real.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "218px", width: "100%"}} src="/assets/images/LPS/soed_angle.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "188px", width: "100%"}} src="/assets/images/LPS/soed_angle_real.png" alt=""/></td>
                                 </tr>
                                 <tr>
                                     <th colSpan="2">Прямой</th>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1"><img style={{maxWidth: "259px"}} src="/assets/images/LPS/soed_direct.png" alt=""/></td>
-                                    <td colSpan="1"><img style={{maxWidth: "189px"}} src="/assets/images/LPS/soed_direct_real.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "259px", width: "100%"}} src="/assets/images/LPS/soed_direct.png" alt=""/></td>
+                                    <td colSpan="1"><img style={{maxWidth: "189px", width: "100%"}} src="/assets/images/LPS/soed_direct_real.png" alt=""/></td>
                                 </tr>
                                 <tr>
                                     <td>Максимальный рабочий ток</td>
@@ -451,7 +451,7 @@ const cur_prod = observer(() => {
                             </tbody>
                         </table>
                         <h2>Назначение контактов со стороны преобразователя</h2>
-                        <img style={{maxWidth: "308px"}} src="/assets/images/LPS/soed_contacts.png" alt=""/>
+                        <img style={{maxWidth: "308px", width: "100%"}} src="/assets/images/LPS/soed_contacts.png" alt=""/>
                         <ul>
                             <li>1,2- первичная обмотка</li>
                             <li>3,4 – вторичная обмотка</li>

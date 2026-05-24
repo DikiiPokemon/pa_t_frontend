@@ -201,13 +201,13 @@ class ProductStore {
 
     merquee = [
       {
-        url: "/assets/images/Customers/Gasprom.png",
+        url: "/assets/images/Customers/Incontrol.svg",
       },
       {
         url: "/assets/images/Customers/Jam.png",
       },
       {
-        url: "/assets/images/Customers/RusGidro.png",
+        url: "/assets/images/Customers/Sibir.svg",
       },
       {
         url: "/assets/images/Customers/TSA.svg",
@@ -225,11 +225,30 @@ class ProductStore {
         url: "/assets/images/Customers/BashCom.svg",
       },
       {
-        url: "/assets/images/Customers/Jam.png",
+        url: "/assets/images/Customers/реостат.png",
       },
       {
-        url: "/assets/images/Customers/Jam.png",
+        url: "/assets/images/Customers/ИНМАТЕК.png",
       },
+      {
+        url: "/assets/images/Customers/Промстрой.png",
+      },
+      {
+        url: "/assets/images/Customers/техновар кс.svg",
+      },
+      {
+        url: "/assets/images/Customers/ЭМСК.png",
+      },
+      {
+        url: "/assets/images/Customers/Промавтоматика.svg",
+      },
+      {
+        url: "/assets/images/Customers/ker_auto.svg",
+      },
+      {
+        url: "/assets/images/Customers/sil_mash.svg",
+      },
+
     ]
   
 
@@ -237,6 +256,7 @@ class ProductStore {
 
     constructor() {
       this.cart = [];
+      this.cookie_show = true;
       makeAutoObservable(this)
     }
 
@@ -247,6 +267,7 @@ class ProductStore {
     const l_price = await fetchLPSPrices();
     const s_price = await fetchSensorsPrices();
     const f_price = await fetchFSPrices();
+    // this.cart = JSON.parse(localStorage.getItem("cart"))
     this.product = data
     this.LPS = data.LPS
     this.FS = data.FS
@@ -261,6 +282,14 @@ class ProductStore {
 
   setCart(products){
     this.cart = products
+  }
+
+  setCookie(cook){
+    this.cookie_show = cook
+  }
+
+  get Cookie(){
+    return this.cookie_show
   }
 
   get Cart(){

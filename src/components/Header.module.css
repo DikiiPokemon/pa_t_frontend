@@ -94,6 +94,10 @@
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
 }
 
+.header_button_m{
+    display: none;
+}
+
 .header_button_active{
     position: relative;
     justify-content: flex-start;
@@ -255,149 +259,22 @@
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
 }
 
-
-
-
-@media (max-width: 1200px){
-   .header_container{
-        padding-inline: 40px;
-        gap: 10px;
-    }
+.mobile_buttons{
+    position: fixed;
+    z-index: 999;
+    bottom: 20px;
+    right: 10px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: auto;
+    padding: 20px;
+    transition: 0.5s;
 }
 
-@media (max-width: 980px){
 
-    .burger_button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: relative;
-        width: 20px;
-        height: 40px;
-        gap: 5px;
 
-        cursor: pointer;
-        z-index: 2;
-
-        transition: 0.5s;
-        
-    }
-
-    .burger_button::before{
-        position: absolute;
-        content: " ";
-        top: 10px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        border-radius: 1000px;
-        background: black;
-        transition: 0.5s;
-    }
-
-    .burger_button span{
-        content: " ";
-        width: 100%;
-        height: 3px;
-        border-radius: 1000px;
-        background: black;
-        transition: 0.1s;
-    }
-
-    .burger_button::after{
-        position: absolute;
-        content: " ";
-        bottom: 10px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        border-radius: 1000px;
-        background: black;
-        transition: 0.5s;
-    }
-
-    .burger_button.Active::before{
-        transform: rotate(45deg);
-        transition: 0.5s;
-        top: 50%;
-
-    }
-
-    .burger_button.Active::after{
-        transform: rotate(-45deg);
-        top: 50%;
-        transition: 0.5s;
-    }
-
-    .burger_button.Active span{
-        opacity: 0;
-        transition: 0.1s;
-    }
-
-   
-    .burger_trigger{
-        display: block;
-        z-index: 2;
-    }
-
-    .burger_wrapper{
-        position: absolute;
-        display:flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
-        width: 100%; 
-        gap: 15px;
-
-        top: -1000px;
-        left: 0;
-        transition: 0.5s;
-        height: 550px;
-        background-color: var(--background-white);
-        z-index: 1;
-
-        border-radius: 0 0px 20px 20px;
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
-    }
-
-    .burger_wrapper.Open{
-        transition: 0.5s;
-        top: 30px;
-        padding-top: 50px;    
-    }
-
-    .header_navigation{
-        display: none;
-    }
-
-    .header_callback{
-        display: none;
-    }
-
-    .mobile{
-        display: flex;
-        flex-direction: column;
-        height: auto;
-    }
-
-    .mobile_buttons{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        height: auto;
-        padding: 20px;
-    }
-
-    .header_navigation a{
-        font-size: 26px;
-    }
-
-    .header_link_active span{
-        width: 100px!important;
-    }
-}
 
 
 
@@ -419,13 +296,16 @@
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
 }
 
+.header_button_cart_m{
+    display: none;
+}
+
 .cart_wrapper{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 30px;
     backdrop-filter: blur(6px);
     background: rgba(74, 108, 247, 0.2);
 
@@ -872,4 +752,233 @@
 .contacts_content_success img{
     width: 100%;
     height: 100%;
+}
+
+@media (max-width: 1200px){
+   .header_container{
+        padding-inline: 40px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 980px){
+
+    .burger_button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        width: 20px;
+        height: 40px;
+        gap: 5px;
+
+        cursor: pointer;
+        z-index: 2;
+
+        transition: 0.5s;
+        
+    }
+
+    .burger_button::before{
+        position: absolute;
+        content: " ";
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 1000px;
+        background: black;
+        transition: 0.5s;
+    }
+
+    .burger_button span{
+        content: " ";
+        width: 100%;
+        height: 3px;
+        border-radius: 1000px;
+        background: black;
+        transition: 0.1s;
+    }
+
+    .burger_button::after{
+        position: absolute;
+        content: " ";
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 1000px;
+        background: black;
+        transition: 0.5s;
+    }
+
+    .burger_button.Active::before{
+        transform: rotate(45deg);
+        transition: 0.5s;
+        top: 50%;
+
+    }
+
+    .burger_button.Active::after{
+        transform: rotate(-45deg);
+        top: 50%;
+        transition: 0.5s;
+    }
+
+    .burger_button.Active span{
+        opacity: 0;
+        transition: 0.1s;
+    }
+
+   
+    .burger_trigger{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        z-index: 2;
+    }
+
+    .burger_wrapper{
+        position: absolute;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        width: 100%; 
+        gap: 15px;
+
+        top: 30px;
+        left: 0;
+        transition: 0.5s;
+        height: 0px;
+        background-color: var(--background-white);
+        z-index: 1;
+
+        border-radius: 0 0px 20px 20px;
+        box-shadow: 5px 16px 16px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .burger_wrapper.Open{
+        transition: 0.5s;
+        height: 350px;
+        padding-top: 50px;    
+    }
+
+    .header_navigation{
+        display: none;
+    }
+
+    .header_callback{
+        display: none;
+    }
+
+    .mobile{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+  
+
+    .header_navigation a{
+        font-size: 26px;
+    }
+
+    .header_link_active span{
+        width: 100px!important;
+    }
+
+    .header_button_cart_m{
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+
+        transition: 0.5s;
+
+        padding: 10px;
+        background-color: var(--main-color);
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        cursor: pointer;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    }
+
+    .header_button_m{
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+
+        transition: 0.5s;
+
+        padding: 10px;
+        background-color: var(--main-color);
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        cursor: pointer;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    }
+}
+
+
+@media (max-width: 830px){
+    .cart_container{
+        width: calc(100% - 40px); 
+    }
+}
+
+
+@media (max-width: 530px){
+    .header_img_logo_descr{
+        display: none;
+    }
+
+    .cart_container{
+        width: calc(100% - 20px); 
+    }
+
+    .header_wrapper{
+        width: calc(100% - 20px);
+    }
+
+    .header_button_active{
+        width: 170px;
+    }
+}
+
+@media (max-width: 390px){
+
+   .cart_element_wrapper{
+        gap: 3px;
+    }
+
+    .cart_header_table{
+        gap: 3px;
+    }
+
+    .cart_container{
+        padding: 10px;
+    }
+}
+
+.mobile_buttons{
+    position: fixed;
+    z-index: 999;
+    bottom: 20px;
+    right: 10px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: auto;
+    padding: 20px;
+    transition: 0.5s;
 }

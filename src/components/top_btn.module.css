@@ -1,0 +1,61 @@
+.toTop{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    transition: 0.5s;
+
+    opacity: 0;
+    visibility: hidden;
+
+    padding: 10px;
+    background-color: var(--background-white);
+    color: var(--foreground);
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+}
+
+.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* .toTop{
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+    user-select: none;
+    gap: 10px;
+
+    color: var(--background-white);
+
+    transition: 0.5s;
+
+    padding: 10px;
+    background-color: var(--main-color);
+    width: 200px;
+    height: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+} */
+
+.toTop img{
+    width: 18px;
+    height: 18px;
+}
+
+/* .header_button_active img{
+    width: 18px;
+    height: 18px;
+} */
+
+.toTop:active{
+    box-shadow: none;
+}

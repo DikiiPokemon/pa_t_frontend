@@ -148,11 +148,10 @@ export default function Contacts() {
       <div className={styles.contacts_container}>
         <div className={styles.contacts_header}><h1>Контакты</h1></div>
         <div className={styles.contacts_content}>
-            <div className={styles.contacts_content_header}>
+            <div className={styles.product_page_description_nav}>
               {Contacts.map((i, idx) => {
-
                 return(
-                  <button onClick={() => setActive(i.name)} key={idx + i.name} className={`${styles.contacts_content_header_button} ${active === i.name ? styles.Active : ""}`}>{i.name}</button>
+                  <button onClick={() => setActive(i.name)} key={idx + i.name} className={`${styles.product_page_description_nav_button} ${active === i.name ? styles.Active : ""}`}>{i.name}</button>
                 )
               })}
             </div>
@@ -161,16 +160,12 @@ export default function Contacts() {
                 <p><span>Адрес нашего офиса:</span>
                   <a href="https://yandex.ru/maps/-/CLwaJB0F" target="_blank">194044, Санкт-Петербург, Пироговская наб., д.17 корп.5 лит.А</a>
                 </p>
-                <br/>
                 <p><span>Время приема заказов: </span>по телефону — с 9.00 до 18.00 (время московское)</p>
-                <br/>
                 <p><span>Телефоны:</span>
                   <a href="tel: +78126032310">+7 (812) 603-23-10,</a>
                   <a href="tel: +78122235078">+7 (812) 223-50-78</a>
                 </p>
-                <br/>
                 <p><span>Факс:</span> +7 (812) 603-23-16</p>
-                <br/>
                 <p><span>Email:</span>
                   <a href="mailto:tech@pa.ru">tech@pa.ru</a>
                 </p>

@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/components/Footer.module.css";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
