@@ -37,8 +37,8 @@ export default function Articles() {
         <div className={styles.article_header}><h1>Узнайте больше о мире технологий!</h1></div>
         <div className={styles.article_content}>
             <div className={styles.article_content_header}>
-              <button onClick={() => setActive("LVDT")} className={`${styles.article_content_header_button} ${active === "LVDT" ? styles.Active : ""}`}>Датчики LVDT</button>
-              <button onClick={() => setActive("FS")} className={`${styles.article_content_header_button} ${active === "FS" ? styles.Active : ""}`}>Датчики FS</button>
+              <button onClick={() => setActive("LVDT")} className={`${styles.article_content_header_button} ${active === "LVDT" && styles.Active}`}>Датчики LVDT</button>
+              <button onClick={() => setActive("FS")} className={`${styles.article_content_header_button} ${active === "FS" && styles.Active }`}>Датчики FS</button>
             </div>
             <div className={styles.article_content_wrapper}>
               {Articles?.find((el) => el.name === active).content?.map((i, idx) => {

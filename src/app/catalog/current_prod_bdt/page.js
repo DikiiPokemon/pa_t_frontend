@@ -52,7 +52,7 @@ const bdt_prod = observer(() => {
             <div className={styles.product_page_charachteristic_wrapper}>
                 <div className={styles.product_page_charachteristic_img}>
                     <div className={styles.product_page_slider_wrapper}>
-                        <div className={styles.product_page_slider_container} style={dynamicStyle}>
+                        <div className={styles.product_page_slider_container} style={{dynamicStyle}}>
                             {slider.map((i, idx) => {
                                 return(
                                     <div key={i + idx} className={styles.product_page_slider_item}><img src={i}/></div>
@@ -62,8 +62,8 @@ const bdt_prod = observer(() => {
                             }
                         </div>
                     </div>
-                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image src={Arrow}></Image></button>
-                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image src={Arrow}></Image></button>
+                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image alt="" src={Arrow}></Image></button>
+                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image alt="" src={Arrow}></Image></button>
                 </div>
                 <div className={styles.product_page_charachteristic_container}>
                     <BDT_calc/>
@@ -73,10 +73,10 @@ const bdt_prod = observer(() => {
             <div className={styles.product_page_description}>
                 
                 <div id="full_descript" className={styles.product_page_description_nav}>
-                    <button onClick={() => setDescription(1)} className={`${styles.product_page_description_nav_button} ${description === 1 ? styles.Active : ""}`}>Описание</button>
-                    <button onClick={() => setDescription(4)} className={`${styles.product_page_description_nav_button} ${description === 4 ? styles.Active : ""}`}>Схема подключения и калибровка</button>
-                    <button onClick={() => setDescription(2)} className={`${styles.product_page_description_nav_button} ${description === 2 ? styles.Active : ""}`}>Документация</button>
-                    <button onClick={() => setDescription(3)} className={`${styles.product_page_description_nav_button} ${description === 3 ? styles.Active : ""}`}>ПО конфигуратора</button>
+                    <button onClick={() => setDescription(1)} className={`${styles.product_page_description_nav_button} ${description === 1 && styles.Active}`}>Описание</button>
+                    <button onClick={() => setDescription(4)} className={`${styles.product_page_description_nav_button} ${description === 4 && styles.Active}`}>Схема подключения и калибровка</button>
+                    <button onClick={() => setDescription(2)} className={`${styles.product_page_description_nav_button} ${description === 2 && styles.Active}`}>Документация</button>
+                    <button onClick={() => setDescription(3)} className={`${styles.product_page_description_nav_button} ${description === 3 && styles.Active}`}>ПО конфигуратора</button>
                 </div>
                 {description === 1 &&
                     <div className={styles.product_page_description_main}>
@@ -86,66 +86,66 @@ const bdt_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <td width="196">Выходной сигнал №1<p></p>
+                                    <td style={{width: "196px"}}>Выходной сигнал №1<p></p>
                                         <p>Выходной сигнал №2</p></td>
-                                    <td width="76">4-20 мА<p></p>
+                                    <td style={{width: "76px"}}>4-20 мА<p></p>
                                         <p>–</p></td>
-                                    <td width="75">±10 В<p></p>
+                                    <td style={{width: "75px"}}>±10 В<p></p>
                                         <p>–</p></td>
-                                    <td width="61">4-20 мА<p></p>
+                                    <td style={{width: "61px"}}>4-20 мА<p></p>
                                         <p>4-20 мА</p></td>
-                                    <td width="61">±10 В<p></p>
+                                    <td style={{width: "61px"}}>±10 В<p></p>
                                         <p>±10 В</p></td>
-                                    <td width="61">±10 В<p></p>
+                                    <td style={{width: "61px"}}>±10 В<p></p>
                                         <p>4-20 мА</p></td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Крепление</td>
-                                    <td colspan="6" width="482">на DIN-рейку</td>
+                                    <td style={{width: "196px"}}>Крепление</td>
+                                    <td colSpan="6" style={{width: "482px"}}>на DIN-рейку</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Рабочая температура</td>
-                                    <td colspan="6" width="482">0…+55 ̊C</td>
+                                    <td style={{width: "196px"}}>Рабочая температура</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0…+55 ̊C</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Материал корпуса</td>
-                                    <td colspan="6" width="482"><a href="https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%BB%D0%B8%D0%B0%D0%BC%D0%B8%D0%B4">Полиамид</a></td>
+                                    <td style={{width: "196px"}}>Материал корпуса</td>
+                                    <td colSpan="6" style={{width: "482px"}}><a href="https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%BB%D0%B8%D0%B0%D0%BC%D0%B8%D0%B4">Полиамид</a></td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Напряжение питания</td>
-                                    <td colspan="6" width="482">=24В (-15% ÷ +10%)</td>
+                                    <td style={{width: "196px"}}>Напряжение питания</td>
+                                    <td colSpan="6" style={{width: "482px"}}>=24В (-15% ÷ +10%)</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Потребляемая мощность</td>
-                                    <td colspan="6" width="482">не более 2 ВА</td>
+                                    <td style={{width: "196px"}}>Потребляемая мощность</td>
+                                    <td colSpan="6" style={{width: "482px"}}>не более 2 ВА</td>
                                 </tr>
                                 <tr>
-                                <td width="196">Напряжение питания преобразователя линейного перемещения</td>
-                                    <td colspan="6" width="482">~10В, 2,5 кГц</td>
+                                <td style={{width: "196px"}}>Напряжение питания преобразователя линейного перемещения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>~10В, 2,5 кГц</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Максимальное выходное напряжение возбуждения</td>
-                                    <td colspan="6" width="482">12 В ампл.</td>
+                                    <td style={{width: "196px"}}>Максимальное выходное напряжение возбуждения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>12 В ампл.</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Диапазон выходного сигнала на преобразователь линейного перемещения</td>
-                                    <td colspan="6" width="482">±11 В</td>
+                                    <td style={{width: "196px"}}>Диапазон выходного сигнала на преобразователь линейного перемещения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>±11 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Выходной ток на преобразователь линейного перемещения</td>
-                                    <td colspan="6" width="482">11 мА</td>
+                                    <td style={{width: "196px"}}>Выходной ток на преобразователь линейного перемещения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>11 мА</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Входное напряжение с преобразователя линейного перемещения</td>
-                                    <td colspan="6" width="482">0,1…0,35 В</td>
+                                    <td style={{width: "196px"}}>Входное напряжение с преобразователя линейного перемещения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0,1…0,35 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Макс. коммутируемый ток «сухого контакта» Err</td>
-                                    <td colspan="6" width="482">0,5 А</td>
+                                    <td style={{width: "196px"}}>Макс. коммутируемый ток «сухого контакта» Err</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0,5 А</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">Макс коммутируемое напряжение «сухого контакта» Err</td>
-                                    <td colspan="6" width="482">125 В</td>
+                                    <td style={{width: "196px"}}>Макс коммутируемое напряжение «сухого контакта» Err</td>
+                                    <td colSpan="6" style={{width: "482px"}}>125 В</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -160,20 +160,20 @@ const bdt_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%", maxWidth: "550px"}}>
                             <tbody>
                                 <tr>
-                                    <td width="196">Тип выхода</td>
-                                    <td colspan="6" width="482">Значение сигнала на выходе</td>
+                                    <td style={{width: "196px"}}>Тип выхода</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Значение сигнала на выходе</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">I (постоянный ток)</td>
-                                    <td colspan="6" width="482">от 4 до 20 мА</td>
+                                    <td style={{width: "196px"}}>I (постоянный ток)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>от 4 до 20 мА</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">U (постоянное напряжение)</td>
-                                    <td colspan="6" width="482">от -10 до 10 В</td>
+                                    <td style={{width: "196px"}}>U (постоянное напряжение)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>от -10 до 10 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">N (выход без сигнала)</td>
-                                    <td colspan="6" width="482">отсутствует</td>
+                                    <td style={{width: "196px"}}>N (выход без сигнала)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>отсутствует</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -220,105 +220,105 @@ const bdt_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <td width="196">№ клеммы</td>
-                                    <td colspan="6" width="482">Цепь</td>
+                                    <td style={{width: "196px"}}>№ клеммы</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Цепь</td>
                                     <td rowSpan={25}><img src="/assets/images/BDT/table_klem.png" alt=""/></td>
                                 </tr>
                                 <tr>
-                                    <td width="196">1</td>
-                                    <td colspan="6" width="482">B (RS485)</td>
+                                    <td style={{width: "196px"}}>1</td>
+                                    <td colSpan="6" style={{width: "482px"}}>B (RS485)</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">2</td>
-                                    <td colspan="6" width="482">A (RS485)</td>
+                                    <td style={{width: "196px"}}>2</td>
+                                    <td colSpan="6" style={{width: "482px"}}>A (RS485)</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">3</td>
-                                    <td colspan="6" width="482">TRM</td>
+                                    <td style={{width: "196px"}}>3</td>
+                                    <td colSpan="6" style={{width: "482px"}}>TRM</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">4</td>
-                                    <td colspan="6" width="482">NC</td>
+                                    <td style={{width: "196px"}}>4</td>
+                                    <td colSpan="6" style={{width: "482px"}}>NC</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">5</td>
-                                    <td colspan="6" width="482">+24 В</td>
+                                    <td style={{width: "196px"}}>5</td>
+                                    <td colSpan="6" style={{width: "482px"}}>+24 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">6</td>
-                                    <td colspan="6" width="482">+24 В</td>
+                                    <td style={{width: "196px"}}>6</td>
+                                    <td colSpan="6" style={{width: "482px"}}>+24 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">7</td>
-                                    <td colspan="6" width="482">0 В</td>
+                                    <td style={{width: "196px"}}>7</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">8</td>
-                                    <td colspan="6" width="482">0 В</td>
+                                    <td style={{width: "196px"}}>8</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0 В</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">9</td>
-                                    <td colspan="6" width="482">Uout ±10В/Iout 4-20mA</td>
+                                    <td style={{width: "196px"}}>9</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Uout ±10В/Iout 4-20mA</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">10</td>
-                                    <td colspan="6" width="482">Общ. OUT</td>
+                                    <td style={{width: "196px"}}>10</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Общ. OUT</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">11</td>
-                                    <td colspan="6" width="482">Uout ±10В/Iout 4-20mA</td>
+                                    <td style={{width: "196px"}}>11</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Uout ±10В/Iout 4-20mA</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">12</td>
-                                    <td colspan="6" width="482">Общ. OUT</td>
+                                    <td style={{width: "196px"}}>12</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Общ. OUT</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">13</td>
-                                    <td colspan="6" width="482">+ ERR</td>
+                                    <td style={{width: "196px"}}>13</td>
+                                    <td colSpan="6" style={{width: "482px"}}>+ ERR</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">14</td>
-                                    <td colspan="6" width="482">- ERR</td>
+                                    <td style={{width: "196px"}}>14</td>
+                                    <td colSpan="6" style={{width: "482px"}}>- ERR</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">15</td>
-                                    <td colspan="6" width="482">Первичная обмотка –</td>
+                                    <td style={{width: "196px"}}>15</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Первичная обмотка –</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">16</td>
-                                    <td colspan="6" width="482">Первичная обмотка +</td>
+                                    <td style={{width: "196px"}}>16</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Первичная обмотка +</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">17</td>
-                                    <td colspan="6" width="482">Вторичная обмотка –</td>
+                                    <td style={{width: "196px"}}>17</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Вторичная обмотка –</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">18</td>
-                                    <td colspan="6" width="482">Экран</td>
+                                    <td style={{width: "196px"}}>18</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Экран</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">19</td>
-                                    <td colspan="6" width="482">Экран</td>
+                                    <td style={{width: "196px"}}>19</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Экран</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">20</td>
-                                    <td colspan="6" width="482">Вторичная обмотка +</td>
+                                    <td style={{width: "196px"}}>20</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Вторичная обмотка +</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">21</td>
-                                    <td colspan="6" width="482">SYNC IN-</td>
+                                    <td style={{width: "196px"}}>21</td>
+                                    <td colSpan="6" style={{width: "482px"}}>SYNC IN-</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">22</td>
-                                    <td colspan="6" width="482">SYNC IN+</td>
+                                    <td style={{width: "196px"}}>22</td>
+                                    <td colSpan="6" style={{width: "482px"}}>SYNC IN+</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">23</td>
-                                    <td colspan="6" width="482">SYNC OUT-</td>
+                                    <td style={{width: "196px"}}>23</td>
+                                    <td colSpan="6" style={{width: "482px"}}>SYNC OUT-</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">24</td>
-                                    <td colspan="6" width="482">SYNC OUT+</td>
+                                    <td style={{width: "196px"}}>24</td>
+                                    <td colSpan="6" style={{width: "482px"}}>SYNC OUT+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -363,39 +363,39 @@ const bdt_prod = observer(() => {
                                 <table className={styles.table} style={{height: "auto", width: "100%", maxWidth: "550px"}}>
                                     <tbody>
                                         <tr>
-                                            <td width="196">Диапазон</td>
-                                            <td colspan="6" width="482">Шаг</td>
-                                            <td colspan="6" width="482">Количество точек</td>
+                                            <td style={{width: "196px"}}>Диапазон</td>
+                                            <td colSpan="6" style={{width: "482px"}}>Шаг</td>
+                                            <td colSpan="6" style={{width: "482px"}}>Количество точек</td>
                                         </tr>
                                         <tr>
-                                            <td width="196">20</td>
-                                            <td colspan="6" width="482">2</td>
-                                            <td colspan="6" width="482">11</td>
+                                            <td style={{width: "196px"}}>20</td>
+                                            <td colSpan="6" style={{width: "482px"}}>2</td>
+                                            <td colSpan="6" style={{width: "482px"}}>11</td>
                                         </tr>
                                         <tr>
-                                            <td width="196">110</td>
-                                            <td colspan="6" width="482">10</td>
-                                            <td colspan="6" width="482">12</td>
+                                            <td style={{width: "196px"}}>110</td>
+                                            <td colSpan="6" style={{width: "482px"}}>10</td>
+                                            <td colSpan="6" style={{width: "482px"}}>12</td>
                                         </tr>
                                         <tr>
-                                            <td width="196">150</td>
-                                            <td colspan="6" width="482">15</td>
-                                            <td colspan="6" width="482">11</td>
+                                            <td style={{width: "196px"}}>150</td>
+                                            <td colSpan="6" style={{width: "482px"}}>15</td>
+                                            <td colSpan="6" style={{width: "482px"}}>11</td>
                                         </tr>
                                         <tr>
-                                            <td width="196">220</td>
-                                            <td colspan="6" width="482">20</td>
-                                            <td colspan="6" width="482">12</td>
+                                            <td style={{width: "196px"}}>220</td>
+                                            <td colSpan="6" style={{width: "482px"}}>20</td>
+                                            <td colSpan="6" style={{width: "482px"}}>12</td>
                                         </tr>
                                         <tr>
-                                            <td width="196">250</td>
-                                            <td colspan="6" width="482">25</td>
-                                            <td colspan="6" width="482">11</td>
+                                            <td style={{width: "196px"}}>250</td>
+                                            <td colSpan="6" style={{width: "482px"}}>25</td>
+                                            <td colSpan="6" style={{width: "482px"}}>11</td>
                                         </tr>
                                         <tr>
-                                            <td width="196">330</td>
-                                            <td colspan="6" width="482">30</td>
-                                            <td colspan="6" width="482">12</td>
+                                            <td style={{width: "196px"}}>330</td>
+                                            <td colSpan="6" style={{width: "482px"}}>30</td>
+                                            <td colSpan="6" style={{width: "482px"}}>12</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -415,144 +415,144 @@ const bdt_prod = observer(() => {
                         <table className={styles.table} style={{height: "auto", width: "100%"}}>
                             <tbody>
                                 <tr>
-                                    <td width="196">Номер регистра</td>
-                                    <td colspan="6" width="482">Название</td>
-                                    <td colspan="6" width="482">Назначение</td>
-                                    <td colspan="6" width="482">Диапазон</td>
-                                    <td colspan="6" width="482">Значение по умолчанию</td>
+                                    <td style={{width: "196px"}}>Номер регистра</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Название</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Назначение</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Диапазон</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Значение по умолчанию</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">0</td>
-                                    <td colspan="6" width="482">Положение</td>
-                                    <td colspan="6" width="482">Данный регистр отображает актуальное положение  штока</td>
-                                    <td colspan="6" width="482">(0;65534)</td>
-                                    <td colspan="6" width="482">-</td>
+                                    <td style={{width: "196px"}}>0</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Положение</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Данный регистр отображает актуальное положение  штока</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>-</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">1</td>
-                                    <td colspan="6" width="482">Предобработка</td>
-                                    <td colspan="6" width="482">В этом регистре отображаются значения до обработки. Во время калибровки нужно вписывать именно эти значения в регистры 2-13</td>
-                                    <td colspan="6" width="482">(-32767;32767)</td>
-                                    <td colspan="6" width="482">-</td>
+                                    <td style={{width: "196px"}}>1</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Предобработка</td>
+                                    <td colSpan="6" style={{width: "482px"}}>В этом регистре отображаются значения до обработки. Во время калибровки нужно вписывать именно эти значения в регистры 2-13</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(-32767;32767)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>-</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">(2-13)</td>
-                                    <td colspan="6" width="482">Код калибровки</td>
-                                    <td colspan="6" width="482">Регистры для калибровки блока на каждую точку диапазона. В обработке участвуют значения начиная с первого до значения, указанного в регистре 25.</td>
-                                    <td colspan="6" width="482">(-32767;32767)</td>
-                                    <td colspan="6" width="482">0</td>
+                                    <td style={{width: "196px"}}>(2-13)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Код калибровки</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Регистры для калибровки блока на каждую точку диапазона. В обработке участвуют значения начиная с первого до значения, указанного в регистре 25.</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(-32767;32767)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">15</td>
-                                    <td colspan="6" width="482">Модбас ID</td>
-                                    <td colspan="6" width="482">ID для протокола модбас</td>
-                                    <td colspan="6" width="482">(1;254)</td>
-                                    <td colspan="6" width="482">100</td>
+                                    <td style={{width: "196px"}}>15</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Модбас ID</td>
+                                    <td colSpan="6" style={{width: "482px"}}>ID для протокола модбас</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(1;254)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>100</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">16</td>
-                                    <td colspan="6" width="482">BaudRate_ind</td>
-                                    <td colspan="6" width="482">ндикатор скорость передачи по модбаc 0-9600;1-19200;2-38400;3-57600;4-115200</td>
-                                    <td colspan="6" width="482">(0;4)</td>
-                                    <td colspan="6" width="482">4</td>
+                                    <td style={{width: "196px"}}>16</td>
+                                    <td colSpan="6" style={{width: "482px"}}>BaudRate_ind</td>
+                                    <td colSpan="6" style={{width: "482px"}}>ндикатор скорость передачи по модбаc 0-9600;1-19200;2-38400;3-57600;4-115200</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;4)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>4</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">17</td>
-                                    <td colspan="6" width="482">Сохранение</td>
-                                    <td colspan="6" width="482">Регистр для сохранения значений, при установки 1 контроллер сохраняет значения, выставляет в регистре значение 0 и перезагружается</td>
-                                    <td colspan="6" width="482">(0;1)</td>
-                                    <td colspan="6" width="482">0</td>
+                                    <td style={{width: "196px"}}>17</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Сохранение</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Регистр для сохранения значений, при установки 1 контроллер сохраняет значения, выставляет в регистре значение 0 и перезагружается</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;1)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">18</td>
-                                    <td colspan="6" width="482">Диапазон измерения датчика</td>
-                                    <td colspan="6" width="482">Диапазон измерения датчика (не влияет на измерение)</td>
-                                    <td colspan="6" width="482">(10;1000)</td>
-                                    <td colspan="6" width="482">0</td>
+                                    <td style={{width: "196px"}}>18</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Диапазон измерения датчика</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Диапазон измерения датчика (не влияет на измерение)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(10;1000)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">19</td>
-                                    <td colspan="6" width="482">Код максимума выходного сигнала AO(4-20мА)</td>
-                                    <td colspan="6" width="482">Код ЦАП, отвечающий за максимальное значение положения</td>
-                                    <td colspan="6" width="482">(0;65534)</td>
-                                    <td colspan="6" width="482">64200 (20мА)</td>
+                                    <td style={{width: "196px"}}>19</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Код максимума выходного сигнала AO(4-20мА)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Код ЦАП, отвечающий за максимальное значение положения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>64200 (20мА)</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">20</td>
-                                    <td colspan="6" width="482">Код минимума выходного сигнала  AO(4-20мА)</td>
-                                    <td colspan="6" width="482">Код ЦАП, отвечающий за минимальное значение положения</td>
-                                    <td colspan="6" width="482">(0;65534)</td>
-                                    <td colspan="6" width="482">12900(4мА)</td>
+                                    <td style={{width: "196px"}}>20</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Код минимума выходного сигнала  AO(4-20мА)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Код ЦАП, отвечающий за минимальное значение положения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>12900(4мА)</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">21</td>
-                                    <td colspan="6" width="482">Размах сигнала возбуждения</td>
-                                    <td colspan="6" width="482">Амплитуда сигнала возбуждения катушки датчика. (Размах + Смещение  должны быть меньше 65534)</td>
-                                    <td colspan="6" width="482">(0;65534)</td>
-                                    <td colspan="6" width="482">45000</td>
+                                    <td style={{width: "196px"}}>21</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Размах сигнала возбуждения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Амплитуда сигнала возбуждения катушки датчика. (Размах + Смещение  должны быть меньше 65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>45000</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">22</td>
-                                    <td colspan="6" width="482">Смещение сигнала возбуждения</td>
-                                    <td colspan="6" width="482">Уровень смещения сигнала возбуждения  (Размах + Смещение  должны быть меньше 65534)</td>
-                                    <td colspan="6" width="482">(0;65534)</td>
-                                    <td colspan="6" width="482">20000</td>
+                                    <td style={{width: "196px"}}>22</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Смещение сигнала возбуждения</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Уровень смещения сигнала возбуждения  (Размах + Смещение  должны быть меньше 65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0;65534)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>20000</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">23</td>
-                                    <td colspan="6" width="482">Период генерации</td>
-                                    <td colspan="6" width="482">Период генерации в мс/100</td>
-                                    <td colspan="6" width="482">-</td>
-                                    <td colspan="6" width="482">20мс/100  (5кГц)</td>
+                                    <td style={{width: "196px"}}>23</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Период генерации</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Период генерации в мс/100</td>
+                                    <td colSpan="6" style={{width: "482px"}}>-</td>
+                                    <td colSpan="6" style={{width: "482px"}}>20мс/100  (5кГц)</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">24</td>
-                                    <td colspan="6" width="482">Период обновления</td>
-                                    <td colspan="6" width="482">Период за который данные обновляются в буфере отправки</td>
-                                    <td colspan="6" width="482">-</td>
-                                    <td colspan="6" width="482">100 мс</td>
+                                    <td style={{width: "196px"}}>24</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Период обновления</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Период за который данные обновляются в буфере отправки</td>
+                                    <td colSpan="6" style={{width: "482px"}}>-</td>
+                                    <td colSpan="6" style={{width: "482px"}}>100 мс</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">25</td>
-                                    <td colspan="6" width="482">Количество точек калибровки</td>
-                                    <td colspan="6" width="482">Количество точек калибровки</td>
-                                    <td colspan="6" width="482">(2-12)</td>
-                                    <td colspan="6" width="482">2 количество точек калибровки</td>
+                                    <td style={{width: "196px"}}>25</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Количество точек калибровки</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Количество точек калибровки</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(2-12)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>2 количество точек калибровки</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">26</td>
-                                    <td colspan="6" width="482">Детектор обрыва</td>
-                                    <td colspan="6" width="482">Регистр управления детектора обрыва (0- детектор отключен; 1 -детектор первичной обмотки включен)</td>
-                                    <td colspan="6" width="482">(0-1)</td>
-                                    <td colspan="6" width="482">1</td>
+                                    <td style={{width: "196px"}}>26</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Детектор обрыва</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Регистр управления детектора обрыва (0- детектор отключен; 1 -детектор первичной обмотки включен)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0-1)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>1</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">27</td>
-                                    <td colspan="6" width="482">Индикатор обрыва</td>
-                                    <td colspan="6" width="482">Индикация обрыва. Выставляется 1 если сработал детектор обрыва</td>
-                                    <td colspan="6" width="482">(0-1)</td>
-                                    <td colspan="6" width="482">0</td>
+                                    <td style={{width: "196px"}}>27</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Индикатор обрыва</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Индикация обрыва. Выставляется 1 если сработал детектор обрыва</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(0-1)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>0</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">28</td>
-                                    <td colspan="6" width="482">Версия прошивки</td>
-                                    <td colspan="6" width="482">Версия прошивки блока</td>
-                                    <td colspan="6" width="482">-</td>
-                                    <td colspan="6" width="482">-</td>
+                                    <td style={{width: "196px"}}>28</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Версия прошивки</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Версия прошивки блока</td>
+                                    <td colSpan="6" style={{width: "482px"}}>-</td>
+                                    <td colSpan="6" style={{width: "482px"}}>-</td>
                                 </tr>
                                 <tr>
-                                    <td width="196">29</td>
-                                    <td colspan="6" width="482"></td>
-                                    <td colspan="6" width="482"></td>
-                                    <td colspan="6" width="482"></td>
-                                    <td colspan="6" width="482"></td>
+                                    <td style={{width: "196px"}}>29</td>
+                                    <td colSpan="6" style={{width: "482px"}}></td>
+                                    <td colSpan="6" style={{width: "482px"}}></td>
+                                    <td colSpan="6" style={{width: "482px"}}></td>
+                                    <td colSpan="6" style={{width: "482px"}}></td>
                                 </tr>
                                 <tr>
-                                    <td width="196">30</td>
-                                    <td colspan="6" width="482">Коэффициент фильтрации</td>
-                                    <td colspan="6" width="482">Фильтрация в усл. Ед. Чем он больше тем быстрее реагирует система, и тем больше шумов проходит сквозь него</td>
-                                    <td colspan="6" width="482">(1-1000)</td>
-                                    <td colspan="6" width="482">200</td>
+                                    <td style={{width: "196px"}}>30</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Коэффициент фильтрации</td>
+                                    <td colSpan="6" style={{width: "482px"}}>Фильтрация в усл. Ед. Чем он больше тем быстрее реагирует система, и тем больше шумов проходит сквозь него</td>
+                                    <td colSpan="6" style={{width: "482px"}}>(1-1000)</td>
+                                    <td colSpan="6" style={{width: "482px"}}>200</td>
                                 </tr>
                             </tbody>
                         </table>

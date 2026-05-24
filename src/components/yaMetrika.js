@@ -16,7 +16,7 @@ export default function YandexMetrika() {
         ym(${process.env.NEXT_PUBLIC_YM_ID}, 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
       `}
     </Script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/109385988" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/109385988" style={{position:"absolute", left:"-9999px"}} alt="" /></div></noscript>
     </>
   );
 }

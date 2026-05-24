@@ -2,6 +2,7 @@
 import styles from "@/app/catalog/page.module.css";
 import MainCard from "@/components/Main_product_card";
 import { useStore } from "@/store/StoreContext";
+import Image from "next/image";
 
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
             {
               productsStore.merquee.map((i, idx) => {
                 return(
-                  <img key={i.url + idx} className={styles.item} src={i.url}></img>
+                  <Image key={i.url + idx} className={styles.item} src={i.url}></Image>
                 )
               })
             }
@@ -43,7 +44,7 @@ export default function Home() {
             {
               productsStore.merquee.map((i, idx) => {
                 return(
-                  <img key={i.url + idx} className={styles.item} src={i.url}></img>
+                  <Image key={i.url + idx} className={styles.item} src={i.url}></Image>
                 )
               })
             }
