@@ -52,18 +52,18 @@ const bdt_prod = observer(() => {
             <div className={styles.product_page_charachteristic_wrapper}>
                 <div className={styles.product_page_charachteristic_img}>
                     <div className={styles.product_page_slider_wrapper}>
-                        <div className={styles.product_page_slider_container} style={{dynamicStyle}}>
+                        <div className={styles.product_page_slider_container} style={dynamicStyle}>
                             {slider.map((i, idx) => {
                                 return(
-                                    <div key={i + idx} className={styles.product_page_slider_item}><img src={i}/></div>
+                                    <div key={i + idx} className={styles.product_page_slider_item}><Image alt="Блок преобразования LVDT (BDT)" width={600} height={600} src={i}/></div>
                                 )
                             })
 
                             }
                         </div>
                     </div>
-                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image alt="" src={Arrow}></Image></button>
-                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image alt="" src={Arrow}></Image></button>
+                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image alt="Кнопка слайдера назад" src={Arrow}></Image></button>
+                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image alt="Кнопка слайдера вперед" src={Arrow}></Image></button>
                 </div>
                 <div className={styles.product_page_charachteristic_container}>
                     <BDT_calc/>
@@ -324,7 +324,7 @@ const bdt_prod = observer(() => {
                         </table>
 
                         <p>Рис. 1 – Схема подключения блока</p>
-                        <img style={{width: "400px"}} src="/assets/images/BDT/Scheme_bdt.png" alt=""/>
+                        <img style={{width: "1000px"}} src="/assets/images/BDT/Scheme_bdt.jpg" alt=""/>
                         <p>Клеммы 5 и 6, а также 7 и 8 попарно соединены и могут использоваться при необходимости для удобства монтажа нескольких блоков.</p>
                         <p>Клеммы 9 и 10, а также 11 и 12 – аналоговые выходы блока, они могут быть сконфигурированы как вольтовые (Uout ±10 В) или токовые (Iout 4-20 мА).</p>
                         <p>Клеммы 1 и 2 – предназначены для предачи информации от блока к потребителю по двухпроводному интерфейсу RS-485.</p>

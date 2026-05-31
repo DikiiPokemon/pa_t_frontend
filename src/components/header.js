@@ -36,6 +36,7 @@ const Header = observer (() => {
 
     const[productsSend, setProductSend] = useState(false)
     
+    
     const [form, setForm] = useState(
         {
         name: "",
@@ -101,7 +102,6 @@ const Header = observer (() => {
     useEffect(() => {
         const onClick = e => callMenu.current.contains(e.target) || setCall(false) || setSearch(false)
         document.addEventListener('click', onClick);
-        console.log(productsStore.Cookie);
         
         return () => document.removeEventListener('click', onClick);
     }, []);
@@ -146,8 +146,6 @@ const Header = observer (() => {
             check: check,
         }
 
-        console.log(form.phone.length);
-
         if(form.phone.length < 18){
             err.phone = true
             errMess.push("Телефон указан неверно")
@@ -163,8 +161,6 @@ const Header = observer (() => {
           err.mail = true
           errMess.push("Ошибка в поле E-mail, пример: example@example.example")
         }
-    
-        console.log(errMess);
         
         
     
@@ -218,11 +214,6 @@ const Header = observer (() => {
         productsStore.Cart.splice(index, 1)
         localStorage.setItem('cart', JSON.stringify(productsStore.Cart))
     }
-
-    useEffect(() => {
-        console.log(search_m);
-        
-    }, [search_m])
 
 
     return(
@@ -517,7 +508,7 @@ const Header = observer (() => {
                                                 <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Примечание к заказу" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
                                                 <label>Примечание к заказу</label>
                                             </div>
-                                            <CheckButton label={"Согласие на обработку личной информации"} name={"check"} controller={setCheck}/>
+                                            <CheckButton name={"check"} controller={setCheck}/>
                                             <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Заказать</button>
                                         </form>
                                         

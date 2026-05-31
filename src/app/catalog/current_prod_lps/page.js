@@ -54,6 +54,7 @@ const cur_prod = observer(() => {
                     const box = new THREE.Box3().setFromObject(scene);
                     const center = box.getCenter(new THREE.Vector3());
                     const size = box.getSize(new THREE.Vector3());
+                    
 
                     // 👉 двигаем саму модель ВНУТРИ
                     scene.position.sub(center);
@@ -62,24 +63,46 @@ const cur_prod = observer(() => {
                     const maxDim = Math.max(size.x, size.y, size.z);
                     scene.scale.setScalar(1 / maxDim);
 
-                    const axesHelper = new THREE.AxesHelper(1); // длина осей
-                    scene.add(axesHelper);
+                    // мягкий общий свет
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+                    scene.add(ambientLight);
+
+                    // направленный свет
+                    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+                    directionalLight.position.set(5, 10, 7);
+                    const fillLight = new THREE.DirectionalLight(0xffffff, 1);
+                    fillLight.position.set(-5, 3, -5);
+
+                    scene.add(fillLight);
+
+                    scene.add(directionalLight);
                     
 
 
                     scene.traverse((child) => {
                         if (child.isMesh) {
-                            child.geometry.computeBoundingBox();
-                            if (Array.isArray(child.material)) {
-                                child.material = child.material.map((mat) => {
-                                    const m = mat.clone();
-                                    m.map = null;
-                                    m.color.set(color);
-                                    console.log(color);
+
+                            child.material.color.set(color);
+
+                            // убираем металлический эффект
+                            child.material.metalness = 0;
+
+                            // делаем материал матовым
+                            child.material.roughness = 1;
+
+                            // сообщаем Three.js обновить материал
+                            child.material.needsUpdate = true;
+                            // child.geometry.computeBoundingBox();
+                            // if (Array.isArray(child.material)) {
+                            //     child.material = child.material.map((mat) => {
+                            //         const m = mat.clone();
+                            //         m.map = null;
+                            //         m.color.set(color);
+                            //         console.log(color);
                                     
-                                    return m;
-                                });
-                            }
+                            //         return m;
+                            //     });
+                            // }
                         }
                     });
 
@@ -119,24 +142,33 @@ const cur_prod = observer(() => {
                         const maxDim = Math.max(size.x, size.y, size.z);
                         scene.scale.setScalar(1 / maxDim);
 
-                        const axesHelper = new THREE.AxesHelper(1); // длина осей
-                        scene.add(axesHelper);
                         
 
 
                         scene.traverse((child) => {
                             if (child.isMesh) {
-                                child.geometry.computeBoundingBox();
-                                if (Array.isArray(child.material)) {
-                                    child.material = child.material.map((mat) => {
-                                        const m = mat.clone();
-                                        m.map = null;
-                                        m.color.set(color);
-                                        console.log(color);
+
+                                child.material.color.set(color);
+
+                                // убираем металлический эффект
+                                child.material.metalness = 0;
+
+                                // делаем материал матовым
+                                child.material.roughness = 1;
+
+                                // сообщаем Three.js обновить материал
+                                child.material.needsUpdate = true;
+                                // child.geometry.computeBoundingBox();
+                                // if (Array.isArray(child.material)) {
+                                //     child.material = child.material.map((mat) => {
+                                //         const m = mat.clone();
+                                //         m.map = null;
+                                //         m.color.set(color);
+                                //         console.log(color);
                                         
-                                        return m;
-                                    });
-                                }
+                                //         return m;
+                                //     });
+                                // }
                             }
                         });
 
@@ -193,9 +225,9 @@ const cur_prod = observer(() => {
                         <ambientLight intensity={0.1} />
                         <directionalLight
                             castShadow
-                            position={[0, 5, 0]} // свет под объектом
+                            position={[0, 5, 0]}
                             intensity={1.5}
-                            color="#eaeff0"
+                            color="white"
                             shadow-mapSize-width={1024}
                             shadow-mapSize-height={1024}
                             shadow-camera-far={10}
@@ -206,9 +238,9 @@ const cur_prod = observer(() => {
                             shadow-camera-bottom={-5}
                             shadow-mapSize={[1024, 1024]} />
                         <meshStandardMaterial color={"#eaeff0"} />
-                            <Model color="#eaeff0" url={`/assets/3d/LPS/${mod}.gltf`} />
+                            <Model color="#9D9D9C" url={`/assets/3d/LPS/${mod}.gltf`} />
                         <ContactShadows
-                            position={[0, -0.1, 0]}
+                            position={[0, -0.5, 0]}
                             opacity={1}
                             scale={5}
                             blur={2}

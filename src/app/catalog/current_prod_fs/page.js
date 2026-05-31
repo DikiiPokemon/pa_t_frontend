@@ -20,7 +20,7 @@ const cur_prod = observer(() => {
 
     const [error, setError] = useState(false)
 
-    function Model({ color = '#eaeff0', url }) {
+    function Model({ color, url }) {
         const [model, setModel] = useState(null);
 
         useEffect(() => {
@@ -38,16 +38,47 @@ const cur_prod = observer(() => {
 
                 const scene = gltf.scene.clone();
 
+                const box = new THREE.Box3().setFromObject(scene);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+
+                // 👉 двигаем саму модель ВНУТРИ
+                scene.position.sub(center);
+
+                // мягкий общий свет
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+                scene.add(ambientLight);
+
+                // направленный свет
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+                directionalLight.position.set(5, 10, 7);
+                const fillLight = new THREE.DirectionalLight(0xffffff, 1);
+                fillLight.position.set(-5, 3, -5);
+
+                scene.add(fillLight);
+
+                scene.add(directionalLight);
+
                 scene.traverse((child) => {
                 if (child.isMesh) {
-                    if (Array.isArray(child.material)) {
-                        child.material = child.material.map((mat) => {
-                            const m = mat.clone();
-                            m.map = null;
-                            m.color.set(color);
-                            return m;
-                        });
-                    }
+                    child.material.color.set(color);
+
+                    // убираем металлический эффект
+                    child.material.metalness = 0;
+
+                    // делаем материал матовым
+                    child.material.roughness = 1;
+
+                    // сообщаем Three.js обновить материал
+                    child.material.needsUpdate = true;
+                    // if (Array.isArray(child.material)) {
+                    //     child.material = child.material.map((mat) => {
+                    //         const m = mat.clone();
+                    //         m.map = null;
+                    //         m.color.set(color);
+                    //         return m;
+                    //     });
+                    // }
                 }
                 });
 
@@ -79,24 +110,46 @@ const cur_prod = observer(() => {
                     // 👉 двигаем саму модель ВНУТРИ
                     scene.position.sub(center);
 
-                    const axesHelper = new THREE.AxesHelper(1); // длина осей
-                    scene.add(axesHelper);
+                    // мягкий общий свет
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+                    scene.add(ambientLight);
+
+                    // направленный свет
+                    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+                    directionalLight.position.set(5, 10, 7);
+                    const fillLight = new THREE.DirectionalLight(0xffffff, 1);
+                    fillLight.position.set(-5, 3, -5);
+
+                    scene.add(fillLight);
+
+                    scene.add(directionalLight);
                     
 
 
                     scene.traverse((child) => {
                         if (child.isMesh) {
-                            child.geometry.computeBoundingBox();
-                            if (Array.isArray(child.material)) {
-                                child.material = child.material.map((mat) => {
-                                    const m = mat.clone();
-                                    m.map = null;
-                                    m.color.set(color);
-                                    console.log(color);
+                            child.material.color.set(color);
+
+                            // убираем металлический эффект
+                            child.material.metalness = 0;
+
+                            // делаем материал матовым
+                            child.material.roughness = 1;
+
+                            // сообщаем Three.js обновить материал
+                            child.material.needsUpdate = true;
+
+                            // child.geometry.computeBoundingBox();
+                            // if (Array.isArray(child.material)) {
+                            //     child.material = child.material.map((mat) => {
+                            //         const m = mat.clone();
+                            //         m.map = null;
+                            //         m.color.set(color);
+                            //         console.log(color);
                                     
-                                    return m;
-                                });
-                            }
+                            //         return m;
+                            //     });
+                            // }
                         }
                     });
 
@@ -134,11 +187,12 @@ const cur_prod = observer(() => {
     if (!model) return null;
 
     return (
-        <primitive
-        object={model}
-        position={[0, 0, 0]}
-        rotation={[100, 1.5, 0]}
-        />
+       <group rotation={[- Math.PI / 4, 1.5, 0]}>
+            <primitive
+                object={model}
+                position={[0, 0, 0]}
+            />
+        </group>
     );
 }
 
@@ -153,7 +207,7 @@ const cur_prod = observer(() => {
             <div className={styles.product_page_header}>Датчики FS</div>
             <div className={styles.product_page_charachteristic_wrapper}>
                 <div className={styles.product_page_charachteristic_3d}>
-                    <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 1], fov: 10}}>
+                    <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 0], fov: 10}}>
                         <ambientLight intensity={0.1} />
                         <directionalLight
                             castShadow
@@ -171,10 +225,10 @@ const cur_prod = observer(() => {
                             shadow-mapSize={[1024, 1024]} />
                         <meshStandardMaterial color={0xeaeff0} />
                         
-                        <Model color="#eaeff0" url={`/assets/3d/FS/${mod}.gltf`} />
+                        <Model color="#9D9D9C" url={`/assets/3d/FS/${mod}.gltf`} />
                         
                         <ContactShadows
-                            position={[0, -0.05, 0]}
+                            position={[0, -0.01, 0]}
                             opacity={1}
                             scale={1}
                             blur={2}

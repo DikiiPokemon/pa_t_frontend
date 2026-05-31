@@ -76,7 +76,7 @@
 .contacts_content_wrapper p{
     display: flex;
     flex-direction: column;
-    font-weight: 200;
+    font-weight: 600;
 }
 
 .contacts_content_wrapper p span{
@@ -349,5 +349,9 @@
 @media (max-width: 530px){
     .contacts_wrapper{
         padding-inline: 10px;
+    }
+
+    .contacts_content_wrapper{
+        height: 705px;
     }
 }

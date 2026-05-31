@@ -41,7 +41,7 @@ const LPS_calc = observer((props) => {
         }
     }
 
-    const [range, setRange] = useState(Range[0])
+    const [range, setRange] = useState(Range[12])
     const [execution, setExecution] = useState(Execution[0])
     const [type, setType] = useState(Type[0])
     const [cabele, setCable] = useState(0)

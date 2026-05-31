@@ -24,6 +24,7 @@ import YandexMetrika from "@/components/yaMetrika";
 
 
 export default function RootLayout({ children }) {
+  
 
   if (typeof window !== "undefined") {
     const products = JSON.parse(localStorage.getItem("cart"))
@@ -57,6 +58,26 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MyWebSite" />
         <link rel="manifest" href="/site.webmanifest" />
+        <link rel="preload" href="/assets/images/Customers/Incontrol.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/Jam.png" as="image" type="image/png" />
+        <link rel="preload" href="/assets/images/Customers/Sibir.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/TSA.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/Turbosystem.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/Unipro.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/InterRao.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/BashCom.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/реостат.png" as="image" type="image/png" />
+        <link rel="preload" href="/assets/images/Customers/ИНМАТЕК.png" as="image" type="image/png" />
+        <link rel="preload" href="/assets/images/Customers/Промстрой.png" as="image" type="image/png" />
+        <link rel="preload" href="/assets/images/Customers/техновар кс.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/ЭМСК.png" as="image" type="image/png" />
+        <link rel="preload" href="/assets/images/Customers/Промавтоматика.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/ker_auto.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/Customers/sil_mash.svg" as="image" type="image/svg" />
+        <link rel="preload" href="/assets/images/BDT/BDT.jpg" as="image" type="image/jpg" />
+        <link rel="preload" href="/assets/images/BFS/BFS_sl_1.jpg" as="image" type="image/jpg" />
+        <link rel="preload" href="/assets/images/FS/FS.png" as="image" type="image/png" />
+        <link rel="preload" href="/assets/images/LPS/LPS.png" as="image" type="image/png" />
       </head>
       <body>
         <StoreProvider>

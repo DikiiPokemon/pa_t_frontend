@@ -40,3 +40,25 @@
 .contacts_header h1{
     font-size: 36px;
 }
+
+@media (max-width: 830px){
+    .contacts_wrapper{
+        padding-inline: 25px;
+    }
+
+    .contacts_content{
+        width: 100%;
+    }
+    .contacts_content_wrapper{
+        width: 100%;
+    }
+}
+
+@media (max-width: 530px){
+    .contacts_header h1{
+        font-size: 28px;
+    }
+    .contacts_wrapper{
+        padding-inline: 10px;
+    }
+}

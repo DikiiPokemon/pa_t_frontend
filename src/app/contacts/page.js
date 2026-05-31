@@ -200,7 +200,7 @@ export default function Contacts() {
                   <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Ваше сообщение" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
                   <label>Ваше сообщение</label>
                 </div>
-                <CheckButton label={"Согласие на обработку личной информации"} name={"check"} controller={setCheck}/>
+                <CheckButton name={"check"} controller={setCheck}/>
                 <button className={`${styles.to_card} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Отправить</button>
                 
               </form>

@@ -14,7 +14,7 @@ const Cookie = (props) => {
 
     return(
         <div className={styles.cookie_wrapper}>
-            <p>Мы используем куки. Это нужно, чтобы сайт работал лучше. Оставаясь с нами, вы соглашаетесь на использование <Link href="/privacy_policy">файлов куки и политики конфеденциальности.</Link></p>
+            <p>Мы используем куки. Это нужно, чтобы сайт работал лучше. Оставаясь с нами, вы соглашаетесь на использование <Link href="/info_politics">файлов куки и политики обработки персональных данных.</Link></p>
             <button onClick={() => accept()} className={styles.product_card_to_prod}>Принять</button>
         </div>
     )

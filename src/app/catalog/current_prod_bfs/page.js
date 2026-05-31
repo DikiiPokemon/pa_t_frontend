@@ -14,7 +14,7 @@ const bfs_prod = observer(() => {
 
     const [description, setDescription] = useState(1)
     const slider = [
-        "/assets/images/BFS/BFS_sl_1.jpg", "/assets/images/BFS/BFS_sl_2.jpg", "/assets/images/BFS/BFS_sl_3.jpg", "/assets/images/BFS/BFS_sl_4.jpg"
+        "/assets/images/BFS/BFS_sl_1.jpg", "/assets/images/BFS/BFS_sl_2.jpg", "/assets/images/BFS/BFS_sl_3.jpg", "/assets/images/BFS/BFS_sl_4.jpg", "/assets/images/BFS/BFS_gab.png"
     ]
     const[activeBlock, setActiveBlock] = useState(0)
     const[Xtarns, setXtrans] = useState(0)
@@ -55,15 +55,15 @@ const bfs_prod = observer(() => {
                         <div className={styles.product_page_slider_container} style={dynamicStyle}>
                             {slider.map((i, idx) => {
                                 return(
-                                    <div key={i + idx} className={styles.product_page_slider_item}><img src={i}/></div>
+                                    <div key={i + idx} className={styles.product_page_slider_item}><Image width={600} height={600} alt="Блок преобразования FS (BFS)" src={i}/></div>
                                 )
                             })
 
                             }
                         </div>
                     </div>
-                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image src={Arrow}></Image></button>
-                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image src={Arrow}></Image></button>
+                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image alt="Кнопка слайдера назад" src={Arrow}></Image></button>
+                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image alt="Кнопка слайдера вперед" src={Arrow}></Image></button>
                 </div>
                 <div className={styles.product_page_charachteristic_container}>
                     <BFS_calc/>
@@ -85,7 +85,7 @@ const bfs_prod = observer(() => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <p>&nbsp;№</p>
+                                    <p>&nbsp;№</p>
                                     </td>
                                     <td>Наименование параметра</td>
                                     <td>Значение</td>

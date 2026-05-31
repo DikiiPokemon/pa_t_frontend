@@ -74,3 +74,11 @@
     background: var(--main-color);
     transition: 0.3s;
 }
+
+
+.CheckButton_p{
+    width: 80%;
+}
+.CheckButton_p a{
+    color: var(--main-color);
+}

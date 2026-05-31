@@ -1,3 +1,4 @@
+"use client";
 import { fetchFSPrices, fetchLPSPrices, fetchProducts, fetchSensorsPrices, fetchStock } from "@/http/product_controll";
 import {makeAutoObservable} from "mobx";
 
@@ -97,7 +98,7 @@ class ProductStore {
           name: "LPS датчики",
           description: "Преобразователь ЛП предназначен для измерения линейного перемещения промышленных объектов. Состоит из трансформаторного преобразователя ЛП LPS и БПС BDT-07. Преобразователи ЛП имеют линейную выходную характеристику.",
           short_description: "Преобразователь ЛП предназначен для измерения линейного перемещения промышленных объектов.",
-          img: "/assets/images/LPS/LPS.jpg",
+          img: "/assets/images/LPS/LPS.png",
           characteristic: [
             "Диапазоны измерений от 7 до 660 мм",
             "Встроенный кабель или разъемный соединитель",
@@ -116,7 +117,7 @@ class ProductStore {
           name: "FS датчики",
           description: "Высокочастотные датчики частоты вращения подходят для использования с зубчатым колесом из ферромагнитного материала для генерации сигналов пропорциональной частоты вращения. Для измерения частоты вращения паровых, газовых и гидротурбин.",
           short_description: "Высокочастотные датчики частоты вращения, для измерения частоты вращения паровых, газовых и гидротурбин.",
-          img: "/assets/images/FS/FS.jpg",
+          img: "/assets/images/FS/FS.png",
           characteristic: [
             "Диапазон измерений частоты вращения, от 2 до 16000 Гц",
             "Встроенный кабель или разъемный соединитель",
@@ -202,66 +203,82 @@ class ProductStore {
     merquee = [
       {
         url: "/assets/images/Customers/Incontrol.svg",
+        alt: "С нами работает компания Инконтрол",
         width: '300',
       },
       {
         url: "/assets/images/Customers/Jam.png",
+        alt: "С нами работает компания Жамбылская грэс",
         width: "103",
       },
       {
         url: "/assets/images/Customers/Sibir.svg",
+        alt: "С нами работает компания Сибирская генерирующая компания",
         width: "316",
       },
       {
         url: "/assets/images/Customers/TSA.svg",
+        alt: "С нами работает компания ТСА",
         width: "298",
       },
       {
         url: "/assets/images/Customers/Turbosystem.svg",
+        alt: "С нами работает компания Турбосистема",
         width: "400",
       },
       {
         url: "/assets/images/Customers/Unipro.svg",
+        alt: "С нами работает компания Юнипро",
         width: "167",
       },
       {
         url: "/assets/images/Customers/InterRao.svg",
+        alt: "С нами работает компания Интер РАО",
         width: "347",
       },
       {
         url: "/assets/images/Customers/BashCom.svg",
+        alt: "С нами работает компания Башкирская генерирующая компания",
         width: "320",
       },
       {
         url: "/assets/images/Customers/реостат.png",
+        alt: "С нами работает компания Реостат",
         width: "163",
       },
       {
         url: "/assets/images/Customers/ИНМАТЕК.png",
+        alt: "С нами работает компания ИНМАТЕК",
         width: "74",
       },
       {
         url: "/assets/images/Customers/Промстрой.png",
+        alt: "С нами работает компания Промстрой",
         width: "162",
       },
       {
         url: "/assets/images/Customers/техновар кс.svg",
+        alt: "С нами работает компания Техновар КС",
         width: "400",
       },
       {
         url: "/assets/images/Customers/ЭМСК.png",
+        alt: "С нами работает компания ЭМСК",
         width: "96",
       },
       {
         url: "/assets/images/Customers/Промавтоматика.svg",
+        alt: "С нами работает компания Промавтоматика",
         width: "100",
       },
       {
         url: "/assets/images/Customers/ker_auto.svg",
+        alt: "С нами работает компания КЭР автоматика",
         width: "400",
       },
       {
         url: "/assets/images/Customers/sil_mash.svg",
+        alt: "С нами работает компания Силовые машины",
         width: "102",
       },
 
@@ -283,7 +300,6 @@ class ProductStore {
     const l_price = await fetchLPSPrices();
     const s_price = await fetchSensorsPrices();
     const f_price = await fetchFSPrices();
-    // this.cart = JSON.parse(localStorage.getItem("cart"))
     this.product = data
     this.LPS = data.LPS
     this.FS = data.FS

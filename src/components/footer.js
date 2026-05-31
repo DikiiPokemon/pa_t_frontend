@@ -39,6 +39,10 @@ const Footer = () => {
                         <p><span>Р/с</span> 4070 2810 2130 0000 4803 в Филиал ОПЕРУ ОАО Банк ВТБ г. Санкт-Петербург</p>
                         <p><span>К/с</span> 3010 1810 2000 0000 0704</p>
                         <p><span>БИК</span> 044030704</p>
+                        <br></br>
+                        <Link href="/privacy_policy">Политика конфиденциальности</Link>
+                        <br></br>
+                        <Link href="/info_politics">Политика обработки персональных данных</Link>
                     </div>
                 </div>
                 <div className={styles.footer_block}>
