@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { productsStore } from "./product_store";
 
 const StoreContext = createContext({
@@ -7,17 +7,21 @@ const StoreContext = createContext({
 });
 
 export const StoreProvider = ({ children }) => {
+  const requested = useRef(false)  
+  useEffect(() => {
+    if (requested.current) return
+    requested.current = true
+    productsStore.init();
+  }, [])
+  
   if (typeof window !== "undefined") {
     const products = JSON.parse(localStorage.getItem("cart"))
     const cookie = JSON.parse(localStorage.getItem("cookie"))
     
     if(localStorage.getItem("cart")){
-      productsStore.init();
       productsStore.setCart(products)
       productsStore.setCookie(cookie) 
       
-    }else{
-      productsStore.init();
     }
 
     if(localStorage.getItem("cookie")){
