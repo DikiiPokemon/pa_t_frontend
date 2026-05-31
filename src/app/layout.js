@@ -1,4 +1,3 @@
-"use client"
 import Header from "@/components/header";
 import { productsStore } from "@/store/product_store";
 import { StoreProvider } from "@/store/StoreContext";
@@ -25,26 +24,6 @@ import YandexMetrika from "@/components/yaMetrika";
 
 export default function RootLayout({ children }) {
   
-
-  if (typeof window !== "undefined") {
-    const products = JSON.parse(localStorage.getItem("cart"))
-    const cookie = JSON.parse(localStorage.getItem("cookie"))
-    
-    if(localStorage.getItem("cart")){
-      productsStore.init();
-      productsStore.setCart(products)
-      productsStore.setCookie(cookie) 
-      
-    }else{
-      productsStore.init();
-    }
-
-    if(localStorage.getItem("cookie")){
-      productsStore.setCookie(cookie) 
-    }else{
-      productsStore.setCookie(true) 
-    }
-  }
   
 
   return (

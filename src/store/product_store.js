@@ -294,6 +294,7 @@ class ProductStore {
     }
 
     async init() {
+
     if (this.loaded) return; // не перезапрашивать при каждом рендере
     const data = await fetchProducts();
     const st = await fetchStock();
@@ -305,11 +306,12 @@ class ProductStore {
     this.FS = data.FS
     this.sensors = data.sensors
     this.other = data.other
-    this.loaded = true;
+    
     this.stock = st;
     this.lps_prices = l_price;
     this.sensors_prices = s_price;
     this.fs_prices = f_price;
+    this.loaded = true;
   }
 
   setCart(products){
