@@ -17,7 +17,7 @@ import * as THREE from 'three';
 const cur_prod = observer(() => {
 
     const slider = [
-        "/assets/images/LPS/LPS_sl1.jpg", "/assets/images/LPS/LPS_sl2.jpg", "/assets/images/LPS/LPS_sl3.jpg", "/assets/images/LPS/LPS_sl4.jpg"
+        "/assets/images/LPS/LPS_sl1.JPG", "/assets/images/LPS/LPS_sl2.JPG", "/assets/images/LPS/LPS_sl3.JPG", "/assets/images/LPS/LPS_sl4.JPG"
     ]
 
     const [description, setDescription] = useState(1)
@@ -312,7 +312,7 @@ const cur_prod = observer(() => {
 
                             {slider.map((i, idx) => {
                                 return(
-                                    <div key={i + idx} className={styles.product_page_slider_item}><Image alt="Датчик " width={600} height={600} src={i}/></div>
+                                    <div key={i + idx} className={styles.product_page_slider_item}><Image alt="Датчик LPS" width={600} height={600} src={i}/></div>
                                 )
                             })
 

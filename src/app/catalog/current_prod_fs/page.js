@@ -283,7 +283,7 @@ const cur_prod = observer(() => {
 
                             {slider.map((i, idx) => {
                                 return(
-                                    <div key={i + idx} className={styles.product_page_slider_item}><Image alt="Датчик " width={600} height={600} src={i}/></div>
+                                    <div key={i + idx} className={styles.product_page_slider_item}><Image alt="Датчик FS" width={600} height={600} src={i}/></div>
                                 )
                             })
 
