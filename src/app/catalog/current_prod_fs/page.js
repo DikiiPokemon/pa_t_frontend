@@ -10,15 +10,51 @@ import { Canvas } from "@react-three/fiber";
 import { ContactShadows, OrbitControls, useGLTF } from "@react-three/drei";
 import FS_calc from "@/components/FS_calc";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import Arrow from "@/components/assets/Arrow_down.svg"
+import Image from "next/image";
 import * as THREE from 'three';
 
 
 const cur_prod = observer(() => {
 
+    const slider = [
+        "/assets/images/FS/FS_sl1.png", "/assets/images/FS/FS_sl2.png", "/assets/images/FS/FS_sl3.png", "/assets/images/FS/FS_sl4.png"
+    ]
+
     const [description, setDescription] = useState(1)
     const [mod, setMod] = useState("")
 
     const [error, setError] = useState(false)
+
+     const[activeBlock, setActiveBlock] = useState(0)
+    const[Xtarns, setXtrans] = useState(0)
+    const dynamicStyle = {
+        translate: Xtarns, // Dynamic value from state
+    };
+
+    function inc_slider () {
+        if(activeBlock === slider.length){
+            setActiveBlock(0)
+        }else{
+            let count = activeBlock + 1
+            setActiveBlock(count)
+        }
+    }
+
+    function dec_slider (){
+        if(activeBlock === 0){
+            setActiveBlock(slider.length - 1)
+        }else{
+            let count = activeBlock - 1
+            setActiveBlock(count)
+        }
+    }
+
+    useEffect(() => {
+            
+        setXtrans(`-${100 / ( slider.length + 1) * activeBlock}%`)
+        
+    }, [activeBlock])
 
     function Model({ color, url }) {
         const [model, setModel] = useState(null);
@@ -206,41 +242,58 @@ const cur_prod = observer(() => {
         <div className={styles.product_page_wrapper}>
             <div className={styles.product_page_header}>Датчики FS</div>
             <div className={styles.product_page_charachteristic_wrapper}>
-                <div className={styles.product_page_charachteristic_3d}>
-                    <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 0], fov: 10}}>
-                        <ambientLight intensity={0.1} />
-                        <directionalLight
-                            castShadow
-                            position={[-2, 3, 0]} // свет под объектом
-                            intensity={0.5}
-                            color="#eaeff0"
-                            shadow-mapSize-width={1024}
-                            shadow-mapSize-height={1024}
-                            shadow-camera-far={10}
-                            shadow-camera-near={0.5}
-                            shadow-camera-left={-5}
-                            shadow-camera-right={5}
-                            shadow-camera-top={5}
-                            shadow-camera-bottom={-5}
-                            shadow-mapSize={[1024, 1024]} />
-                        <meshStandardMaterial color={0xeaeff0} />
-                        
-                        <Model color="#9D9D9C" url={`/assets/3d/FS/${mod}.gltf`} />
-                        
-                        <ContactShadows
-                            position={[0, -0.01, 0]}
-                            opacity={1}
-                            scale={1}
-                            blur={2}
-                            far={1}
-                        />
-                        <OrbitControls/>
-                    </Canvas>
-                    {
-                       error && 
-                        <div className={styles.error}>Не найдена модель данной конфигурации, была загружена конфигурация FS-12-50-C1</div>
-                    }
+                <div className={styles.product_page_charachteristic_img}>
+                    <div className={styles.product_page_slider_wrapper}>
+                        <div className={styles.product_page_slider_container} style={dynamicStyle}>
+                            <div className={styles.product_page_charachteristic_3d}>
+                                <Canvas shadows style={{width: "100%", height: "100%"}} camera={{ position: [0, 1, 0], fov: 10}}>
+                                    <ambientLight intensity={0.1} />
+                                    <directionalLight
+                                        castShadow
+                                        position={[-2, 3, 0]} // свет под объектом
+                                        intensity={0.5}
+                                        color="#eaeff0"
+                                        shadow-mapSize-width={1024}
+                                        shadow-mapSize-height={1024}
+                                        shadow-camera-far={10}
+                                        shadow-camera-near={0.5}
+                                        shadow-camera-left={-5}
+                                        shadow-camera-right={5}
+                                        shadow-camera-top={5}
+                                        shadow-camera-bottom={-5}
+                                        shadow-mapSize={[1024, 1024]} />
+                                    <meshStandardMaterial color={0xeaeff0} />
+                                    
+                                    <Model color="#9D9D9C" url={`/assets/3d/FS/${mod}.gltf`} />
+                                    
+                                    <ContactShadows
+                                        position={[0, -0.01, 0]}
+                                        opacity={1}
+                                        scale={1}
+                                        blur={2}
+                                        far={1}
+                                    />
+                                    <OrbitControls/>
+                                </Canvas>
+                                {
+                                error && 
+                                    <div className={styles.error}>Не найдена модель данной конфигурации, была загружена конфигурация FS-12-50-C1</div>
+                                }
+                            </div>
+
+                            {slider.map((i, idx) => {
+                                return(
+                                    <div key={i + idx} className={styles.product_page_slider_item}><Image alt="Датчик " width={600} height={600} src={i}/></div>
+                                )
+                            })
+
+                            }
+                        </div>
+                    </div>
+                    <button onClick={() => dec_slider()} className={`${styles.product_card_to_prod} `}><Image alt="Кнопка слайдера назад" src={Arrow}></Image></button>
+                    <button onClick={() => inc_slider()} className={`${styles.product_card_to_prod} `}><Image alt="Кнопка слайдера вперед" src={Arrow}></Image></button>
                 </div>
+                
                 <div className={styles.product_page_charachteristic_container_3d}>
                     <FS_calc setter={setMod}/>
                 </div>

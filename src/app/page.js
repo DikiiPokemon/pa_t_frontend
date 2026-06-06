@@ -11,23 +11,7 @@ export default function Home() {
   
   return (
     <div className={styles.page_wrapper}>
-      {
-        productsStore.product_cards.map(i => {
-          return(
-            <div key={"product_cards " + i.name} className={styles.catalog_wrapper}>
-              <div className={styles.catalog_section}><h1>{i.name}</h1></div>
-                {
-                  i.products.map(el => {
 
-                    return(
-                      <MainCard key={"prod_card " + el.name} product={el}/>
-                    )
-                  })
-                }
-              </div>
-          )
-          }) 
-      }
       <div className={styles.main_rail_string}>
         <div className={styles.catalog_section}><h1>С нами работают</h1></div>
         <div className={styles.items_wrap}>
@@ -51,6 +35,24 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {
+        productsStore.product_cards.map(i => {
+          return(
+            <div key={"product_cards " + i.name} className={styles.catalog_wrapper}>
+              <div className={styles.catalog_section}><h1>{i.name}</h1></div>
+                {
+                  i.products.map(el => {
+
+                    return(
+                      <MainCard key={"prod_card " + el.name} product={el}/>
+                    )
+                  })
+                }
+              </div>
+          )
+          }) 
+      }
+      
     </div>
   );
 }

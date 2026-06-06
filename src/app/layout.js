@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru" data-scroll-behavior="smooth">
       <head>
-        <title>Промавтоматика-т</title>
+        <title>Компания ПромАвтоматика-Т | Санкт-Петербург</title>
         <meta name="description" content="Производство и продажа LVDT - датчиков линейного перемещения, LPS датчиков, BDT блоков. Оказание услуг в наладке и отладке оборудования промышленной автоматики." />
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

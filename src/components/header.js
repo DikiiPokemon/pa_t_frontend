@@ -74,6 +74,12 @@ const Header = observer (() => {
     const[activeBlock, setActiveBlock] = useState(0)
     const[Xtarns, setXtrans] = useState(0)
 
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
     const dynamicStyle = {
         translate: Xtarns, // Dynamic value from state
     };
@@ -233,8 +239,10 @@ const Header = observer (() => {
                     </div>
                     <div ref={callMenu} className={styles.header_callback}>
                         <button onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart}><Image src={Cart} alt={""}/>
+                            {mounted&&
+                                <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
+                            }
                             
-                            <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
                             
                         </button>
                         <button onClick={() => {setSearch(true); setCall(false)}} className={search ? styles.header_button_active : styles.header_button}>
@@ -538,8 +546,10 @@ const Header = observer (() => {
             <div ref={callMenuBurger} className={`${styles.header_callback} ${styles.mobile_buttons}`} style={isVisible ? {bottom: "20px"} : {bottom: "-115px"}}>
                 <ToTop></ToTop>
                 <button onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart_m}><Image src={Cart} alt={""}/>
-                            
-                    <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
+                    {mounted&&
+                        <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
+                    }    
+
                     
                 </button>
                 
