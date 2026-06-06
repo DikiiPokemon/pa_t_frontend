@@ -187,8 +187,8 @@ const LPS_calc = observer((props) => {
                 <Selector key={"LPS3"} arr={Type} select={type} setSelect={setType}/>
             </div>
             <div className={styles.calc_measurments}>
-                <p>Длина кабеля</p>
-                <RangePicker setter={setCable} getter={cabele}/>
+                <label htmlFor="lps_range">Длина кабеля</label>
+                <RangePicker id={"lps_range"} setter={setCable} getter={cabele}/>
             </div>
 
             <div className={styles.calc_description}>

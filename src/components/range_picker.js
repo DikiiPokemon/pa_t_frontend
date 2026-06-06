@@ -10,7 +10,7 @@ const RangePicker = (props) => {
 
     return(
         <div className={styles.range_picker_wrapper}>
-            <input className={styles.range} onChange={(e) => setValue(e.target.value)} type="range" value={value} min={0} max={40}/>
+            <input id={props.id} className={styles.range} onChange={(e) => setValue(e.target.value)} type="range" value={value} min={0} max={40}/>
             <div className={styles.range_picker_value}>{value}</div>
         </div>
     )

@@ -376,7 +376,7 @@ const cur_prod = observer(() => {
                                         <p>0…550</p>
                                         <p>0…660</p>
                                     </td>
-                                    <td colSpan="6">длинна корпуса L (мм)</td>
+                                    <td colSpan="6">длина корпуса L (мм)</td>
                                     <td colSpan="6" style={{display: "flex", flexDirection: "column"}}>
                                         <p>98</p>
                                         <p>208</p>
@@ -567,6 +567,7 @@ const cur_prod = observer(() => {
                     <div className={styles.product_page_description_main}>
                         <h1 className={styles.product_page_description_main_header}>Документация</h1>
                         <ul>
+                            <li><a href="/assets/docs/lps/Passport_template.pdf" download>Паспорт</a></li>
                             <li><a href="/assets/docs/lps/datasheet_lvdt_v6.pdf" download>Техническая спецификация</a></li>
                             <li><a href="/assets/docs/lps/prga-000401.00-re_v11.pdf" download>Руководство по эксплуатации</a></li>
                             <li><a href="/assets/docs/lps/prga-000401.00-tu_v15.pdf" download>Технические условия</a></li>

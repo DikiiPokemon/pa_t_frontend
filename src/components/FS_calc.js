@@ -205,8 +205,8 @@ const FS_calc = observer ((props) => {
                 <Selector key={"FS3"} arr={Type} select={type} setSelect={setType}/>
             </div>
             <div className={styles.calc_measurments}>
-                <p>Длина кабеля</p>
-                <RangePicker setter={setCable} getter={cabele}/>
+                <label htmlFor="fs_range">Длина кабеля</label>
+                <RangePicker id={"fs_range"} setter={setCable} getter={cabele}/>
             </div>
 
             <div className={styles.calc_description}>

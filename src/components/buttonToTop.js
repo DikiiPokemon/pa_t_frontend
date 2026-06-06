@@ -37,6 +37,7 @@ const ToTop = (props) => {
 
   return (
     <button
+      title="Кнопка перемещения наверх"
       onClick={scrollToTop}
       className={`${styles.toTop} ${visible ? styles.show : ""}`}
     >

@@ -238,14 +238,14 @@ const Header = observer (() => {
                         <Link className={`${styles.header_link} ${pathname === "/contacts" ? styles.header_link_active : ""}`} href="/contacts">Контакты<span></span></Link>
                     </div>
                     <div ref={callMenu} className={styles.header_callback}>
-                        <button onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart}><Image src={Cart} alt={""}/>
+                        <button title="Кнопка открыть корзину" onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart}><Image src={Cart} alt={""}/>
                             {mounted&&
                                 <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
                             }
                             
                             
                         </button>
-                        <button onClick={() => {setSearch(true); setCall(false)}} className={search ? styles.header_button_active : styles.header_button}>
+                        <button title="Кнопка поиска" onClick={() => {setSearch(true); setCall(false)}} className={search ? styles.header_button_active : styles.header_button}>
                             <Image src={Search} alt={""}/>
                             {search&&
                                 <>
@@ -269,7 +269,7 @@ const Header = observer (() => {
                                 </>
                             }
                         </button>
-                        <button onClick={() => {setSearch(false); setCall(true)}} className={call ? styles.header_button_active : styles.header_button}>
+                        <button title="Кнопка показать телефон" onClick={() => {setSearch(false); setCall(true)}} className={call ? styles.header_button_active : styles.header_button}>
                             <Image src={Call} alt={""}/>
                             {/* {call&&
                                 <a href="tel: +7 (812) 603-23-10" className={styles.call_active}>+7 (812) 603-23-10</a>
@@ -282,7 +282,7 @@ const Header = observer (() => {
 
                     {/*Mobile burger menu*/}
                     <div ref={mobileSearch} className={styles.burger_trigger}>
-                        <button onClick={() => {setSearch_m(true)}} className={search_m ? styles.header_button_active : styles.header_button}>
+                        <button title="Кнопка поиска" onClick={() => {setSearch_m(true)}} className={search_m ? styles.header_button_active : styles.header_button}>
                             <Image src={Search} alt={""}/>
                             {search_m&&
                                 <>
@@ -306,7 +306,7 @@ const Header = observer (() => {
                                 </>
                             }
                         </button>
-                        <button onClick={() => setBurger(!burger)} className={`${styles.burger_button} ${burger ? styles.Active : ""}`}>
+                        <button title="Кнопка открытия бургер меню" onClick={() => setBurger(!burger)} className={`${styles.burger_button} ${burger ? styles.Active : ""}`}>
                             <span></span>
                         </button>
                     </div>
@@ -329,7 +329,7 @@ const Header = observer (() => {
                             productsSend ? 
                             <form className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`} style={{alignItems: "center"}}>
                                 <div className={styles.cart_header}>
-                                    <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => {setCartOpen(false); setProductSend(false)}}><Image src={Close} alt=""></Image></button></div>
+                                    <div className={styles.cart_header_close}><button title="Закрыть корзину" className={styles.Close} onClick={() => {setCartOpen(false); setProductSend(false)}}><Image src={Close} alt=""></Image></button></div>
                                 </div>
                                 <div className={styles.contacts_content_wrapper_success}>
                                 <div className={styles.contacts_content_container_success}>
@@ -343,7 +343,7 @@ const Header = observer (() => {
                             :
                             <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`} style={{alignItems: "center"}}>
                                 <div className={styles.cart_header}>
-                                    <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
+                                    <div className={styles.cart_header_close}><button title="Закрыть корзину" className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
                                 </div>
                                 <h1>ВАША КОРЗИНА ПУСТА</h1>
                                 <Image src={Cart_empty} alt=""></Image>
@@ -354,7 +354,7 @@ const Header = observer (() => {
                     :
                     <div className={`${styles.cart_wrapper} ${cartOpen && styles.cart_wrapper_active}`}>
                         <div className={`${styles.cart_container} ${cartOpen && styles.cart_container_active}`}>
-                            <div className={styles.cart_header_close}><button className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
+                            <div className={styles.cart_header_close}><button title="Закрыть корзину" className={styles.Close} onClick={() => setCartOpen(false)}><Image src={Close} alt=""></Image></button></div>
                             <div className={styles.slider_container}>
                                 <div className={styles.cart_slider} style={dynamicStyle}>
                                     <div className={styles.cart_part_container}>
@@ -398,7 +398,7 @@ const Header = observer (() => {
                                                                 })}</div>
                                                                 <div className={styles.cart_element}>{i.number}</div>
                                                                 <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
-                                                                <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                                <button title="Удалить товар из корзины" className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
                                                             </div>
                                                         )
                                                     }else if(arr[0] === "LPS"){
@@ -432,7 +432,7 @@ const Header = observer (() => {
                                                                 })}</div>
                                                                 <div className={styles.cart_element}>{i.number}</div>
                                                                 <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
-                                                                <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                                <button title="Удалить товар из корзины" className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
                                                             </div>
                                                         )
                                                     }else if(arr[0] === "FS"){
@@ -470,7 +470,7 @@ const Header = observer (() => {
                                                                 })}</div>
                                                                 <div className={styles.cart_element}>{i.number}</div>
                                                                 <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
-                                                                <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                                <button title="Удалить товар из корзины" className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
                                                             </div>
                                                         )
                                                     }else if(arr[0] === "BFS"){
@@ -487,7 +487,7 @@ const Header = observer (() => {
                                                                 })}</div>
                                                                 <div className={styles.cart_element}>{i.number}</div>
                                                                 <div className={styles.cart_element}>{(i.number * i.price).toFixed(2)} руб.</div>
-                                                                <button className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
+                                                                <button title="Удалить товар из корзины" className={styles.cart_element_del} onClick={() => {Del_product(idx)}}><Image src={Delete} alt=""></Image></button>
                                                             </div>
                                                         )
                                                     }
@@ -517,13 +517,13 @@ const Header = observer (() => {
                                                 <label>Примечание к заказу</label>
                                             </div>
                                             <CheckButton name={"check"} controller={setCheck}/>
-                                            <button className={`${styles.cart_button} ${activeBlock === 0 && styles.visible} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Заказать</button>
+                                            <button title="Заказать выбранные товары" className={`${styles.cart_button} ${activeBlock === 0 && styles.visible} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Заказать</button>
                                         </form>
                                         
                                 </div>
                             </div>
                             <div className={styles.total_cart}>Итого: {productsStore.Cart.reduce((sum, p) => sum + p.price * p.number, 0)} руб.</div>
-                            <button className={`${styles.cart_button}`} onClick={() => setActiveBlock(activeBlock === 0 ? 1 : 0)}>{ activeBlock === 0 ? "Оформить заказ" : "Назад"}</button>
+                            <button title="Кнопка перемещения между формами" className={`${styles.cart_button}`} onClick={() => setActiveBlock(activeBlock === 0 ? 1 : 0)}>{ activeBlock === 0 ? "Оформить заказ" : "Назад"}</button>
                         </div>
                     </div>
                     }
@@ -545,7 +545,7 @@ const Header = observer (() => {
             </div>
             <div ref={callMenuBurger} className={`${styles.header_callback} ${styles.mobile_buttons}`} style={isVisible ? {bottom: "20px"} : {bottom: "-115px"}}>
                 <ToTop></ToTop>
-                <button onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart_m}><Image src={Cart} alt={""}/>
+                <button title="Кнопка открыть корзину" onClick={() => {setCartOpen(true); setCartMount(true)}} className={styles.header_button_cart_m}><Image src={Cart} alt={""}/>
                     {mounted&&
                         <span className={`${styles.Count} ${productsStore.Cart.length !== 0 ? styles.ActiveCount : ""}`}>{productsStore.Cart.length}</span>
                     }    
@@ -553,7 +553,7 @@ const Header = observer (() => {
                     
                 </button>
                 
-                <button onClick={() => {setCall_m(true)}} className={call_m ? styles.header_button_active : styles.header_button_m}>
+                <button title="Кнопка раскрыть номер телефона" onClick={() => {setCall_m(true)}} className={call_m ? styles.header_button_active : styles.header_button_m}>
                     <Image src={Call} alt={""}/>
                     {/* {call&&
                         <a href="tel: +7 (812) 603-23-10" className={styles.call_active}>+7 (812) 603-23-10</a>

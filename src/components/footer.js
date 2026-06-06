@@ -50,7 +50,7 @@ const Footer = () => {
                             <a href="https://yandex.ru/maps/-/CLwaJB0F" target="_blank">194044, Санкт-Петербург, Пироговская наб., д.17 корп.5 лит.А</a>
                         </div>
                         <div className={styles.footer_block_subcontent}>
-                            <p>Время приема заказов по телефону — с 9.00 до 18.00 (время московское)</p>
+                            <p>Время приема заказов по телефону — ПН - ПТ с 9.00 до 18.00 (время московское)</p>
                         </div>
                         <div className={styles.footer_block_subcontent}>
                             <p><span>Телефоны:</span><a href="tel: +78126032310"> +7 (812) 603-23-10,</a><a href="tel: +78122235078"> +7 (812) 223-50-78</a></p>
