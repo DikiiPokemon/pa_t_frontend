@@ -43,7 +43,7 @@ const cur_prod = observer(() => {
 
     function dec_slider (){
         if(activeBlock === 0){
-            setActiveBlock(slider.length - 1)
+            setActiveBlock(slider.length)
         }else{
             let count = activeBlock - 1
             setActiveBlock(count)
