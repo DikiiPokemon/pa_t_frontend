@@ -2,6 +2,7 @@
 import styles from "@/app/contacts/page.module.css";
 import CheckButton from "@/components/CheckButton";
 import Error from "@/components/Error";
+import YandexMap from "@/components/YandexMap";
 import { sendContacts } from "@/http/product_controll";
 import { useCallback, useEffect, useState } from "react";
 
@@ -40,9 +41,6 @@ export default function Contacts() {
     {
       name: "Реквизиты",
     },
-    {
-      name: "Написать нам",
-    }
   ]
 
   const [form, setForm] = useState(
@@ -145,17 +143,14 @@ export default function Contacts() {
   
   return (
     <div className={styles.contacts_wrapper}>
+
       <div className={styles.contacts_container}>
-        <div className={styles.contacts_header}><h1>Контакты</h1></div>
-        <div className={styles.contacts_content}>
-            <div className={styles.product_page_description_nav}>
-              {Contacts.map((i, idx) => {
-                return(
-                  <button onClick={() => setActive(i.name)} key={idx + i.name} className={`${styles.product_page_description_nav_button} ${active === i.name ? styles.Active : ""}`}>{i.name}</button>
-                )
-              })}
-            </div>
-            {active === "Наши контакты" &&
+        <div className={styles.contacts_map_container}>
+          <YandexMap/>
+        </div>
+        <div className={styles.contacts_info_containter}>
+          <div className={styles.contacts_header}><h1>Контакты</h1></div>
+          <div className={styles.contacts_content}>
               <div className={styles.contacts_content_wrapper}>
                 <p><span>Адрес нашего офиса:</span>
                   <a href="https://yandex.ru/maps/-/CLwaJB0F" target="_blank">194044, Санкт-Петербург, Пироговская наб., д.17 корп.5 лит.А</a>
@@ -170,53 +165,63 @@ export default function Contacts() {
                   <a href="mailto:tech@pa.ru">tech@pa.ru</a>
                 </p>
               </div>
-            }
-            {active === "Реквизиты" &&
-              <div className={`${styles.contacts_content_wrapper} ${styles.card}`}>
-                <p><span>ООО «ПромАвтоматика-Т»</span></p>
-                <p><span>ОГРН </span>1089847292941</p>
-                <p><span>ИНН</span>7802 441 796</p>
-                <p><span>КПП </span>7802 01 001</p>
-                <p><span>Р/с</span>4070 2810 2130 0000 4803 в Филиал ОПЕРУ ОАО Банк ВТБ г. Санкт-Петербург</p>
-                <p><span>К/с</span>3010 1810 2000 0000 0704</p>
-                <p><span>БИК</span>044030704</p>
-              </div>
-            }
-            {(active === "Написать нам" && !mail_sent) &&
-              <form className={styles.contacts_content_wrapper}>
-                <div className={`${ styles.contacts_content_input_wrapper} ${form.theme !== "" ? styles.Active : ""}`}>
-                  <input onChange={e => setForm({...form, theme: e.target.value})} value={form.theme} type="text" placeholder="Тема" className={`${styles.contacts_content_wrapper_input} ${formErr.theme && styles.input_error}`}/>
-                  <label>Тема</label>
-                </div>
-                <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
-                  <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше имя" className={`${styles.contacts_content_wrapper_input} ${formErr.name && styles.input_error}`}/>
-                  <label>Ваше имя</label>
-                </div>
-                <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
-                  <input type="email" onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} placeholder="Ваш e-mail" className={`${styles.contacts_content_wrapper_input} ${formErr.mail && styles.input_error}`}/>
-                  <label>Ваш e-mail</label>
-                </div>
-                <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
-                  <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Ваше сообщение" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
-                  <label>Ваше сообщение</label>
-                </div>
-                <CheckButton name={"check"} controller={setCheck}/>
-                <button className={`${styles.to_card} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Отправить</button>
-                
-              </form>
-              }
-              {(active === "Написать нам" && mail_sent) &&
-                <div className={styles.contacts_content_wrapper_success}>
-                  <div className={styles.contacts_content_container_success}>
-                    <h1>Письмо успешно отправлено!</h1>
-                    <div className={styles.contacts_content_success}>
-                      <img alt="" src="./Check.svg"></img>
-                    </div>
-                  </div>
-                </div>
-              }
+          </div>
         </div>
       </div>
+      <div className={styles.contacts_info_containter} style={{width: "100%", marginTop: "unset", marginLeft: "unset", borderRadius: "20px"}}>
+        <div className={styles.contacts_header}><h1>Реквизиты</h1></div>
+        <div className={styles.contacts_content}>
+          <div className={`${styles.contacts_content_wrapper} ${styles.card}`}>
+            <p><span>ООО «ПромАвтоматика-Т»</span></p>
+            <p><span>ОГРН </span>1089847292941</p>
+            <p><span>ИНН</span>7802 441 796</p>
+            <p><span>КПП </span>7802 01 001</p>
+            <p><span>Р/с</span>4070 2810 2130 0000 4803 в Филиал ОПЕРУ ОАО Банк ВТБ г. Санкт-Петербург</p>
+            <p><span>К/с</span>3010 1810 2000 0000 0704</p>
+            <p><span>БИК</span>044030704</p>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.contacts_info_containter} style={{width: "100%", marginTop: "unset", marginLeft: "unset", borderRadius: "20px"}}>
+        <div className={styles.contacts_header}><h1>Написать нам</h1></div>
+        <div className={styles.contacts_content}>
+          {!mail_sent ?
+            <form className={styles.contacts_content_wrapper}>
+              <div className={`${ styles.contacts_content_input_wrapper} ${form.theme !== "" ? styles.Active : ""}`}>
+                <input onChange={e => setForm({...form, theme: e.target.value})} value={form.theme} type="text" placeholder="Тема" className={`${styles.contacts_content_wrapper_input} ${formErr.theme && styles.input_error}`}/>
+                <label>Тема</label>
+              </div>
+              <div className={`${ styles.contacts_content_input_wrapper} ${form.name !== "" ? styles.Active : ""}`}>
+                <input onChange={e => setForm({...form, name: e.target.value})} value={form.name} type="text" placeholder="Ваше имя" className={`${styles.contacts_content_wrapper_input} ${formErr.name && styles.input_error}`}/>
+                <label>Ваше имя</label>
+              </div>
+              <div className={`${ styles.contacts_content_input_wrapper} ${form.mail !== "" ? styles.Active : ""}`}>
+                <input type="email" onChange={e => setForm({...form, mail: e.target.value})} value={form.mail} placeholder="Ваш e-mail" className={`${styles.contacts_content_wrapper_input} ${formErr.mail && styles.input_error}`}/>
+                <label>Ваш e-mail</label>
+              </div>
+              <div className={`${ styles.contacts_content_input_wrapper} ${form.text !== "" ? styles.Active : ""}`}>
+                <textarea onChange={e => setForm({...form, text: e.target.value})} value={form.text} placeholder="Ваше сообщение" className={`${styles.contacts_content_wrapper_textarea} ${formErr.text && styles.input_error}`}/>
+                <label>Ваше сообщение</label>
+              </div>
+              <CheckButton name={"check"} controller={setCheck}/>
+              <button className={`${styles.to_card} ${!check && styles.disable}`} onClick={(e) => check ? sendForm(e) : e.preventDefault()}>Отправить</button>
+              
+            </form>
+            :
+            <div className={styles.contacts_content_wrapper_success}>
+              <div className={styles.contacts_content_container_success}>
+                <h1>Письмо успешно отправлено!</h1>
+                <div className={styles.contacts_content_success}>
+                  <img alt="" src="./Check.svg"></img>
+                </div>
+              </div>
+            </div>
+            }
+        </div>
+      </div>
+
+      
 
       <Error mounted={errorMount} show={err}>
         <div className={styles.error_wrapper} style={isVisible ? {top: "100px"} : {top: "20px"}}>

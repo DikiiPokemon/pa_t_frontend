@@ -2,7 +2,6 @@
 import styles from "@/app/catalog/page.module.css";
 import ProductCard from "@/components/product_card";
 import { Suspense, useContext, useEffect, useState } from "react"
-import { Context } from "../../layout"
 import { fetchProducts } from "@/http/product_controll"
 import { observer } from "mobx-react-lite";
 import BDT_calc from "@/components/BDT_clac";
@@ -14,7 +13,7 @@ const bdt_prod = observer(() => {
 
     const [description, setDescription] = useState(1)
     const slider = [
-        "/assets/images/BDT/BDT_sl_1.jpg", "/assets/images/BDT/BDT_sl_2.jpg", "/assets/images/BDT/BDT_sl_3.jpg", "/assets/images/BDT/BDT_sl_4.jpg", "/assets/images/BDT/BDT_gab.png"
+        "/assets/images/BDT/BDT_sl_1.webp", "/assets/images/BDT/BDT_sl_2.webp", "/assets/images/BDT/BDT_sl_3.webp", "/assets/images/BDT/BDT_sl_4.webp", "/assets/images/BDT/BDT_gab.webp"
     ]
     const[activeBlock, setActiveBlock] = useState(0)
     const[Xtarns, setXtrans] = useState(0)
@@ -153,7 +152,7 @@ const bdt_prod = observer(() => {
                         <p>Блок BDT-07 преобразует сигнал с обмоток преобразователя в нормированный сигнал постоянного тока и/или постоянного напряжения. Значение и тип сигнала зависят от модификации блока BDT, их типы приведены на рисунке 1 и в таблице 2.</p>
 
                         <p>Структура:</p>
-                        <img style={{width: "398px"}} src="/assets/images/BDT/bdt_structure.png" alt=""/>
+                        <img style={{width: "398px"}} src="/assets/images/BDT/bdt_structure.webp" alt=""/>
                         <p>Рис. 1 – Структура модификации блоков BDT</p>
 
                         <p>Таблица 2 – Значения выходных сигналов блока BDT</p>
@@ -189,7 +188,7 @@ const bdt_prod = observer(() => {
                         <p>Сигнал ошибки формируется</p>
                         <p>Имеется два выхода, которые в зависимости от модификации могут быть токовыми петлями или в виде напряжения ±10В.</p>
                         <p>При постановке двух преобразователей ЛП параллельно друг другу рекомендуется включать синхронизацию, позволяет убрать влияние взаимных магнитных помех близко размещённых преобразователей.</p>
-                        <img style={{width: "337px"}} src="/assets/images/BDT/BDT_gab.png" alt=""/>
+                        <img style={{width: "337px"}} src="/assets/images/BDT/BDT_gab.webp" alt=""/>
                         <p>Рис. 2 – Габаритные размеры блока</p>
 
                     </div>
@@ -222,7 +221,7 @@ const bdt_prod = observer(() => {
                                 <tr>
                                     <td style={{width: "196px"}}>№ клеммы</td>
                                     <td colSpan="6" style={{width: "482px"}}>Цепь</td>
-                                    <td rowSpan={25}><img src="/assets/images/BDT/table_klem.png" alt=""/></td>
+                                    <td rowSpan={25}><img src="/assets/images/BDT/table_klem.webp" alt=""/></td>
                                 </tr>
                                 <tr>
                                     <td style={{width: "196px"}}>1</td>
@@ -324,7 +323,7 @@ const bdt_prod = observer(() => {
                         </table>
 
                         <p>Рис. 1 – Схема подключения блока</p>
-                        <img style={{width: "1000px"}} src="/assets/images/BDT/Scheme_bdt.jpg" alt=""/>
+                        <img style={{width: "1000px"}} src="/assets/images/BDT/Scheme_bdt.webp" alt=""/>
                         <p>Клеммы 5 и 6, а также 7 и 8 попарно соединены и могут использоваться при необходимости для удобства монтажа нескольких блоков.</p>
                         <p>Клеммы 9 и 10, а также 11 и 12 – аналоговые выходы блока, они могут быть сконфигурированы как вольтовые (Uout ±10 В) или токовые (Iout 4-20 мА).</p>
                         <p>Клеммы 1 и 2 – предназначены для предачи информации от блока к потребителю по двухпроводному интерфейсу RS-485.</p>
@@ -338,18 +337,18 @@ const bdt_prod = observer(() => {
                         <ul>
                             <li style={{listStyle: "auto"}}>
                                 <p>Заходим в программу BDT-07 à в верхнем окне выбираем com-порт к которому подключен блок с преобразователем àнажимаем подключить</p>
-                                <img src="/assets/images/BDT/bdt_collibr_1.png" alt=""/>
+                                <img src="/assets/images/BDT/bdt_collibr_1.webp" alt=""/>
                             </li>
                             <li style={{listStyle: "auto"}}>
                                 <p>При успешном подключении блока, в графах положение и предобработка появятся данные и будут обновляться. Период обновления данных выставляется в графе период.</p>
-                                <img src="/assets/images/BDT/bdt_collibr_2.png" alt=""/>
+                                <img src="/assets/images/BDT/bdt_collibr_2.webp" alt=""/>
                             </li>
                             <li style={{listStyle: "auto"}}>
                                 <p>Выставляем шток в нулевое положение (15 мм для датчиков с направленным штоком (DS), 25 мм для датчиков с ненаправленным штоком (FS)).</p>
                             </li>
                             <li style={{listStyle: "auto"}}>
                                 <p>Переходим во вкладку калибровка, нажимаем прочитать.</p>
-                                <img src="/assets/images/BDT/bdt_collibr_3.png" alt=""/>
+                                <img src="/assets/images/BDT/bdt_collibr_3.webp" alt=""/>
                             </li>
                             <li style={{listStyle: "auto"}}>
                                 <p>Вам отобразятся текущие настройки и калибровка блока.</p>

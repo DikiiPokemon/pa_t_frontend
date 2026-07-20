@@ -139,7 +139,7 @@ const LPS_calc = observer((props) => {
             id: Object.values(cartElem).join("-"),
             number: num,
             price: price,
-            url: "/assets/images/LPS/LPS.jpg",
+            url: "/assets/images/LPS/LPS.webp",
         }
 
         

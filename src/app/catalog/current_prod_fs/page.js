@@ -2,7 +2,6 @@
 import styles from "@/app/catalog/page.module.css";
 import ProductCard from "@/components/product_card";
 import { Suspense, useContext, useEffect, useMemo, useState } from "react"
-import { Context } from "../../layout"
 import { fetchProducts } from "@/http/product_controll"
 import { observer } from "mobx-react-lite";
 import LPS_calc from "@/components/LPS_calc";

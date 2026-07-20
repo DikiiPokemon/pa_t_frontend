@@ -79,7 +79,7 @@ const BFS_calc = observer (() => {
             id: Object.values(cartElem).join("-"),
             number: num,
             price: price,
-            url: "/assets/images/BDT/BDT.jpg",
+            url: "/assets/images/BFS/BFS_sl_1.webp",
         }
         
         

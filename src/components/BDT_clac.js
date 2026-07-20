@@ -106,7 +106,7 @@ const BDT_calc = observer (() => {
             id: Object.values(cartElem).join("-"),
             number: num,
             price: productsStore.sensors_prices,
-            url: "/assets/images/BDT/BDT.jpg",
+            url: "/assets/images/BDT/BDT.webp",
         }
         
         

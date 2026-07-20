@@ -4,6 +4,7 @@ import { StoreProvider } from "@/store/StoreContext";
 import "./globals.css";
 import Footer from "@/components/footer";
 import YandexMetrika from "@/components/yaMetrika";
+import Script from "next/script";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -37,26 +38,27 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MyWebSite" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="preload" href="/assets/images/Customers/Incontrol.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/Jam.png" as="image" type="image/png" />
-        <link rel="preload" href="/assets/images/Customers/Sibir.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/TSA.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/Turbosystem.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/Unipro.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/InterRao.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/BashCom.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/реостат.png" as="image" type="image/png" />
-        <link rel="preload" href="/assets/images/Customers/ИНМАТЕК.png" as="image" type="image/png" />
-        <link rel="preload" href="/assets/images/Customers/Промстрой.png" as="image" type="image/png" />
-        <link rel="preload" href="/assets/images/Customers/техновар кс.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/ЭМСК.png" as="image" type="image/png" />
-        <link rel="preload" href="/assets/images/Customers/Промавтоматика.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/ker_auto.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/Customers/sil_mash.svg" as="image" type="image/svg" />
-        <link rel="preload" href="/assets/images/BDT/BDT.jpg" as="image" type="image/jpg" />
-        <link rel="preload" href="/assets/images/BFS/BFS_sl_1.jpg" as="image" type="image/jpg" />
-        <link rel="preload" href="/assets/images/FS/FS.png" as="image" type="image/png" />
-        <link rel="preload" href="/assets/images/LPS/LPS.png" as="image" type="image/png" />
+        <link rel="prefetch" href="/assets/images/Customers/Incontrol.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/Jam.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/assets/images/Customers/Sibir.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/TSA.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/Turbosystem.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/Unipro.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/InterRao.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/BashCom.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/реостат.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/assets/images/Customers/ИНМАТЕК.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/assets/images/Customers/Промстрой.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/assets/images/Customers/техновар кс.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/ЭМСК.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/assets/images/Customers/Промавтоматика.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/ker_auto.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/Customers/sil_mash.svg" as="image" type="image/svg" />
+        <link rel="prefetch" href="/assets/images/BDT/BDT.webp" as="image" type="image/jpg" />
+        <link rel="prefetch" href="/assets/images/BFS/BFS_sl_1.webp" as="image" type="image/jpg" />
+        <link rel="preload" href="/assets/images/FS/FS.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/assets/images/LPS/LPS.webp" as="image" type="image/webp" />
+        <script src={`https://api-maps.yandex.ru/v3/?apikey=${process.env.NEXT_PUBLIC_YMAPS_API_KEY}&lang=ru_RU`}></script>
       </head>
       <body>
         <StoreProvider>
@@ -67,7 +69,6 @@ export default function RootLayout({ children }) {
         <div id="cart" className="Close"></div>
         <div id="error" className="Close"></div>
         <YandexMetrika/>
-        
         
       </body>
     </html>

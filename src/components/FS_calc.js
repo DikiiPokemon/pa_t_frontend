@@ -151,7 +151,7 @@ const FS_calc = observer ((props) => {
             id: Object.values(cartElem).join("-"),
             number: num,
             price: price,
-            url: "/assets/images/FS/FS.jpg",
+            url: "/assets/images/FS/FS.webp",
         }
         
         

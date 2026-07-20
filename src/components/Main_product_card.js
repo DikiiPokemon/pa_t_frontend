@@ -22,7 +22,12 @@ const MainCard = ({product}) => {
             <Link href={product.href} style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%"}}></Link>
             <div className={styles.product_card_container}>
                 <div className={styles.product_card_img}>
-                    <Image alt={product.name} width={"300"} height={"300"}  src={product.img}/>
+                    {product.name === "LPS датчики" ? 
+                        <Image fetchPriority="high" priority alt={product.name} width={"300"} height={"300"}  src={product.img}/>
+                    :
+                        <Image alt={product.name} width={"300"} height={"300"}  src={product.img}/>
+                    }
+                    
                 </div>
                 <div className={styles.product_card_info}> 
                     <h1 className={styles.product_card_name}>{product.name}</h1>

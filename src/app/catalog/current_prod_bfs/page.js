@@ -2,7 +2,6 @@
 import styles from "@/app/catalog/page.module.css";
 import ProductCard from "@/components/product_card";
 import { Suspense, useContext, useEffect, useState } from "react"
-import { Context } from "../../layout"
 import { fetchProducts } from "@/http/product_controll"
 import { observer } from "mobx-react-lite";
 import Arrow from "@/components/assets/Arrow_down.svg"
