@@ -10,6 +10,8 @@ export default function YandexMap() {
 
 
   React.useEffect(() => {
+    let ymaps3 = null
+    if (!ymaps3) return
     Promise.all([
       ymaps3.import("@yandex/ymaps3-reactify"),
       ymaps3.ready,
