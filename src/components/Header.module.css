@@ -167,8 +167,8 @@
 
 .call_active{
     display: block;
-    position: relative;
-    top: -19px;
+    position: absolute;
+    top: 8px;
     left: 30px;
     width: 150px;
     text-align: center;
@@ -178,9 +178,9 @@
 
 .call_active_open{
     display: block;
-    position: relative;
-    top: -20px;
-    left: 15px;
+    position: absolute;
+    top: 8px;
+    left: 30px;
     width: 150px;
     text-align: center;
     overflow: hidden;
@@ -909,7 +909,7 @@
     }
 
     .header_button_m{
-        display: flex;
+        display: block;
         position: relative;
         overflow: hidden;
         justify-content: center;
@@ -925,6 +925,11 @@
         border-radius: 100px;
         cursor: pointer;
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 10px 6px 0 rgba(0, 0, 0, 0.05), 0 18px 7px 0 rgba(0, 0, 0, 0.01), 0 29px 8px 0 rgba(0, 0, 0, 0);
+    }
+
+    .header_button_m img{
+        width: 18px;
+        height: 18px;
     }
 }
 

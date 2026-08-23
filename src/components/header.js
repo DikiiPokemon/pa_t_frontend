@@ -269,7 +269,7 @@ const Header = observer (() => {
                                 </>
                             }
                         </button>
-                        <button title="Кнопка показать телефон" onClick={() => {setSearch(false); setCall(true)}} className={call ? styles.header_button_active : styles.header_button}>
+                        <button title="Кнопка показать телефон" onClick={() => {setSearch(false); setCall(true)}} className={call ? styles.header_button_active : styles.header_button} style={{overflow:"hidden"}}>
                             <Image src={Call} alt={""}/>
                             {/* {call&&
                                 <a href="tel: +7 (812) 603-23-10" className={styles.call_active}>+7 (812) 603-23-10</a>
@@ -553,7 +553,7 @@ const Header = observer (() => {
                     
                 </button>
                 
-                <button title="Кнопка раскрыть номер телефона" onClick={() => {setCall_m(true)}} className={call_m ? styles.header_button_active : styles.header_button_m}>
+                <button title="Кнопка раскрыть номер телефона" onClick={() => {setCall_m(true)}} className={call_m ? styles.header_button_active : styles.header_button_m} style={{overflow:"hidden"}}>
                     <Image src={Call} alt={""}/>
                     {/* {call&&
                         <a href="tel: +7 (812) 603-23-10" className={styles.call_active}>+7 (812) 603-23-10</a>

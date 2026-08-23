@@ -197,7 +197,7 @@ const bdt_prod = observer(() => {
                     <div className={styles.product_page_description_main}>
                         <h1 className={styles.product_page_description_main_header}>Документация</h1>
                         <ul>
-                            <li><a href="/assets/docs/bdt/tehnicheskoe-opisanie.pdf" download>Описание и схема подключения блока BDT</a></li>
+                            {/* <li><a href="/assets/docs/bdt/tehnicheskoe-opisanie.pdf" download>Описание и схема подключения блока BDT</a></li> */}
                             <li><a href="/assets/docs/bdt/bdt-07.zip" download>Модель корпуса в формате STL</a></li>
                             <li><a href="/assets/docs/bdt/BDT.zip" download>Модель корпуса в формате STEP</a></li>
                         </ul>

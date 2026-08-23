@@ -183,7 +183,7 @@ export default function Contacts() {
         </div>
       </div>
 
-      <div className={styles.contacts_info_containter} style={{width: "100%", marginTop: "unset", marginLeft: "unset", borderRadius: "20px"}}>
+      <div id="send" className={styles.contacts_info_containter} style={{width: "100%", marginTop: "unset", marginLeft: "unset", borderRadius: "20px"}}>
         <div className={styles.contacts_header}><h1>Написать нам</h1></div>
         <div className={styles.contacts_content}>
           {!mail_sent ?

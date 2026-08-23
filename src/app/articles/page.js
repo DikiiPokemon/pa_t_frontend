@@ -1,14 +1,23 @@
 "use client";
 import styles from "@/app/articles/page.module.css";
+import FS from "@/components/Articles/FS";
+import LVDT from "@/components/Articles/LVDT";
+import LVDT_Erection from "@/components/Articles/LVDT_Erection";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Articles() {
 
-  const[active, setActive] = useState("LVDT")
+  const[active, setActive] = useState("Датчики LVDT Что это?")
 
   const Articles = [
     {
-      name: "LVDT",
+      name: "Датчики LVDT",
+      img: "/assets/images/LPS/LPS.webp",
+      head: [
+        "Что это?",
+        "Монтаж",
+      ],
       content: [
         "Датчики LVDT – это одни из самых распространенных датчиков перемещения в инженерной и научной сферах. Они используются для измерения линейных перемещений, а также для контроля позиции и деформации объектов.",
         "LVDT – это сокращение от Linear Variable Differential Transformer, что означает линейный переменный дифференциальный трансформатор. Он работает на основе принципа электромагнитной индукции и состоит из трех обмоток, расположенных на цилиндрическом сердечнике.",
@@ -19,7 +28,11 @@ export default function Articles() {
       ],
     },
     {
-      name: "FS",
+      name: "Датчики FS",
+      img: "/assets/images/FS/FS.webp",
+      head:[
+        "Что это?",
+      ],
       content: [
         "Датчики частоты вращения являются важным компонентом в многих промышленных и научных приложениях. Они используются для измерения скорости вращения различных объектов, таких как двигатели, валы, роторы и турбины.",
         "Датчики частоты вращения работают на основе эффекта Холла или оптического эффекта. В случае датчиков на основе эффекта Холла, они содержат магнитный элемент и датчик Холла, который регистрирует изменение магнитного поля при вращении объекта.",
@@ -36,18 +49,32 @@ export default function Articles() {
       <div className={styles.article_container}>
         <div className={styles.article_header}><h1>Узнайте больше о мире технологий!</h1></div>
         <div className={styles.article_content}>
-            <div className={styles.article_content_header}>
-              <button onClick={() => setActive("LVDT")} className={`${styles.article_content_header_button} ${active === "LVDT" && styles.Active}`}>Датчики LVDT</button>
-              <button onClick={() => setActive("FS")} className={`${styles.article_content_header_button} ${active === "FS" && styles.Active }`}>Датчики FS</button>
-            </div>
-            <div className={styles.article_content_wrapper}>
-              {Articles?.find((el) => el.name === active).content?.map((i, idx) => {
-
-                return(
-                  <p key={idx + "articles"}>{i}</p>
-                )
-              })}
-            </div>
+            {Articles.map((i, idx) => {
+              return(
+                <div key={"article" + idx} className={styles.article_content_main}>
+                  <Image width={147} height={147} src={i.img} alt="" ></Image>
+                  <div className={styles.article_content_sub}>
+                    <h1>{i.name}</h1>
+                    <div className={styles.article_content_sub} style={{flexDirection: "row"}}>
+                    {Articles[idx].head.map((e, index) => {
+                      return(
+                        <button onClick={() => setActive(i.name + " " + e)} key={"article" + idx + index} className={`${styles.article_content_sub_btn} ${active === i.name + " " + e && styles.article_content_sub_btn_active}`}>{e}</button>
+                      )
+                    })}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+            {active === "Датчики LVDT Что это?" &&
+              <LVDT/>
+            }
+            {active === "Датчики LVDT Монтаж" &&
+              <LVDT_Erection/>
+            }
+            {active === "Датчики FS Что это?" &&
+              <FS/>
+            }
         </div>
       </div>
     </div>

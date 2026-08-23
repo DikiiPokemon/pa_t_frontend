@@ -6,33 +6,52 @@ import Logo from "@/components/assets/LogoPAT.svg"
 import styles from "@/components/Yandex.module.css";
 
 export default function YandexMap() {
-  const [api, setApi] = React.useState();
-
+   const [api, setApi] = React.useState(null);
 
   React.useEffect(() => {
-    let ymaps3 = null
-    if (!ymaps3) return
-    Promise.all([
-      ymaps3.import("@yandex/ymaps3-reactify"),
-      ymaps3.ready,
-    ]).then(([ymaps3React]) => {
-      setApi(
-        ymaps3React.reactify
+    async function initMap() {
+      try {
+        // Ждём, пока Yandex Maps API появится в window
+        if (!window.ymaps3) {
+          console.error("Yandex Maps API ещё не загружена");
+          return;
+        }
+
+        const ymaps3 = window.ymaps3;
+
+        // Ждём полной готовности API
+        await ymaps3.ready;
+
+        // Загружаем reactify
+        const ymaps3React = await ymaps3.import(
+          "@yandex/ymaps3-reactify"
+        );
+
+        // Превращаем Yandex API в React-компоненты
+        const reactified = ymaps3React.reactify
           .bindTo(React, ReactDOM)
-          .module(ymaps3)
-      );
-    });
+          .module(ymaps3);
+
+        setApi(reactified);
+      } catch (error) {
+        console.error("Ошибка загрузки Yandex Maps:", error);
+      }
+    }
+
+    initMap();
   }, []);
 
-  if (!api) return <div>Загрузка карты...</div>;
+  // API ещё не готов
+  if (!api) {
+    return <div>Загрузка карты...</div>;
+  }
 
   const {
     YMap,
     YMapDefaultSchemeLayer,
     YMapDefaultFeaturesLayer,
     YMapMarker,
-  } = api;
-
+  } = api
   return (
     <YMap
       location={{
